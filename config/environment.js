@@ -1,11 +1,16 @@
 /* jshint node: true */
 
+var contentSecurityPolicy = {
+    'connect-src': "'self' http://localhost:* http://noovis2-staging.herokuapp.com",
+};
+
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'noovis-app2-ember2',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    apiHost: 'http://noovis2-staging.herokuapp.com',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -25,12 +30,16 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.contentSecurityPolicy = contentSecurityPolicy;
+    
   }
 
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
+    apiHost: '',
+
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
