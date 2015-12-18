@@ -9,7 +9,6 @@ moduleForComponent('network-site-listing', 'Integration | Component | network si
 test('it renders', function(assert) {
   
   var networkSite = Ember.Object.create({name: 'ACME Lab'});
-  console.log('network-site-listing-test networkSite:', networkSite);
   this.set('networkSite', networkSite);
 
   this.render(hbs`

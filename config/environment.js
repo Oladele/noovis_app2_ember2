@@ -1,7 +1,8 @@
 /* jshint node: true */
 
 var contentSecurityPolicy = {
-    'connect-src': "'self' http://localhost:* http://noovis2-staging.herokuapp.com",
+  'script-src': "'self' 'unsafe-eval' 'unsafe-inline' ",
+  'connect-src': "'self' http://localhost:* http://noovis2-staging.herokuapp.com",
 };
 
 module.exports = function(environment) {
@@ -44,6 +45,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.contentSecurityPolicy = contentSecurityPolicy;
   }
 
   if (environment === 'production') {
