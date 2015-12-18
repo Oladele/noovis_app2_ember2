@@ -1,9 +1,7 @@
-<h1>Sites</h1>
-
 {{#each model as |company|}}
-	<h1>
+	<h4>
 		<a href="#" data-role="company-link">{{company.name}}</a>
-	</h1>
+	</h4>
 	{{#each company.networkSites as |networkSite|}}
 		{{network-site-listing networkSite=networkSite}}
 	{{/each}}
