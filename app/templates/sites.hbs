@@ -1,5 +1,7 @@
 <h1>Sites</h1>
 
 {{#each model as |networkSite|}}
-  <div data-role="network-site-name">{{networkSite.name}}</div>
+<div>
+	<a href="#" data-role="network-site-link">{{networkSite.name}}</a>
+</div>
 {{/each}}

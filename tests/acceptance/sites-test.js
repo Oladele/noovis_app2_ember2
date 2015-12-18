@@ -10,7 +10,18 @@ test('visiting /sites', function(assert) {
 
   andThen(function() {
     assert.equal(currentURL(), '/sites');
-    assert.equal(find('[data-role=network-site-name]').length, 4, "All network-site names are rendered");
-    assert.equal(find('[data-role=network-site-name]:contains("ACME Lab")').length, 1, "network-site names contains the network-site name");
+    assert.equal(find('[data-role=network-site-link]').length, 4, "All network-site links are rendered");
+    assert.equal(find('[data-role=network-site-link]:contains("ACME Lab")').length, 1, "network-site links contains the network-site name");
   });
 });
+
+
+// test('Sites page has links to network-sites', function(assert) {
+// 	site = server.create('network-site', {name: "ACME Lab"});
+//   visit('/sites');
+//   click('[data-role=network-site-link]:first');
+
+//   andThen(function() {
+//     assert.equal(currentURL(), '/network-sites/'+site.id);
+//   });
+// });
