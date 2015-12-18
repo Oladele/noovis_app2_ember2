@@ -10,21 +10,31 @@ test('visiting /sites', function(assert) {
 		company: company.id
 	});
 	
-	server.createList('network-site', 3);
+	server.createList('network-site', 3, {company: company.id});
   visit('/sites');
 
   andThen(function() {
     assert.equal(currentURL(), '/sites');
+
+    assert.equal(
+    	find('[data-role=company-link]').length, 
+    	1,
+    	"All company links are rendered");
+
+    assert.equal(
+    	find('[data-role=company-link]:first').text(),
+    	"ACME", 
+    	"Company links contain the company name");
     
     assert.equal(
     	find('[data-role=network-site-link]').length, 
     	4,
-    	"All network-site links are rendered");
+    	"All network site links are rendered");
     
     assert.equal(
     	find('[data-role=network-site-link]:first').text(),
     	"ACME Lab", 
-    	"network-site links contains the network-site name");
+    	"Network site links contain the network-site name");
   });
 });
 
