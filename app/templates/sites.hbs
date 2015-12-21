@@ -1,8 +1,20 @@
+<div class="row">
+
+<div class="col-xs-4">
+	
 {{#each model as |company|}}
 	<h4>
-		<a href="#" data-role="company-link">{{company.name}}</a>
+		{{link-to company.name "sites.companies.company" company data-role="company-link"}}
 	</h4>
 	{{#each company.networkSites as |networkSite|}}
 		{{network-site-listing networkSite=networkSite}}
 	{{/each}}
 {{/each}}
+
+</div>
+
+<div class="col-xs-8">
+{{outlet}}
+</div>
+
+</div>
