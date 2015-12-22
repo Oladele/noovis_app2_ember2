@@ -5,10 +5,10 @@ moduleForAcceptance('Acceptance | sites');
 
 test('visiting /sites', function(assert) {
   var company = server.create('company', {name: "ACME"});
-	server.create('network-site', {
-		name: "ACME Lab",
-		company: company.id
-	});
+  server.create('network-site', {
+     name: "ACME Lab",
+     company: company.id
+  });
 	
 	server.createList('network-site', 3, {company: company.id});
   visit('/sites');
@@ -39,12 +39,32 @@ test('visiting /sites', function(assert) {
 });
 
 
-// test('Sites page has links to network-sites', function(assert) {
-// 	site = server.create('network-site', {name: "ACME Lab"});
-//   visit('/sites');
-//   click('[data-role=network-site-link]:first');
+test('Sites page company links', function(assert) {
+	var company = server.create('company', {name: "ACME"});
+  // server.create('network-site', {
+  //    name: "ACME Lab",
+  //    company: company.id
+  // });
 
-//   andThen(function() {
-//     assert.equal(currentURL(), '/network-sites/'+site.id);
-//   });
-// });
+  visit('/sites');
+  click('[data-role=company-link]:first');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/sites/companies/'+ company.id);
+  });
+});
+
+test('Sites page network-site links', function(assert) {
+  var company = server.create('company', {name: "ACME"});
+  var networkSite = server.create('network-site', {
+     name: "ACME Lab",
+     company: company.id
+  });
+
+  visit('/sites');
+  click('[data-role=network-site-link]:first');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/sites/network-sites/'+ networkSite.id);
+  });
+});
