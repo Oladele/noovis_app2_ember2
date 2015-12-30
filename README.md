@@ -41,7 +41,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Deployment uses Pagefront HQ and Codeship CI
+Deployment uses PagefrontHQ and Codeship CI
 
 
 ## Further Reading / Useful Links
