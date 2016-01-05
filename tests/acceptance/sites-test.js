@@ -50,7 +50,7 @@ test('Sites page company links', function(assert) {
   click('[data-role=company-link]:first');
 
   andThen(function() {
-    assert.equal(currentURL(), '/sites/companies/'+ company.id);
+    assert.equal(currentURL(), `/sites/companies/${company.id}/edit`);
   });
 });
 

@@ -12,7 +12,7 @@
 
   {{#each model as |company|}}
     <h4>
-      {{link-to company.name "sites.companies.company" company data-role="company-link"}}
+      {{link-to company.name "sites.companies.company.edit" company data-role="company-link"}}
     </h4>
     {{#each company.networkSites as |networkSite|}}
       {{network-site-listing networkSite=networkSite}}
