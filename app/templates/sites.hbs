@@ -4,7 +4,7 @@
 
   {{#link-to
       "sites.companies.new"
-      data-role="new-company-btn"
+      data-test-selector="new-company-button"
       class="btn btn-default btn-primary"
   }}
       Add Company
@@ -12,7 +12,12 @@
 
   {{#each model as |company|}}
     <h4>
-      {{link-to company.name "sites.companies.company.edit" company data-role="company-link"}}
+      {{link-to
+          company.name
+          "sites.companies.company.edit"
+          company
+          data-test-selector="company-link"
+      }}
     </h4>
     {{#each company.networkSites as |networkSite|}}
       {{network-site-listing networkSite=networkSite}}

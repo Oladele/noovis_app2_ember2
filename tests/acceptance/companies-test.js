@@ -10,7 +10,7 @@ test('can create new company', function(assert) {
   click('[data-role="submit"]');
 
   andThen(() => {
-    assert.ok(find('[data-role="company-link"]:contains("ACME")').length);
+    assert.ok(find('[data-test-selector="company-link"]:contains("ACME")').length);
   });
 });
 
@@ -23,7 +23,7 @@ test('can update company', function(assert) {
   click('[data-role="submit"]');
 
   andThen(() => {
-    assert.ok(find('[data-role="company-link"]:contains("ACME2")').length);
+    assert.ok(find('[data-test-selector="company-link"]:contains("ACME2")').length);
   });
 });
 
