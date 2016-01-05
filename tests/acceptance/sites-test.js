@@ -68,3 +68,10 @@ test('Sites page network-site links', function(assert) {
     assert.equal(currentURL(), '/sites/network-sites/'+ networkSite.id);
   });
 });
+
+test('Sites page contains `Add Company` button', function(assert) {
+  visit('/sites');
+  click('[data-role=new-company-btn]:first');
+
+  andThen(() => assert.equal(currentURL(), '/sites/companies/new'));
+});

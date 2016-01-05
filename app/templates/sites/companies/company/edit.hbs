@@ -1,0 +1,14 @@
+<h2>Edit Company</h2>
+
+<div class='form-group'>
+  <label for='company-name'>Company Name</label>
+  <br>
+  {{input
+      value=name
+      size=50
+      placeholder='Company, got a name?'
+      id='company-name'
+  }}
+</div>
+<button data-role='submit' {{action 'updateCompany'}}>Update</button>
+<button data-role='company-delete' {{action 'deleteCompany'}}>Delete</button>
