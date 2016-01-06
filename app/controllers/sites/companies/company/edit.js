@@ -2,8 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    updateCompany() {
-      const name = this.get('name');
+    updateCompany(name) {
       const company = this.get('model');
       company.set('name', name);
       company.save();

@@ -5,6 +5,10 @@ export function initialize(/* application */) {
   Ember.LinkComponent.reopen({
     attributeBindings: ['data-test-selector']
   });
+
+  Ember.TextField.reopen({
+    attributeBindings: ['data-test-selector']
+  });
 }
 
 export default {
