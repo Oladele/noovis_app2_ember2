@@ -52,3 +52,9 @@ test('it does not show delete button for `new` route', function(assert) {
 
   assert.equal(this.$('[data-test-selector="delete-button"]').length, 0);
 });
+
+test('it shows company name if one exists', function(assert) {
+  this.render(hbs`{{company-form name='ACME'}}`);
+
+  assert.equal(this.$('[data-test-selector="company-name-input"]').val(), 'ACME');
+});

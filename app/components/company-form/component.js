@@ -1,11 +1,15 @@
 import Ember from 'ember';
 
 const {
-  isBlank
+  isBlank,
+  computed
 } = Ember;
 
 export default Ember.Component.extend({
   showEditControls: false,
+  placeholderText: computed('name', function() {
+    return 'Company, got a name?' || name;
+  }),
 
   didReceiveAttrs() {
     const route = this.get('routeName');
