@@ -51,6 +51,10 @@ test('Sites page company links', function(assert) {
 
   andThen(function() {
     assert.equal(currentURL(), '/sites/companies/'+ company.id);
+    assert.equal(
+      find('[data-role=company-title]:first').text(),
+      "ACME", 
+      "Company title is on show company page");
   });
 });
 
@@ -66,5 +70,9 @@ test('Sites page network-site links', function(assert) {
 
   andThen(function() {
     assert.equal(currentURL(), '/sites/network-sites/'+ networkSite.id);
+    assert.equal(
+      find('[data-role=network-site-title]:first').text(),
+      "ACME Lab", 
+      "Network Site title is on show network-site page");
   });
 });
