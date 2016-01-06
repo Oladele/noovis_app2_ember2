@@ -17,23 +17,23 @@ test('visiting /sites', function(assert) {
     assert.equal(currentURL(), '/sites');
 
     assert.equal(
-        find('[data-test-selector="company-link"]').length, 
+        find('[data-test-selector="company-link"]').length,
         1,
         "All company links are rendered");
 
     assert.equal(
         find('[data-test-selector="company-link"]').text(),
-        "ACME", 
+        "ACME",
         "Company links contain the company name");
 
     assert.equal(
-        find('[data-role=network-site-link]').length, 
+        find('[data-test-selector="network-site-link"]').length,
         4,
         "All network site links are rendered");
 
     assert.equal(
-        find('[data-role=network-site-link]:first').text(),
-        "ACME Lab", 
+        find('[data-test-selector="network-site-link"]:first').text(),
+        "ACME Lab",
         "Network site links contain the network-site name");
   });
 });
@@ -62,7 +62,7 @@ test('Sites page network-site links', function(assert) {
   });
 
   visit('/sites');
-  click('[data-role=network-site-link]:first');
+  click('[data-test-selector="network-site-link"]');
 
   andThen(function() {
     assert.equal(currentURL(), '/sites/network-sites/'+ networkSite.id);

@@ -12,14 +12,15 @@ test('it renders', function(assert) {
 });
 
 test('it submits on click of `Update` button', function(assert) {
-  this.set('submitAction', () => {
-    assert.ok(true);
+  const companyName = 'ACME';
+  this.set('submitAction', (name) => {
+    assert.equal(name, companyName);
   });
 
   this.render(hbs`{{company-form on-submit=(action submitAction)}}`);
 
-  this.$('input').val('ACME');
-  this.$('input').change();
+  this.$('[data-test-selector="company-name-input"]').val(companyName);
+  this.$('[data-test-selector="company-name-input"]').change();
 
   this.$('[data-test-selector="submit-button"]').click();
 });

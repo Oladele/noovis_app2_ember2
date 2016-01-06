@@ -7,7 +7,7 @@ moduleForComponent('network-site-listing', 'Integration | Component | network si
 });
 
 test('it renders', function(assert) {
-  
+
   var networkSite = Ember.Object.create({name: 'ACME Lab'});
   this.set('networkSite', networkSite);
 
@@ -15,6 +15,5 @@ test('it renders', function(assert) {
     {{network-site-listing networkSite=networkSite}}
   `);
 
-  assert.equal(this.$('[data-role=network-site-link]:first').text(), "ACME Lab");
-
+  assert.equal(this.$('[data-test-selector="network-site-link"]').text(), "ACME Lab");
 });

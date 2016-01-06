@@ -10,7 +10,7 @@ test('can create new company', function(assert) {
   click('[data-test-selector="submit-button"]');
 
   andThen(() => {
-    assert.ok(find('[data-test-selector="company-link"]:contains("ACME")').length);
+    assert.equal(find('[data-test-selector="company-link"]:contains("ACME")').length, 1, "new company is created with correct name");
   });
 });
 
