@@ -21,12 +21,13 @@ export default Ember.Component.extend({
     submit() {
       const name = this.get('name');
       if (!isBlank(name)) {
-        this['on-submit'](name);
+        this['on-submit'](name)
+          .catch(({ errors }) => this.set('errors', errors));
       }
     },
 
     delete() {
-      this['on-delete']();
+      this['on-delete']().catch(({errors}) => this.set('errors', errors));
     }
   }
 });

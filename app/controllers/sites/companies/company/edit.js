@@ -5,11 +5,11 @@ export default Ember.Controller.extend({
     updateCompany(name) {
       const company = this.get('model');
       company.set('name', name);
-      company.save();
+      return company.save();
     },
 
     deleteCompany() {
-      this.get('model').destroyRecord();
+      return this.get('model').destroyRecord();
     }
   }
 });
