@@ -6,14 +6,14 @@
       {{x-input
           value=name
           size=50
-          placeholder=placeholderText
+          placeholder='Company, got a name?'
           data-test-selector='company-name-input'
       }}
     </label>
   </div>
   <button data-test-selector='submit-button' {{action 'submit'}}>Update</button>
 
-  {{#if showEditControls}}
+  {{#if isEditing}}
     <button data-test-selector='delete-button' {{action 'delete'}}>Delete</button>
   {{/if}}
 </form>

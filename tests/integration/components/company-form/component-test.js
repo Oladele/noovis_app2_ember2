@@ -6,8 +6,6 @@ moduleForComponent('company-form', 'Integration | Component | company form', {
   integration: true
 });
 
-const promise = new Ember.RSVP.resolve('success');
-
 test('it renders', function(assert) {
   this.render(hbs`{{company-form}}`);
 
@@ -16,9 +14,11 @@ test('it renders', function(assert) {
 
 test('it submits on click of `Update` button', function(assert) {
   const companyName = 'ACME';
+  const { resolve } = Ember.RSVP;
+
   this.set('submitAction', (name) => {
     assert.equal(name, companyName);
-    return promise;
+    return resolve();
   });
 
   this.render(hbs`{{company-form on-submit=(action submitAction)}}`);
@@ -30,12 +30,13 @@ test('it submits on click of `Update` button', function(assert) {
 });
 
 test('it triggers delete on click of `Delete` button', function(assert) {
+  const { resolve } = Ember.RSVP;
   this.set('deleteAction', () => {
     assert.ok(true);
-    return promise;
+    return resolve();
   });
 
-  this.render(hbs`{{company-form on-delete=(action deleteAction)}}`);
+  this.render(hbs`{{company-form on-delete=(action deleteAction) isEditing=true}}`);
 
   this.$('[data-test-selector="delete-button"]').click();
 });
@@ -59,7 +60,19 @@ test('it does not show delete button for `new` route', function(assert) {
 });
 
 test('it shows company name if one exists', function(assert) {
-  this.render(hbs`{{company-form name='ACME'}}`);
+  this.render(hbs`{{company-form name=name}}`);
 
-  assert.equal(this.$('[data-test-selector="company-name-input"]').val(), 'ACME');
+  this.set('name', undefined);
+  assert.equal(
+    this.$('[data-test-selector="company-name-input"]').val(),
+    '',
+    'input has no value and shows placeholder'
+  );
+
+  this.set('name', 'ACME');
+  assert.equal(
+    this.$('[data-test-selector="company-name-input"]').val(),
+    'ACME',
+    'input shows name'
+  );
 });
