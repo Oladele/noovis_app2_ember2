@@ -1,5 +1,5 @@
 <h2>Edit Company</h2>
 
-{{company-form on-submit=(action 'updateCompany') on-delete=(action 'deleteCompany') isEditing=true name=model.name}}
+{{company-form on-submit=(route-action 'updateCompany') on-delete=(route-action 'deleteCompany') isEditing=true name=model.name}}
 
 {{network-sites-list company=model sites=model.networkSites}}

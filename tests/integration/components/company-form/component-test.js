@@ -54,7 +54,7 @@ test('it validates name field', function(assert) {
 });
 
 test('it does not show delete button for `new` route', function(assert) {
-  this.render(hbs`{{company-form routeName='new'}}`);
+  this.render(hbs`{{company-form}}`);
 
   assert.equal(this.$('[data-test-selector="delete-button"]').length, 0);
 });
