@@ -1,0 +1,17 @@
+<h2>Network Sites</h2>
+
+{{#link-to
+    'sites.companies.company.network-sites.new'
+    company
+    data-test-selector='new-site-button'
+}}
+  Add a New Site
+{{/link-to}}
+
+<ul>
+{{#each sites as |site|}}
+  {{#link-to 'sites.network-sites.network-site.edit' site data-test-selector='network-site-item'}}
+    {{site.name}}
+  {{/link-to}}
+{{/each}}
+</ul>
