@@ -52,3 +52,12 @@ test('can delete company', function(assert) {
     assert.equal(server.db.companies.length, 0);
   });
 });
+
+test('show map on company edit page', function(assert) {
+  let company = server.create('company', { name: 'ACME' });
+  visit(`/sites/companies/${company.id}/edit`);
+
+  andThen(() => {
+    assert.equal(find('.testSelector-company-map').length, 1, 'found map');
+  });
+});

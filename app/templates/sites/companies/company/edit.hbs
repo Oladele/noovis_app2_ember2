@@ -1,5 +1,13 @@
 <h2>Edit Company</h2>
 
+{{g-maps
+    name='company-edit-map'
+    lat=lat
+    lng=lng
+    zoom=zoom
+    class='testSelector-company-map'
+}}
+
 {{company-form on-submit=(route-action 'updateCompany') on-delete=(route-action 'deleteCompany') isEditing=true name=model.name}}
 
 {{network-sites-list company=model sites=model.networkSites}}
