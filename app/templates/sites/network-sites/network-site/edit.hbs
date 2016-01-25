@@ -8,6 +8,8 @@
 
 {{network-site-form
     site=model
+    name=model.name
+    address=model.address
     onPlaceUpdate=(route-action 'didUpdatePlace')
     onSubmit=(route-action 'submit')
     onDelete=(route-action 'deleteNetworkSite')

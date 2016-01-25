@@ -1,12 +1,16 @@
 <form {{action 'submit' on='submit'}}>
   <label>
     Site Name<br>
-    {{x-input value=name data-test-selector='site-name-input'}}
+    {{x-input
+        value=name
+        data-test-selector='site-name-input'
+        placeholder="Let's give this site a name"
+    }}
   </label>
   <br>
   <label>
     Site Address<br>
-    {{google-autocomplete onComplete=(route-action 'didUpdatePlace')}}
+    {{google-autocomplete onComplete=(route-action 'didUpdatePlace') address=address}}
   </label>
 
   <button data-test-selector='submit-button' {{action 'submit'}}>Update</button>
