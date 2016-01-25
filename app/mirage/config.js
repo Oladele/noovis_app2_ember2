@@ -11,7 +11,6 @@ export default function() {
   });
 
   this.get('/network-sites', function(db, request) {
-
     var company = request.queryParams.company;
     var dbData;
 
@@ -23,8 +22,8 @@ export default function() {
 
     var data = dbData.map(attrs => (
       {
-        "type": 'network-sites', 
-        "id": attrs.id, 
+        "type": 'network-sites',
+        "id": attrs.id,
         "attributes": attrs,
         "relationships": {
           "company": {
@@ -42,19 +41,19 @@ export default function() {
     };
   });
 
-  this.get('/buildings/:id', function(db, request) {
+  // this.get('/buildings/:id', function(db, request) {
 
-    var id = request.params.id;
-    var building = db["buildings"].find(id);
-    var response = {
-      data:{
-        id: building.id,
-        type: "buildings",
-        attributes: building
-      }
-    };
-    return response;
-  });
+    // var id = request.params.id;
+    // var building = db["buildings"].find(id);
+    // var response = {
+      // data:{
+        // id: building.id,
+        // type: "buildings",
+        // attributes: building
+      // }
+    // };
+    // return response;
+  // });
 
   // this.get('companies/:id/network-sites');
   this.get('/companies/:id/network-sites', function(db, request) {
@@ -63,9 +62,9 @@ export default function() {
 
     return {
       data: networkSites.map(attrs => (
-        { 
-          type: 'network-sites', 
-          id: attrs.id, 
+        {
+          type: 'network-sites',
+          id: attrs.id,
           attributes: attrs,
           relationships: {
             company: {
@@ -96,6 +95,7 @@ export default function() {
         attributes: networkSite
       }
     };
+
     return response;
   });
 
@@ -104,8 +104,8 @@ export default function() {
     var id = request.params.id;
     var networkSite = db["network-sites"].find(id);
     var data = {
-      "type": 'network-sites', 
-      "id": networkSite.id, 
+      "type": 'network-sites',
+      "id": networkSite.id,
       "attributes": networkSite,
       "relationships": {
         "company": {
@@ -114,36 +114,44 @@ export default function() {
             "id": networkSite.company
           }
         },
-        "buildings": {
-          "links": {
-            "self": `/network-sites/${id}/relationships/buildings`,
-            "related": `/network-sites/${id}/buildings`
-          },
-          "data": db["buildings"].where({networkSite: id}).map(attrs =>(
-              {
-                "type": "buildings",
-                "id": attrs.id
-              }
-            ))
-        }
+        // "buildings": {
+          // "links": {
+            // "self": `/network-sites/${id}/relationships/buildings`,
+            // "related": `/network-sites/${id}/buildings`
+          // },
+          // "data": db["buildings"].where({networkSite: id}).map(attrs =>(
+              // {
+                // "type": "buildings",
+                // "id": attrs.id
+              // }
+            // ))
+        // }
       }
     };
 
-    var included = db["buildings"].where({networkSite: id}).map(attrs =>(
+    // var included = db["buildings"].where({networkSite: id}).map(attrs =>(
+      // {
+        // "id": attrs.id,
+        // "type": "buildings",
+        // "attributes": attrs,
+        // "relationships": {
+          // "network-site": {
+            // "links": {
+              // "self": `/buildings/${attrs.id}/relationships/network-site`,
+              // "related": `/buildings/${attrs.id}/network-site`
+            // }
+          // }
+        // }
+      // }
+    // ));
+    //
+    let included = [
       {
-        "id": attrs.id,
-        "type": "buildings",
-        "attributes": attrs,
-        "relationships": {
-          "network-site": {
-            "links": {
-              "self": `/buildings/${attrs.id}/relationships/network-site`,
-              "related": `/buildings/${attrs.id}/network-site`
-            }
-          }
-        }
+        type: 'companies',
+        id: networkSite.company
       }
-    ));
+    ];
+
     return {
       data: data,
       included: included
@@ -170,8 +178,8 @@ export default function() {
 
     var data = db.companies.map(attrs => (
       {
-        "type": 'companies', 
-        "id": attrs.id, 
+        "type": 'companies',
+        "id": attrs.id,
         "attributes": attrs,
         "relationships": {
           "network-sites": {

@@ -1,0 +1,15 @@
+<form {{action 'submit' on='submit'}}>
+  <label>
+    Site Name<br>
+    {{x-input value=name data-test-selector='site-name-input'}}
+  </label>
+  <br>
+  <label>
+    Site Address<br>
+    {{google-autocomplete onComplete=(route-action 'didUpdatePlace')}}
+  </label>
+
+  <button data-test-selector='submit-button' {{action 'submit'}}>Update</button>
+
+  <button data-test-selector='delete-button' {{action 'deleteSite'}}>Delete {{site.name}}</button>
+</form>
