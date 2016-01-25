@@ -27,7 +27,12 @@
 </div>
 
 <div class="col-xs-8">
-{{outlet}}
+  {{#if showMap}}
+    <h2>All Noovis @FiberSpeed™ Sites</h2>
+    {{g-maps lat=lat lng=lng zoom=zoom class='testSelector-company-map'}}
+  {{else}}
+    {{outlet}}
+  {{/if}}
 </div>
 
 </div>

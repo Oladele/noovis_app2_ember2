@@ -61,3 +61,11 @@ test('show map on company edit page', function(assert) {
     assert.equal(find('.testSelector-company-map').length, 1, 'found map');
   });
 });
+
+test('show map on all companies page', function(assert) {
+  visit(`/sites`);
+
+  andThen(() => {
+    assert.equal(find('.testSelector-company-map').length, 1, 'found map');
+  });
+});
