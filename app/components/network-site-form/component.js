@@ -23,7 +23,7 @@ export default Ember.Component.extend({
     },
 
     deleteSite() {
-      this.attrs.onDelete()
+      this.get('onDelete')()
         .catch(({ errors }) => this.set('errors', errors));
     }
   }
