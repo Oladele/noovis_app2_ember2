@@ -3,15 +3,12 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   actions: {
     submit(data) {
-      const companyId = this.paramsFor('sites.companies.company').id;
-      data.company = this.store.peekRecord('company', companyId);
+      const { id } = this.paramsFor('sites.companies.company');
+      data.company = this.store.peekRecord('company', id);
       return this.store.createRecord('network-site', data)
         .save()
-        .then(
-          site => this.transitionTo('sites.network-sites.network-site.edit', site.id),
-          ({ errors }) => errors
-        );
-      // TODO: confirm correctness
+        .then(site => this.transitionTo('sites.network-sites.network-site.edit', site.id))
+        .catch(({ errors }) => this.controller.set('errors', errors));
     },
 
     didUpdatePlace(place) {
@@ -22,14 +19,5 @@ export default Ember.Route.extend({
         place
       });
     }
-  },
-
-  setupController(controller) {
-    controller.setProperties({
-      draggable: true,
-      scrollwheel: true,
-      showZoomControl: true,
-      showScaleControl: true
-    });
   }
 });
