@@ -40,7 +40,7 @@ test('map is shown on `new` page', function(assert) {
   visit(`/sites/companies/${company.id}/network-sites/new`);
 
   andThen(() => {
-    assert.ok(find('.testSelector-site-map').length, 'found map');
+    assert.ok(find('.ember-cli-g-map').length, 'found map');
   });
 });
 
@@ -88,7 +88,7 @@ test('map is shown on `edit` page', function(assert) {
   visit(`/sites/network-sites/${site.id}/edit`);
 
   andThen(() => {
-    assert.ok(find('.testSelector-site-map').length, 'found map');
+    assert.ok(find('.ember-cli-g-map').length, 'found map');
   });
 });
 
