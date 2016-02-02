@@ -2,7 +2,7 @@
 
 var contentSecurityPolicy = {
   'script-src': "'self' 'unsafe-eval' 'unsafe-inline' ",
-  'connect-src': "'self' http://localhost:* http://noovis2-staging.herokuapp.com",
+  'connect-src': "'self' http://localhost:* https://noovis2-staging.herokuapp.com",
 };
 
 module.exports = function(environment) {
@@ -49,7 +49,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.apiHost = 'https://noovis2-staging.herokuapp.com';
   }
 
   return ENV;
