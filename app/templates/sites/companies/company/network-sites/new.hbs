@@ -1,0 +1,7 @@
+{{g-maps name='network-site-map' lat=lat lng=lng zoom=zoom}}
+
+{{network-site-form
+    onPlaceUpdate=(route-action 'didUpdatePlace')
+    onSubmit=(route-action 'submit')
+    place=place
+}}

@@ -1,0 +1,17 @@
+{{g-maps
+    name='network-site-edit-map'
+    lat=model.lat
+    lng=model.lng
+    zoom=16
+}}
+
+{{network-site-form
+    site=model
+    name=model.name
+    address=model.address
+    onPlaceUpdate=(route-action 'didUpdatePlace')
+    onSubmit=(route-action 'submit')
+    onDelete=(route-action 'deleteNetworkSite')
+    place=place
+    isEditing=true
+}}
