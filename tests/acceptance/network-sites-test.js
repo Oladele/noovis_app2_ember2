@@ -45,13 +45,13 @@ test('map is shown on `new` page', function(assert) {
 });
 
 test('can create new network site', function(assert) {
-  assert.expect(3);
+  assert.expect(2);
 
   stubGMapAutocomplete(this);
   visit(`/sites/companies/${company.id}/network-sites/new`);
 
   let name = 'The Coffee Shop';
-  let address = '100 Main St, Vancouver, BC, Canada'; 
+  // let address = '100 Main St, Vancouver, BC, Canada'; 
   let lat = '49.123';
   let lng = '123.456';
   let place = {
@@ -64,8 +64,8 @@ test('can create new network site', function(assert) {
           return lng;
         }
       }
-    },
-    formatted_address: address
+    }
+    // formatted_address: address
   };
 
   new SitePageObject(this)
@@ -77,7 +77,7 @@ test('can create new network site', function(assert) {
     let site = server.db['network-sites'][0];
     assert.equal(site.name, name, 'has correct name');
     assert.equal(site.lat, lat, 'has correct latitude');
-    assert.equal(site.address, address, 'has correct address');
+    // assert.equal(site.address, address, 'has correct address');
   });
 });
 
@@ -93,7 +93,7 @@ test('map is shown on `edit` page', function(assert) {
 });
 
 test('can update network site', function(assert) {
-  assert.expect(2);
+  assert.expect(1);
 
   stubGMapAutocomplete(this);
   let site = server.create('network-site', {
@@ -103,7 +103,7 @@ test('can update network site', function(assert) {
 
   visit(`/sites/network-sites/${site.id}/edit`);
 
-  let address = '100 Main St, Vancouver, BC, Canada'; 
+  // let address = '100 Main St, Vancouver, BC, Canada'; 
   let name = 'Site 2';
   let place = {
     geometry: {
@@ -115,8 +115,8 @@ test('can update network site', function(assert) {
           return '123.456';
         }
       }
-    },
-    formatted_address: address
+    }
+    // formatted_address: address
   };
 
   new SitePageObject(this)
@@ -127,7 +127,7 @@ test('can update network site', function(assert) {
   andThen(() => {
     let site = server.db['network-sites'][0];
     assert.equal(site.name, name, 'name was updated');
-    assert.equal(site.address, address, 'has correct address');
+    // assert.equal(site.address, address, 'has correct address');
   });
 });
 
