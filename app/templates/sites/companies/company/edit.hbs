@@ -1,6 +1,8 @@
 <h2>Edit Company</h2>
 
-{{g-maps-container model=model}}
+{{#g-maps-container model=model as |lat lng zoom markers|}}
+  {{g-maps lat=lat lng=lng zoom=zoom markers=markers}}
+{{/g-maps-container}}
 
 {{company-form on-submit=(route-action 'updateCompany') on-delete=(route-action 'deleteCompany') isEditing=true name=model.name}}
 
