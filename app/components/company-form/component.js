@@ -8,14 +8,16 @@ export default Ember.Component.extend({
   actions: {
     submit() {
       const name = this.get('name');
+      const company = this.get('company');
       if (!isBlank(name)) {
-        this['on-submit'](name)
+        this['on-submit'](company, name)
           .catch(({ errors }) => this.set('errors', errors));
       }
     },
 
     delete() {
-      this['on-delete']().catch(({errors}) => this.set('errors', errors));
+      const company = this.get('company');
+      this['on-delete'](company).catch(({errors}) => this.set('errors', errors));
     }
   }
 });

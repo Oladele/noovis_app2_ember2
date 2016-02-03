@@ -29,8 +29,8 @@
 <div class="col-xs-8">
   {{#if showMap}}
     <h2>All Noovis @FiberSpeed™ Sites</h2>
-    {{#g-maps-container model=model.sites as |lat lng zoom markers|}}
-      {{g-maps lat=lat lng=lng zoom=zoom markers=markers}}
+    {{#g-maps-container model=model.sites as |map|}}
+      {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
     {{/g-maps-container}}
   {{else}}
     {{outlet}}

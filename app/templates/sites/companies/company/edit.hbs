@@ -1,9 +1,9 @@
 <h2>Edit Company</h2>
 
-{{#g-maps-container model=model.sites as |lat lng zoom markers|}}
-  {{g-maps lat=lat lng=lng zoom=zoom markers=markers}}
+{{#g-maps-container model=model.sites as |map|}}
+  {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
 {{/g-maps-container}}
 
-{{company-form on-submit=(route-action 'updateCompany') on-delete=(route-action 'deleteCompany') isEditing=true name=model.company.name}}
+{{company-form on-submit=(route-action 'updateCompany') on-delete=(route-action 'deleteCompany') isEditing=true name=model.company.name company=model.company}}
 
 {{network-sites-list company=model.company sites=model.sites}}

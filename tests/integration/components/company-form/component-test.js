@@ -42,7 +42,7 @@ test('it submits on click of `Update` button', function(assert) {
   const companyName = 'ACME';
   const { resolve } = Ember.RSVP;
 
-  this.set('submitAction', (name) => {
+  this.set('submitAction', (_, name) => {
     assert.equal(name, companyName, 'triggered command with correct arguments');
     return resolve();
   });

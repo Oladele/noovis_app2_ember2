@@ -2,21 +2,19 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    return Ember.RSVP.hash({
-      company: this.modelFor('sites.companies.company'),
-      sites: this.modelFor('sites.companies.company').get('networkSites')
-    });
+    let company = this.modelFor('sites.companies.company');
+    let sites = this.modelFor('sites.companies.company').get('networkSites');
+    return Ember.RSVP.hash({ company, sites });
   },
 
   actions: {
-    updateCompany(name) {
-      const company = this.modelFor('sites.companies.company');
+    updateCompany(company, name) {
       company.set('name', name);
       return company.save();
     },
 
-    deleteCompany() {
-      return this.modelFor('sites.companies.company').destroyRecord();
+    deleteCompany(company) {
+      return company.destroyRecord();
     }
   }
 });
