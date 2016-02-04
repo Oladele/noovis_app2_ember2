@@ -1,4 +1,6 @@
-{{g-maps name='network-site-map' lat=lat lng=lng zoom=zoom}}
+{{#g-maps-container lat=lat lng=lng zoom=zoom model=model as |map|}}
+  {{g-maps name='network-site-map' lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
+{{/g-maps-container}}
 
 {{network-site-form
     onPlaceUpdate=(route-action 'didUpdatePlace')
