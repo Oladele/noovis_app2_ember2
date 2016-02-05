@@ -114,18 +114,18 @@ export default function() {
             "id": networkSite.company
           }
         },
-        // "buildings": {
-          // "links": {
-            // "self": `/network-sites/${id}/relationships/buildings`,
-            // "related": `/network-sites/${id}/buildings`
-          // },
-          // "data": db["buildings"].where({networkSite: id}).map(attrs =>(
-              // {
-                // "type": "buildings",
-                // "id": attrs.id
-              // }
-            // ))
-        // }
+        "buildings": {
+          "links": {
+            "self": `/network-sites/${id}/relationships/buildings`,
+            "related": `/network-sites/${id}/buildings`
+          },
+          "data": db["buildings"].where({networkSite: id}).map(attrs =>(
+              {
+                "type": "buildings",
+                "id": attrs.id
+              }
+            ))
+        }
       }
     };
 
@@ -276,7 +276,21 @@ export default function() {
     return { "meta": {"deleted":"deleted"}};
   });
 
-  // These comments are here to help you get started. Feel free to delete them.
+  this.post('/buildings', function(db, request) {
+    let requestBody = JSON.parse(request.requestBody);
+    let data = requestBody.data.attributes;
+    let building = db.buildings.insert(data);
+    let response = {
+      data: {
+        id: building.id,
+        type: 'building',
+        attributes: building 
+      }
+    };
+
+    return response;
+  });
+
 
   /*
     Config (with defaults).

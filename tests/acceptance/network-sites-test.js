@@ -149,3 +149,15 @@ test('can delete network site', function(assert) {
     assert.equal(server.db['network-sites'].length, 0, 'no sites were found');
   });
 });
+
+test('can go to new buildings page', function(assert) {
+  let site = server.create('network-site', {
+    company: company.id
+  });
+  visit(`/sites/network-sites/${site.id}/edit`);
+  click('[data-test-selector=add-building-button]');
+
+  andThen(() => {
+    assert.equal(currentURL(), `/sites/network-sites/${site.id}/buildings/new`);
+  });
+});
