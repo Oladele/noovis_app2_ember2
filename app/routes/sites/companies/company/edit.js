@@ -1,15 +1,20 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  model() {
+    let company = this.modelFor('sites.companies.company');
+    let sites = this.modelFor('sites.companies.company').get('networkSites');
+    return Ember.RSVP.hash({ company, sites });
+  },
+
   actions: {
-    updateCompany(name) {
-      const company = this.modelFor(this.routeName);
+    updateCompany(company, name) {
       company.set('name', name);
       return company.save();
     },
 
-    deleteCompany() {
-      return this.modelFor(this.routeName).destroyRecord();
+    deleteCompany(company) {
+      return company.destroyRecord();
     }
   }
 });

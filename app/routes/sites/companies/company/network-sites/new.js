@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  model() {
+    return this.modelFor('sites.companies.company').get('networkSites');
+  },
+
   actions: {
     submit(data) {
       const { id } = this.paramsFor('sites.companies.company');
