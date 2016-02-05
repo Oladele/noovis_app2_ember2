@@ -10,7 +10,7 @@
       Add Company
   {{/link-to}}
 
-  {{#each model as |company|}}
+  {{#each model.companies as |company|}}
     <h4>
       {{link-to
           company.name
@@ -29,7 +29,9 @@
 <div class="col-xs-8">
   {{#if showMap}}
     <h2>All Noovis @FiberSpeed™ Sites</h2>
-    {{g-maps-container model=model}}
+    {{#g-maps-container model=model.sites as |map|}}
+      {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
+    {{/g-maps-container}}
   {{else}}
     {{outlet}}
   {{/if}}
