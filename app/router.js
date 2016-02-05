@@ -23,6 +23,7 @@ Router.map(function() {
       });
     });
   });
+  this.route('stats');
 });
 
 export default Router;
