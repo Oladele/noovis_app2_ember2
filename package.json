@@ -37,10 +37,12 @@
     "ember-cli-release": "0.2.8",
     "ember-cli-sri": "^1.2.0",
     "ember-cli-uglify": "^1.2.0",
+    "ember-collection": "git+https://github.com/emberjs/ember-collection.git#dd4a0b32eb93b09260f69a4055d9b18dd184347c",
     "ember-data": "^2.3.0",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
     "ember-pagefront": "0.10.10",
-    "ember-route-action-helper": "0.2.0"
+    "ember-route-action-helper": "0.2.0",
+    "ember-table": "artych/ember-table#1181b1c5d7271c8d276c5ba015d95dce4a9930a3"
   }
 }
