@@ -3,58 +3,54 @@ import ColumnDefinition from 'ember-table/models/column-definition';
 // import {randomNumber, randomDate} from '../utils/random';
 
 export default Ember.Controller.extend({
-  tableColumns: Ember.computed(function() {
-    var dateColumn = ColumnDefinition.create({
-      savedWidth: 150,
-      textAlign: 'text-align-left',
-      headerCellName: 'Date',
-      getCellContent: function(row) {
-        return row.get('date').toDateString();
+
+  columnNames: Ember.computed(function() {
+    return [
+      {
+        source: "open",
+        target: "Open"
+      },
+      {
+        source: "high",
+        target: "High"
+      },
+      {
+        source: "low",
+        target: "Low",
+      },
+      {
+        source: "close",
+        target: "Close"
       }
+    ];
+  }),
+
+  tableColumns: Ember.computed('columnNames',function() {
+    const columnNames = this.get("columnNames");
+    const columnDefinitions = [];
+    
+    columnNames.forEach(function(columnName){
+      const column = ColumnDefinition.create({
+        savedWidth: 100,
+        headerCellName: columnName.target,
+        getCellContent: function(row) {
+          return row.get(columnName.source);
+        }
+      });
+      columnDefinitions.pushObject(column)
     });
-    var openColumn = ColumnDefinition.create({
-      savedWidth: 100,
-      headerCellName: 'Open',
-      getCellContent: function(row) {
-        return row.get('open').toFixed(2);
-      }
-    });
-    var highColumn = ColumnDefinition.create({
-      savedWidth: 100,
-      headerCellName: 'High',
-      getCellContent: function(row) {
-        return row.get('high').toFixed(2);
-      }
-    });
-    var lowColumn = ColumnDefinition.create({
-      savedWidth: 100,
-      headerCellName: 'Low',
-      getCellContent: function(row) {
-        return row.get('low').toFixed(2);
-      }
-    });
-    var closeColumn = ColumnDefinition.create({
-      savedWidth: 100,
-      headerCellName: 'Close',
-      getCellContent: function(row) {
-        return row.get('close').toFixed(2);
-      }
-    });
-    return [dateColumn, openColumn, highColumn, lowColumn, closeColumn];
+
+    return(columnDefinitions);
   }),
 
   tableContent: Ember.computed(function() {
     var content = [];
-    var date;
     for (var i = 0; i < 100; i++) {
-      date = new Date(2012, 2, 2);
       content.pushObject({
-        date: date,
-        open:  50,
-        high:  50,
-        low:  50,
-        close:  50,
-        volume:  1000000
+        open:  55,
+        high:  60,
+        low:  70,
+        close:  80,
       });
     }
     return content;
