@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
     const column = ColumnDefinition.create({
       savedWidth: 100,
       headerCellName: columnName.target,
+      tableCellViewClass: 'stats-cell-warning',
       getCellContent: function(row) {
         return row.get(columnName.source);
       }
@@ -33,7 +34,6 @@ export default Ember.Controller.extend({
 
   tableContent: Ember.computed(function() {
     const content = this.get("tableData");
-    console.log("content: ", content);
     return content;
   })
 });
