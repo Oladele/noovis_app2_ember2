@@ -1,0 +1,11 @@
+<h2>Edit Building</h2>
+
+{{#g-maps-container
+  lat=model.lat
+  lng=model.lng
+  zoom=16
+  model=model as |map|}}
+  {{g-maps lat=map.lat lng=map.lng zoom=map.zoom click=(route-action 'addBuildingMarker')}}
+{{/g-maps-container}}
+
+{{building-form building=model onSubmit=(route-action 'submit')}}

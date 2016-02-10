@@ -41,21 +41,6 @@ export default function() {
     };
   });
 
-  // this.get('/buildings/:id', function(db, request) {
-
-    // var id = request.params.id;
-    // var building = db["buildings"].find(id);
-    // var response = {
-      // data:{
-        // id: building.id,
-        // type: "buildings",
-        // attributes: building
-      // }
-    // };
-    // return response;
-  // });
-
-  // this.get('companies/:id/network-sites');
   this.get('/companies/:id/network-sites', function(db, request) {
     var id = request.params.id;
     var networkSites = db["network-sites"].where({company: id});
@@ -129,28 +114,34 @@ export default function() {
       }
     };
 
-    // var included = db["buildings"].where({networkSite: id}).map(attrs =>(
-      // {
-        // "id": attrs.id,
-        // "type": "buildings",
-        // "attributes": attrs,
-        // "relationships": {
-          // "network-site": {
-            // "links": {
-              // "self": `/buildings/${attrs.id}/relationships/network-site`,
-              // "related": `/buildings/${attrs.id}/network-site`
-            // }
-          // }
-        // }
-      // }
-    // ));
-    //
-    let included = [
+    var included = db["buildings"].where({networkSite: id}).map(attrs =>(
       {
+        "id": attrs.id,
+        "type": "buildings",
+        "attributes": attrs,
+        "relationships": {
+          "network-site": {
+            "links": {
+              "self": `/buildings/${attrs.id}/relationships/network-site`,
+              "related": `/buildings/${attrs.id}/network-site`
+            }
+          }
+        }
+      }
+    ));
+
+    // let included = [
+      // {
+        // type: 'companies',
+        // id: networkSite.company
+      // }
+    // ];
+
+    included.push({
         type: 'companies',
         id: networkSite.company
       }
-    ];
+    );
 
     return {
       data: data,
@@ -202,7 +193,13 @@ export default function() {
       {
         "id": attrs.id,
         "type": "network-sites",
-        "attributes": attrs,
+        "attributes": {
+          "name": attrs.name,
+          "description": attrs.description,
+          "portsActive": attrs.portsActive,
+          "portsTotal": attrs.portsTotal,
+          "portsActivePercent": attrs.portsActivePercent
+        },
         "relationships": {
           "company": {
             "links": {
@@ -283,14 +280,43 @@ export default function() {
     let response = {
       data: {
         id: building.id,
-        type: 'building',
-        attributes: building 
+        type: 'buildings',
+        attributes: building
       }
     };
 
     return response;
   });
 
+  this.get('/buildings/:id', function(db, request) {
+    let id = request.params.id;
+
+    let response = {
+      data: {
+        id: id,
+        type: 'buildings',
+        attributes: db.buildings.find(id)
+      }
+    };
+
+    return response;
+  });
+
+  this.patch('/buildings/:id', function(db, request) {
+    let id = request.params.id;
+    let attrs = JSON.parse(request.requestBody);
+    db.buildings.update(id, attrs.data.attributes);
+
+    let response = {
+      data: {
+        type: 'buildings',
+        id: id,
+        attributes: db.buildings.find(id)
+      }
+    };
+
+    return response;
+  });
 
   /*
     Config (with defaults).

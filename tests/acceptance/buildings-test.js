@@ -1,6 +1,22 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'noovis-app2-ember2/tests/helpers/module-for-acceptance';
 
+class BuildingFormPageObject {
+  fillName(name) {
+    fillIn('[data-test-selector=name-input]', name);
+    return this;
+  }
+
+  fillDescription(description) {
+    fillIn('[data-test-selector=description-input]', description);
+    return this;
+  }
+
+  submit() {
+    click('[data-test-selector=submit-button]');
+  }
+}
+
 let company;
 let site;
 
@@ -26,5 +42,26 @@ test('can add a building to a site', function(assert) {
     let building = server.db.buildings[0];
     assert.equal(server.db.buildings.length, 1, 'added a building');
     assert.equal(building.name, name, 'has the correct name');
+  });
+});
+
+test('can update building info', function(assert) {
+  let building = server.create('building', {
+    name: 'foo',
+    description: 'bar',
+    networkSite: site.id
+  });
+
+  visit(`/sites/buildings/${building.id}`);
+
+  new BuildingFormPageObject()
+    .fillName('baz')
+    .fillDescription('qux')
+    .submit();
+
+  andThen(() => {
+    let building = server.db.buildings[0];
+    assert.equal(building.name, 'baz', 'name was updated');
+    assert.equal(building.description, 'qux', 'description was updated');
   });
 });

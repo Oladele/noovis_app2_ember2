@@ -25,6 +25,10 @@ Router.map(function() {
         });
       });
     });
+
+    this.route('buildings', function() {
+      this.route('edit', { path: '/:building_id' });
+    });
   });
 });
 
