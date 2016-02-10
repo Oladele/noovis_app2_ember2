@@ -7,7 +7,8 @@ const {
 export default Ember.Route.extend({
   model() {
     return RSVP.hash({
-      site: this.modelFor('sites.network-sites.network-site')
+      site: this.modelFor('sites.network-sites.network-site'),
+      building: this.store.createRecord('building')
     });
   },
 
@@ -16,10 +17,10 @@ export default Ember.Route.extend({
       console.log(event);
     },
 
-    createBuilding(name, description) {
-      this.store.createRecord('building', { name, description })
-        .save()
-        .catch(({ errors }) => this.controller.set('errors', errors));
+    createBuilding(building, name, description) {
+      building.setProperties({ name, description });
+
+      return building.save();
     }
   }
 });

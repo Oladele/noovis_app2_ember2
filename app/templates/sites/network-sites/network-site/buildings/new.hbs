@@ -8,4 +8,4 @@
   {{g-maps lat=map.lat lng=map.lng zoom=map.zoom click=(route-action 'addBuildingMarker')}}
 {{/g-maps-container}}
 
-{{building-form onSubmit=(route-action 'createBuilding')}}
+{{building-form building=model.building onSubmit=(route-action 'createBuilding')}}
