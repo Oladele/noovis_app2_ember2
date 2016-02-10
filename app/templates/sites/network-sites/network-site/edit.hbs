@@ -1,9 +1,17 @@
-{{g-maps
-    name='network-site-edit-map'
-    lat=model.lat
-    lng=model.lng
+{{#g-maps-container
+    lat=model.site.lat
+    lng=model.site.lng
     zoom=16
+    model=model.buildings as |map|
 }}
+  {{g-maps
+      name='network-site-edit-map'
+      lat=map.lat
+      lng=map.lng
+      zoom=map.zoom
+      markers=map.markers
+  }}
+{{/g-maps-container}}
 
 {{network-site-form
     site=model

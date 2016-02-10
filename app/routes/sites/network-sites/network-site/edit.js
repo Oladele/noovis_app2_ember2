@@ -1,6 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  model() {
+    return Ember.RSVP.hash({
+      site: this.modelFor('sites.network-sites.network-site'),
+      buildings: this.modelFor('sites.network-sites.network-site').get('buildings')
+    });
+  },
+
   actions: {
     submit(data) {
       const site = this.modelFor(this.routeName);
