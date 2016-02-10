@@ -16,7 +16,4 @@
     isEditing=true
 }}
 
-<h2>Buildings</h2>
-{{#link-to 'sites.network-sites.network-site.buildings.new' data-test-selector='add-building-button'}}
-  Add a New Building
-{{/link-to}}
+{{buildings-list buildings=model.buildings}}

@@ -51,7 +51,7 @@ test('can create new network site', function(assert) {
   visit(`/sites/companies/${company.id}/network-sites/new`);
 
   let name = 'The Coffee Shop';
-  // let address = '100 Main St, Vancouver, BC, Canada'; 
+  // let address = '100 Main St, Vancouver, BC, Canada';
   let lat = '49.123';
   let lng = '123.456';
   let place = {
@@ -103,7 +103,7 @@ test('can update network site', function(assert) {
 
   visit(`/sites/network-sites/${site.id}/edit`);
 
-  // let address = '100 Main St, Vancouver, BC, Canada'; 
+  // let address = '100 Main St, Vancouver, BC, Canada';
   let name = 'Site 2';
   let place = {
     geometry: {
@@ -159,5 +159,22 @@ test('can go to new buildings page', function(assert) {
 
   andThen(() => {
     assert.equal(currentURL(), `/sites/network-sites/${site.id}/buildings/new`);
+  });
+});
+
+test('shows buildings list', function(assert) {
+  let site = server.create('network-site', {
+    company: company.id
+  });
+
+  server.create('building', {
+    name: 'foo',
+    networkSite: site.id
+  });
+
+  visit(`/sites/network-sites/${site.id}/edit`);
+
+  andThen(() => {
+    assert.equal(find('[data-test-selector=building-item]').text(), 'foo', 'found building');
   });
 });
