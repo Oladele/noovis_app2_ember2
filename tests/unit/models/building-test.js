@@ -2,7 +2,7 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('building', 'Unit | Model | building', {
   // Specify the other units that are required for this test.
-  needs: []
+  needs: ['model:networkSite']
 });
 
 test('it exists', function(assert) {
