@@ -1,11 +1,24 @@
 <h2>New Building</h2>
 
 {{#g-maps-container
-  lat=model.site.lat
-  lng=model.site.lng
-  zoom=16
-  model=model.site as |map|}}
-  {{g-maps lat=map.lat lng=map.lng zoom=map.zoom click=(route-action 'addBuildingMarker')}}
+    lat=model.site.lat
+    lng=model.site.lng
+    zoom=16
+    buildingMarkers=buildingMarkers
+    as |map|
+}}
+  {{g-maps
+      lat=map.lat
+      lng=map.lng
+      zoom=map.zoom
+      markers=buildingMarkers
+      click=(route-action 'addBuildingMarker')
+  }}
 {{/g-maps-container}}
 
-{{building-form building=model.building onSubmit=(route-action 'createBuilding')}}
+{{building-form
+    building=model.building
+    lat=bLat
+    lng=bLng
+    onSubmit=(route-action 'createBuilding')
+}}

@@ -1,0 +1,25 @@
+import Ember from 'ember';
+
+const {
+  computed
+} = Ember;
+
+export default Ember.Controller.extend({
+  currentMarker: null,
+  buildingMarkers: computed('model.buildings.[]', 'currentMarker', function() {
+    let buildings = this.get('model.buildings');
+    let data = buildings.map((building) => {
+      return {
+        id: building.get('id'),
+        lat: building.get('lat'),
+        lng: building.get('lng'),
+        infoWindow: {
+          content: building.get('name')
+        }
+      }
+    });
+    let currentMarker = this.get('currentMarker');
+
+    return currentMarker ? data.addObject(currentMarker) : data;
+  })
+});

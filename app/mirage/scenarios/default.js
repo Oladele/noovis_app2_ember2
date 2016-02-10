@@ -34,8 +34,8 @@ export default function( server ) {
     portsActive: 65,
     portsTotal: 126,
     portsActivePercent: 51,
-    lat: 39.2690101,
-    lng: -76.7014071
+    lat: 39.2660111,
+    lng: -76.7034171
   });
 
   // ------>Building
@@ -46,8 +46,8 @@ export default function( server ) {
     portsActive: 66,
     portsTotal: 320,
     portsActivePercent: 21,
-    lat: 39.2690102,
-    lng: -76.7014072
+    lat: 39.2670122,
+    lng: -76.7024272
   });
 
   // ------>Building
@@ -58,8 +58,8 @@ export default function( server ) {
     portsActive: 133,
     portsTotal: 160,
     portsActivePercent: 83,
-    lat: 39.2690103,
-    lng: -76.7014073
+    lat: 39.2690133,
+    lng: -76.7014373
   });
 
   // ------>Building
@@ -70,8 +70,8 @@ export default function( server ) {
     portsActive: 89,
     portsTotal: 96,
     portsActivePercent: 93,
-    lat: 39.2690104,
-    lng: -76.7014074
+    lat: 39.2710144,
+    lng: -76.7004474
   });
 
 

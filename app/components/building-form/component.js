@@ -6,7 +6,10 @@ export default Ember.Component.extend({
       let building = this.get('building');
       let name = this.get('name');
       let description = this.get('description');
-      this.get('onSubmit')(building, name, description)
+      let lat = this.get('lat');
+      let lng = this.get('lng');
+
+      this.get('onSubmit')({ building, name, description, lat, lng })
         .catch(({ errors }) => this.set('errors', errors));
     }
   }
