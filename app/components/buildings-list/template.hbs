@@ -1,9 +1,9 @@
 <h2>Buildings</h2>
-{{#link-to 'sites.network-sites.network-site.buildings.new' data-test-selector='add-building-button'}}
+{{#link-to 'sites.network-sites.network-site.buildings.new' data-test-selector='add-building-button' class='btn btn-primary'}}
   Add a New Building
 {{/link-to}}
 
-<ul>
+<ul class='list-unstyled'>
 {{#each buildings as |building|}}
   <li>{{#link-to 'sites.buildings.edit' building data-test-selector='building-item'}}{{building.name}}{{/link-to}}</li>
 {{/each}}
