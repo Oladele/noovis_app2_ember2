@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
         infoWindow: {
           content: building.get('name')
         }
-      }
+      };
     });
     let currentMarker = this.get('currentMarker');
 

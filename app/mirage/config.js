@@ -273,6 +273,33 @@ export default function() {
     return { "meta": {"deleted":"deleted"}};
   });
 
+  this.get('/buildings', function(db, request) {
+    let data = db.buildings.map(building => {
+      return {
+        "type": "buildings",
+        "id": building.id,
+        "attributes": {
+          "lat": building.lat,
+          "lng": building.lng,
+          "name": building.name,
+          "description": building.description,
+          "portsActive": building.portsActive,
+          "portsActivePercent": building.portsActivePercent,
+          "portsTotal": building.portsTotal
+        },
+        "relationships": {
+          "network-site": {
+            "data": {
+              "type": "network-site",
+              "id": building.networkSite
+            }
+          }
+        }
+      }
+    });
+    return { data };
+  });
+
   this.post('/buildings', function(db, request) {
     let requestBody = JSON.parse(request.requestBody);
     let data = requestBody.data.attributes;

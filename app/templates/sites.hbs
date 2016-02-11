@@ -20,10 +20,19 @@
       }}
     </h4>
     {{#each company.networkSites as |networkSite|}}
-      {{network-site-listing networkSite=networkSite}}
+      <div>
+        <a class='glyphicon glyphicon-chevron-right' data-toggle='collapse' href={{x-id '#building-list' networkSite.id}}></a>
+        {{#link-to "sites.network-sites.network-site.edit" networkSite data-test-selector="network-site-link"}}
+          {{networkSite.name}} ({{networkSite.buildings.length}})
+        {{/link-to}}
+      </div>
+      <ul class='list-unstyled list-group collapse' id={{x-id 'building-list' networkSite.id}} >
+      {{#each networkSite.buildings as |building|}}
+        <li>{{link-to building.name 'sites.buildings.edit' building data-test-selector='building-edit-link'}}</li>
+      {{/each}}
+      </ul>
     {{/each}}
   {{/each}}
-
 </div>
 
 <div class="col-xs-8">

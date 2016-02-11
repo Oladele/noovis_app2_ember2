@@ -30,7 +30,6 @@ export default Ember.Route.extend({
             controller.set('bLng', bLng);
           }
         };
-        let markers = Ember.A([marker]);
 
         controller.set('bLat', bLat);
         controller.set('bLng', bLng);

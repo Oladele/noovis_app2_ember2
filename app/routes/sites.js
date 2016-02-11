@@ -8,7 +8,8 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       companies: this.store.findAll('company'),
-      sites: this.store.findAll('networkSite')
+      sites: this.store.findAll('networkSite'),
+      buildings: this.store.findAll('building')
     });
   }
 });
