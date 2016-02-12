@@ -15,7 +15,8 @@ export default Ember.Component.extend({
       lng: marker.get('lng'),
       infoWindow: {
         content: marker.get('name')
-      }
+      },
+      icon: 'assets/fa-home_40.png'
     };
   })
 });

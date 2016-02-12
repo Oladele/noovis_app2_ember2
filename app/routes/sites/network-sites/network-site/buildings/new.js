@@ -28,7 +28,8 @@ export default Ember.Route.extend({
           dragend(event, marker) {
             controller.set('bLat', bLat);
             controller.set('bLng', bLng);
-          }
+          },
+          icon: 'assets/fa-home_40_blue.png'
         };
 
         controller.set('bLat', bLat);

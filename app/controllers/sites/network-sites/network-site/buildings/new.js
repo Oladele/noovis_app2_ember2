@@ -15,7 +15,8 @@ export default Ember.Controller.extend({
         lng: building.get('lng'),
         infoWindow: {
           content: building.get('name')
-        }
+        },
+        icon: 'assets/fa-home_40.png'
       };
     });
     let currentMarker = this.get('currentMarker');
