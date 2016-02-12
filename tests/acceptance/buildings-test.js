@@ -7,6 +7,12 @@ class BuildingFormPageObject {
     return this;
   }
 
+  clickMap(lat, lng) {
+    setControllerProperty('sites/network-sites/network-site/buildings/new', 'bLat', lat);
+    setControllerProperty('sites/network-sites/network-site/buildings/new', 'bLng', lng);
+    return this;
+  }
+
   fillDescription(description) {
     fillIn('[data-test-selector=description-input]', description);
     return this;
@@ -32,16 +38,21 @@ test('can add a building to a site', function(assert) {
 
   let name = 'foo';
   let description = 'bar';
+  let lat = 49.123;
+  let lng = -123.456;
 
-  fillIn('[data-test-selector=name-input]', name);
-  fillIn('[data-test-selector=description-input]', description);
-  click('[data-test-selector=submit-button]');
-
+  new BuildingFormPageObject()
+    .clickMap(lat, lng)
+    .fillName(name)
+    .fillDescription(description)
+    .submit();
 
   andThen(() => {
     let building = server.db.buildings[0];
     assert.equal(server.db.buildings.length, 1, 'added a building');
     assert.equal(building.name, name, 'has the correct name');
+    assert.equal(building.lat, lat, 'has the correct latitude');
+    assert.equal(building.lng, lng, 'has the correct longitude');
   });
 });
 
