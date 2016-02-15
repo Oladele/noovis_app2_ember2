@@ -1,8 +1,9 @@
-{{#g-maps-container lat=lat lng=lng zoom=zoom model=model as |map|}}
+{{#g-maps-container lat=lat lng=lng zoom=zoom model=model.sites as |map|}}
   {{g-maps name='network-site-map' lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
 {{/g-maps-container}}
 
 {{network-site-form
+    site=model.site
     onPlaceUpdate=(route-action 'didUpdatePlace')
     onSubmit=(route-action 'submit')
     place=place
