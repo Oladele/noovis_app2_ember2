@@ -2,8 +2,7 @@ import Ember from 'ember';
 import Application from '../../app';
 import config from '../../config/environment';
 import registerGMapsAsyncHelpers from './ember-cli-g-maps/register-async-helpers';
-import setControllerProperty from '../../tests/helpers/set-controller-property';
-
+import setControllerProperty from './set-controller-property'; // jshint ignore:line
 
 export default function startApp(attrs) {
   let application;

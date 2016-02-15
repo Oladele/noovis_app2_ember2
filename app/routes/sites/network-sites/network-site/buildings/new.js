@@ -25,9 +25,9 @@ export default Ember.Route.extend({
           lat: bLat,
           lng: bLng,
           draggable: true,
-          dragend(event, marker) {
-            controller.set('bLat', bLat);
-            controller.set('bLng', bLng);
+          dragend(event) {
+            controller.set('bLat', event.latLng.lat());
+            controller.set('bLng', event.latLng.lng());
           },
           icon: 'assets/fa-home_40_blue.png'
         };

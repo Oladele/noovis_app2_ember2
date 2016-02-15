@@ -273,7 +273,7 @@ export default function() {
     return { "meta": {"deleted":"deleted"}};
   });
 
-  this.get('/buildings', function(db, request) {
+  this.get('/buildings', function(db) {
     let data = db.buildings.map(building => {
       return {
         "type": "buildings",
@@ -295,7 +295,7 @@ export default function() {
             }
           }
         }
-      }
+      };
     });
     return { data };
   });
