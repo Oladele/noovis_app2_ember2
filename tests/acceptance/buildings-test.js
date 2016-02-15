@@ -13,6 +13,12 @@ class BuildingFormPageObject {
     return this;
   }
 
+  clickEditMap(lat, lng) {
+    setControllerProperty('sites/buildings/edit', 'bLat', lat);
+    setControllerProperty('sites/buildings/edit', 'bLng', lng);
+    return this;
+  }
+
   fillDescription(description) {
     fillIn('[data-test-selector=description-input]', description);
     return this;
@@ -62,10 +68,13 @@ test('can update building info', function(assert) {
     description: 'bar',
     networkSite: site.id
   });
+  let lat = 49.876;
+  let lng = -123.321;
 
   visit(`/sites/buildings/${building.id}`);
 
   new BuildingFormPageObject()
+    .clickEditMap(lat, lng)
     .fillName('baz')
     .fillDescription('qux')
     .submit();
@@ -74,5 +83,7 @@ test('can update building info', function(assert) {
     let building = server.db.buildings[0];
     assert.equal(building.name, 'baz', 'name was updated');
     assert.equal(building.description, 'qux', 'description was updated');
+    assert.equal(building.lat, lat, 'latitude was updated');
+    assert.equal(building.lng, lng, 'longitude was updated');
   });
 });

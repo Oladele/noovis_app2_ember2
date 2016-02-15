@@ -6,8 +6,9 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    submit(building, name, description) {
-      building.setProperties({ name, description });
+    submit(params) {
+      let { building, name, description, lat, lng } = params;
+      building.setProperties({ name, description, lat, lng });
       return building.save();
     }
   }
