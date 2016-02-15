@@ -59,6 +59,11 @@ test('can add a building to a site', function(assert) {
     assert.equal(building.name, name, 'has the correct name');
     assert.equal(building.lat, lat, 'has the correct latitude');
     assert.equal(building.lng, lng, 'has the correct longitude');
+    assert.equal(
+      find('[data-test-selector=network-site-link]').text().trim(),
+      `${site.name} (1)`,
+      'left bar shows correct building count'
+    );
   });
 });
 

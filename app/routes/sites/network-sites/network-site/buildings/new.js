@@ -40,7 +40,9 @@ export default Ember.Route.extend({
 
     createBuilding(params) {
       let { building, name, description, lat, lng } = params;
+      let site = this.modelFor(this.routeName).site;
       building.setProperties({ name, description, lat, lng });
+      site.get('buildings').pushObject(building);
 
       return building.save()
         .then(building => this.transitionTo('sites.buildings.edit', building.id))
