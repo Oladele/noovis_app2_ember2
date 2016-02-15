@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 
   actions: {
     submit(data) {
-      const site = this.modelFor(this.routeName);
+      const site = this.modelFor(this.routeName).site;
       site.setProperties(data);
 
       return site.save();
@@ -26,7 +26,7 @@ export default Ember.Route.extend({
     },
 
     deleteNetworkSite() {
-      return this.modelFor(this.routeName).destroyRecord();
+      return this.modelFor(this.routeName).site.destroyRecord();
     }
   }
 });
