@@ -1,14 +1,31 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  // TODO: should children ever bubble actions through parent into route?
+  _defaultPlace() {
+    let site = this.get('site');
+
+    return {
+      formatted_address: this.get('address'),
+      geometry: {
+        location: {
+          lat() {
+            return site.get('lat');
+          },
+          lng() {
+            return site.get('lng');
+          }
+        }
+      }
+    };
+  },
+
   actions: {
     submit() {
-      const place = this.get('place');
-      const address = place.formatted_address;
-      const location = place.geometry.location;
-
-      const data = {
+      let site = this.get('site');
+      let place = this.get('place') || this._defaultPlace();
+      let address = place.formatted_address || site.get('address');
+      let location = place.geometry.location;
+      let data = {
         name: this.get('name'),
         lat: location.lat(),
         lng: location.lng(),

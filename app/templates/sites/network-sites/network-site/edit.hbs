@@ -14,9 +14,9 @@
 {{/g-maps-container}}
 
 {{network-site-form
-    site=model
-    name=model.name
-    address=model.address
+    site=model.site
+    name=model.site.name
+    address=model.site.address
     onPlaceUpdate=(route-action 'didUpdatePlace')
     onSubmit=(route-action 'submit')
     onDelete=(route-action 'deleteNetworkSite')
