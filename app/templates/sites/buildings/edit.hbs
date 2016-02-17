@@ -4,17 +4,17 @@
   lat=model.lat
   lng=model.lng
   zoom=16
-  model=model 
+  model=model
   buildingmarker=buildingMarker as |map|}}
   {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=buildingMarker}}
 {{/g-maps-container}}
 
-{{building-form 
-    building=model 
-    name=model.name 
-    description=model.description 
-    lat=bLat 
-    lng=bLng 
+{{building-form
+    building=model
+    name=model.name
+    description=model.description
+    lat=bLat
+    lng=bLng
     onSubmit=(route-action 'submit')
     onDelete=(route-action 'destroyBuilding')
 }}

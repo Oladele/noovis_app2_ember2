@@ -16,7 +16,7 @@ export default Ember.Component.extend({
       infoWindow: {
         content: marker.get('name')
       },
-      icon: 'assets/fa-home_40.png'
+      icon: this.get('icon')
     };
   })
 });
