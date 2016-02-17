@@ -158,6 +158,8 @@ test('can delete network site', function(assert) {
 });
 
 test('can go to new buildings page', function(assert) {
+  assert.expect(1);
+
   let site = server.create('network-site', {
     company: company.id
   });
@@ -170,6 +172,8 @@ test('can go to new buildings page', function(assert) {
 });
 
 test('shows buildings list', function(assert) {
+  assert.expect(1);
+
   let site = server.create('network-site', {
     company: company.id
   });
@@ -187,6 +191,8 @@ test('shows buildings list', function(assert) {
 });
 
 test('can delete buildings in list', function(assert) {
+  assert.expect(1);
+
   let site = server.create('network-site', { company: company.id });
   server.create('building', { networkSite: site.id });
 

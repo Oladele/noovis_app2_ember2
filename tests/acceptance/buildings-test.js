@@ -44,6 +44,8 @@ moduleForAcceptance('Acceptance | buildings', {
 });
 
 test('can add a building to a site', function(assert) {
+  assert.expect(5);
+
   visit(`/sites/network-sites/${site.id}/buildings/new`);
 
   let name = 'foo';
@@ -72,6 +74,8 @@ test('can add a building to a site', function(assert) {
 });
 
 test('can update building info', function(assert) {
+  assert.expect(4);
+
   let building = server.create('building', {
     name: 'foo',
     description: 'bar',
@@ -98,6 +102,8 @@ test('can update building info', function(assert) {
 });
 
 test('can delete a building', function(assert) {
+  assert.expect(1);
+
   let building = server.create('building', {
     networkSite: site.id
   });
