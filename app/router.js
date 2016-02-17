@@ -30,6 +30,7 @@ Router.map(function() {
       this.route('edit', { path: '/:building_id' });
     });
   });
+  this.route('stats');
 });
 
 export default Router;
