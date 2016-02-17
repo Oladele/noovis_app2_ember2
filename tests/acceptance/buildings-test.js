@@ -19,6 +19,10 @@ class BuildingFormPageObject {
     return this;
   }
 
+  clickDeleteBuilding() {
+    click('[data-test-selector=delete-building-button]');
+  }
+
   fillDescription(description) {
     fillIn('[data-test-selector=description-input]', description);
     return this;
@@ -90,5 +94,20 @@ test('can update building info', function(assert) {
     assert.equal(building.description, 'qux', 'description was updated');
     assert.equal(building.lat, lat, 'latitude was updated');
     assert.equal(building.lng, lng, 'longitude was updated');
+  });
+});
+
+test('can delete a building', function(assert) {
+  let building = server.create('building', {
+    networkSite: site.id
+  });
+
+  visit(`/sites/buildings/${building.id}`);
+
+  new BuildingFormPageObject()
+    .clickDeleteBuilding();
+
+  andThen(() => {
+    assert.equal(server.db.buildings.length, 0, 'no buildings were found');
   });
 });

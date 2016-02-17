@@ -345,6 +345,13 @@ export default function() {
     return response;
   });
 
+  this.del('/buildings/:id', function(db, request) {
+    let id = request.params.id;
+    db.buildings.remove(id);
+
+    return { "meta": {"deleted":"deleted"}};
+  });
+
   /*
     Config (with defaults).
 

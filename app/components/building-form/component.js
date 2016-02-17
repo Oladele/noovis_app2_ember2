@@ -11,6 +11,12 @@ export default Ember.Component.extend({
 
       this.get('onSubmit')({ building, name, description, lat, lng })
         .catch(({ errors }) => this.set('errors', errors));
+    },
+
+    delete() {
+      let building = this.get('building');
+      this.get('onDelete')(building)
+        .catch(({ errors }) => this.set('errors', errors));
     }
   }
 });

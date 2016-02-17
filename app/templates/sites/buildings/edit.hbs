@@ -9,4 +9,12 @@
   {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=buildingMarker}}
 {{/g-maps-container}}
 
-{{building-form building=model name=model.name description=model.description lat=bLat lng=bLng onSubmit=(route-action 'submit')}}
+{{building-form 
+    building=model 
+    name=model.name 
+    description=model.description 
+    lat=bLat 
+    lng=bLng 
+    onSubmit=(route-action 'submit')
+    onDelete=(route-action 'destroyBuilding')
+}}

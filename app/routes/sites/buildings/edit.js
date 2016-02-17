@@ -10,6 +10,10 @@ export default Ember.Route.extend({
       let { building, name, description, lat, lng } = params;
       building.setProperties({ name, description, lat, lng });
       return building.save();
+    },
+
+    destroyBuilding(building) {
+      return building.destroyRecord();
     }
   }
 });
