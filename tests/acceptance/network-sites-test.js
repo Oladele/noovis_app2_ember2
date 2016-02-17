@@ -182,7 +182,7 @@ test('shows buildings list', function(assert) {
   visit(`/sites/network-sites/${site.id}/edit`);
 
   andThen(() => {
-    assert.equal(find('[data-test-selector=building-item]').text(), 'foo', 'found building');
+    assert.equal(find('[data-test-selector=building-item]').text().trim(), 'foo', 'found building');
   });
 });
 
