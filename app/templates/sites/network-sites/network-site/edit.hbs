@@ -24,4 +24,7 @@
     isEditing=true
 }}
 
-{{buildings-list buildings=model.buildings}}
+{{buildings-list
+    buildings=model.buildings
+    onBuildingDelete=(route-action 'deleteBuilding')
+}}

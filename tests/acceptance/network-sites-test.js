@@ -23,6 +23,11 @@ class SitePageObject {
     return this;
   }
 
+  clickDeleteBuilding() {
+    click('[data-test-selector=delete-building-button]');
+    return this;
+  }
+
   submit() {
     click('[data-test-selector=submit-button]');
   }
@@ -178,5 +183,19 @@ test('shows buildings list', function(assert) {
 
   andThen(() => {
     assert.equal(find('[data-test-selector=building-item]').text(), 'foo', 'found building');
+  });
+});
+
+test('can delete buildings in list', function(assert) {
+  let site = server.create('network-site', { company: company.id });
+  server.create('building', { networkSite: site.id });
+
+  visit(`/sites/network-sites/${site.id}/edit`);
+
+  new SitePageObject()
+    .clickDeleteBuilding();
+
+  andThen(() => {
+    assert.equal(server.db.buildings.length, 0, 'no buildings were found');
   });
 });
