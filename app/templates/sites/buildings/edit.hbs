@@ -3,10 +3,16 @@
 {{#g-maps-container
   lat=model.lat
   lng=model.lng
-  zoom=16
+  zoom=18
   model=model
   buildingmarker=buildingMarker as |map|}}
-  {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=buildingMarker}}
+  {{g-maps 
+      lat=map.lat 
+      lng=map.lng 
+      zoom=map.zoom 
+      mapType='satellite'
+      markers=buildingMarker
+  }}
 {{/g-maps-container}}
 
 {{building-form
