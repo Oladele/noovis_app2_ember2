@@ -25,8 +25,8 @@ export default Ember.Route.extend({
       });
     },
 
-    deleteNetworkSite() {
-      return this.modelFor(this.routeName).site.destroyRecord();
+    deleteNetworkSite(site) {
+      return site.destroyRecord();
     },
 
     deleteBuilding(building) {

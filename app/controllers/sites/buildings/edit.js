@@ -25,6 +25,6 @@ export default Ember.Controller.extend({
       dragend
     };
 
-    return Ember.A([data]);
+    return [data];
   })
 });

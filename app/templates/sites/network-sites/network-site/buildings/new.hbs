@@ -11,6 +11,7 @@
       lat=map.lat
       lng=map.lng
       zoom=map.zoom
+      mapType='satellite'
       markers=buildingMarkers
       click=(route-action 'addBuildingMarker')
   }}
@@ -20,5 +21,5 @@
     building=model.building
     lat=bLat
     lng=bLng
-    onSubmit=(route-action 'createBuilding')
+    onSubmit=(route-action 'createBuilding' model.site)
 }}

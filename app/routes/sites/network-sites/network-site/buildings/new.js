@@ -14,21 +14,21 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    addBuildingMarker(event) {
-      let latLng = event.latLng;
+    addBuildingMarker({ latLng }) {
       let controller = this.controller;
       if (typeof latLng === 'object') {
         let bLat = latLng.lat();
         let bLng = latLng.lng();
+        let dragend = (event) => {
+          controller.set('bLat', event.latLng.lat());
+          controller.set('bLng', event.latLng.lng());
+        };
         let marker = {
+          dragend,
           id: 'currentBuilding',
           lat: bLat,
           lng: bLng,
           draggable: true,
-          dragend(event) {
-            controller.set('bLat', event.latLng.lat());
-            controller.set('bLng', event.latLng.lng());
-          },
           icon: 'assets/fa-home_40_blue.png'
         };
 
@@ -38,9 +38,7 @@ export default Ember.Route.extend({
       }
     },
 
-    createBuilding(params) {
-      let { building, name, description, lat, lng } = params;
-      let site = this.modelFor(this.routeName).site;
+    createBuilding(site, { building, name, description, lat, lng }) {
       building.setProperties({ name, description, lat, lng });
       site.get('buildings').pushObject(building);
 

@@ -21,7 +21,7 @@
     address=model.site.address
     onPlaceUpdate=(route-action 'didUpdatePlace')
     onSubmit=(route-action 'submit')
-    onDelete=(route-action 'deleteNetworkSite')
+    onDelete=(route-action 'deleteNetworkSite' model.site)
     place=place
     isEditing=true
 }}
