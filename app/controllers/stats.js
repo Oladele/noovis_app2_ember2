@@ -3,7 +3,7 @@ import ColumnDefinition from 'ember-table/models/column-definition';
 import {getData, getDataHeadings} from './stats_data_TEMP';
 
 // Pie imports
-import {asset_values} from './stats_chartdata_TEMP';
+import {asset_values, pon_utilization} from './stats_chartdata_TEMP';
 
 export default Ember.Controller.extend({
 
@@ -55,6 +55,7 @@ export default Ember.Controller.extend({
   minSlicePercent: 2,
   maxRadius: 250,
   labelWidthMultiplier: 0.25,
+  selectedSeedColor: "rgb(0, 0, 65)",
 
   // ---------
   // Data Selection
@@ -64,26 +65,14 @@ export default Ember.Controller.extend({
   //   return Ember.A(_.keys(this.get('rawDataHash')));
   // }),
 
-  data: Ember.computed('selectedData', 'rawDataHash', function() {
-    return this.get('rawDataHash')[this.get('selectedData')];
+  data: Ember.computed('rawDataHash', function() {
+    return this.get('rawDataHash')['pon_utilization'];
   }),
 
   rawDataHash: Ember.computed(function() {
     return {
       asset_values: asset_values,
-      // many_values: many_values,
-      // monthly_return_single_period: monthly_return_single_period,
-      // high_net_worth_duration: high_net_worth_duration,
-      // '----': data.null,
-      // empty: data.empty,
-      // one_value: one_value,
-      // two_values: two_values,
-      // zero: zero,
-      // zeroes: zeroes,
-      // sum_to_zero: sum_to_zero,
-      // bad_range: bad_range
+      pon_utilization: pon_utilization,
     };
   }),
-
-  selectedData: 'asset_values'
 });

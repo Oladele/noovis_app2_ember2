@@ -22,4 +22,17 @@ export const asset_values = [{
     label: "Real Assets",
     value: 10475849.276172025,
     type: "money"
-}];
+  }
+];
+
+
+export const pon_utilization = [{
+    label: "Active Channels (614)",
+    value: 614,
+    type: "number",
+  }, {
+    label: "Standby Channels",
+    value: 986,
+    type: "number",
+  }
+];
