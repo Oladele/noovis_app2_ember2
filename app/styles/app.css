@@ -16,10 +16,6 @@ body {
 	background-color: red;
 }
 
-.crl-stats-table-container{
-	
-}
-
 .chart-frame .hovered path{
 	fill: #8EC640 !important;
 }
