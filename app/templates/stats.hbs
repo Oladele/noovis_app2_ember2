@@ -2,25 +2,6 @@
 
 {{outlet}}
 
-{{!-- {{ember-table
-  hasFooter=false
-  columns=tableColumns
-  content=tableContent
-}} --}}
 
 {{ crl-stats-table }}
-
-
-<h2>Charleston PON Channel Utilization</h2>
-
-<div class="chart-container">
-  {{pie-chart
-    maxRadius=maxRadius
-    maxSlicePercent=maxSlicePercent
-    minSlicePercent=minSlicePercent
-    maxNumberOfSlices=maxNumberOfSlices
-    selectedSeedColor="rgb(16, 37, 63)"
-    data=data
-    labelWidthMultiplier=labelWidthMultiplier
-  }}
-</div>
+{{ crl-stats-pie }}
