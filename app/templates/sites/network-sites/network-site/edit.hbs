@@ -1,17 +1,32 @@
-{{g-maps
-    name='network-site-edit-map'
-    lat=model.lat
-    lng=model.lng
+{{#g-maps-container
+    lat=model.site.lat
+    lng=model.site.lng
     zoom=16
+    icon='assets/fa-home_40.png'
+    model=model.buildings as |map|
 }}
+  {{g-maps
+      name='network-site-edit-map'
+      lat=map.lat
+      lng=map.lng
+      zoom=map.zoom
+      mapType='satellite'
+      markers=map.markers
+  }}
+{{/g-maps-container}}
 
 {{network-site-form
-    site=model
-    name=model.name
-    address=model.address
+    site=model.site
+    name=model.site.name
+    address=model.site.address
     onPlaceUpdate=(route-action 'didUpdatePlace')
     onSubmit=(route-action 'submit')
-    onDelete=(route-action 'deleteNetworkSite')
+    onDelete=(route-action 'deleteNetworkSite' model.site)
     place=place
     isEditing=true
+}}
+
+{{buildings-list
+    buildings=model.buildings
+    onBuildingDelete=(route-action 'deleteBuilding')
 }}

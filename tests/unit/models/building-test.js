@@ -1,8 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('network-site', 'Unit | Model | network site', {
+moduleForModel('building', 'Unit | Model | building', {
   // Specify the other units that are required for this test.
-  needs: ['model:company', 'model:building']
+  needs: ['model:networkSite']
 });
 
 test('it exists', function(assert) {

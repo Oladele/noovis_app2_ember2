@@ -32,8 +32,8 @@ test('visiting /sites', function(assert) {
         "All network site links are rendered");
 
     assert.equal(
-        find('[data-test-selector="network-site-link"]:first').text(),
-        "ACME Lab",
+        find('[data-test-selector="network-site-link"]:first').text().trim(),
+        "ACME Lab (0)",
         "Network site links contain the network-site name");
   });
 });

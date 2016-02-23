@@ -41,21 +41,6 @@ export default function() {
     };
   });
 
-  // this.get('/buildings/:id', function(db, request) {
-
-    // var id = request.params.id;
-    // var building = db["buildings"].find(id);
-    // var response = {
-      // data:{
-        // id: building.id,
-        // type: "buildings",
-        // attributes: building
-      // }
-    // };
-    // return response;
-  // });
-
-  // this.get('companies/:id/network-sites');
   this.get('/companies/:id/network-sites', function(db, request) {
     var id = request.params.id;
     var networkSites = db["network-sites"].where({company: id});
@@ -114,43 +99,49 @@ export default function() {
             "id": networkSite.company
           }
         },
-        // "buildings": {
-          // "links": {
-            // "self": `/network-sites/${id}/relationships/buildings`,
-            // "related": `/network-sites/${id}/buildings`
-          // },
-          // "data": db["buildings"].where({networkSite: id}).map(attrs =>(
-              // {
-                // "type": "buildings",
-                // "id": attrs.id
-              // }
-            // ))
-        // }
+        "buildings": {
+          "links": {
+            "self": `/network-sites/${id}/relationships/buildings`,
+            "related": `/network-sites/${id}/buildings`
+          },
+          "data": db["buildings"].where({networkSite: id}).map(attrs =>(
+              {
+                "type": "buildings",
+                "id": attrs.id
+              }
+            ))
+        }
       }
     };
 
-    // var included = db["buildings"].where({networkSite: id}).map(attrs =>(
-      // {
-        // "id": attrs.id,
-        // "type": "buildings",
-        // "attributes": attrs,
-        // "relationships": {
-          // "network-site": {
-            // "links": {
-              // "self": `/buildings/${attrs.id}/relationships/network-site`,
-              // "related": `/buildings/${attrs.id}/network-site`
-            // }
-          // }
-        // }
-      // }
-    // ));
-    //
-    let included = [
+    var included = db["buildings"].where({networkSite: id}).map(attrs =>(
       {
+        "id": attrs.id,
+        "type": "buildings",
+        "attributes": attrs,
+        "relationships": {
+          "network-site": {
+            "links": {
+              "self": `/buildings/${attrs.id}/relationships/network-site`,
+              "related": `/buildings/${attrs.id}/network-site`
+            }
+          }
+        }
+      }
+    ));
+
+    // let included = [
+      // {
+        // type: 'companies',
+        // id: networkSite.company
+      // }
+    // ];
+
+    included.push({
         type: 'companies',
         id: networkSite.company
       }
-    ];
+    );
 
     return {
       data: data,
@@ -202,7 +193,13 @@ export default function() {
       {
         "id": attrs.id,
         "type": "network-sites",
-        "attributes": attrs,
+        "attributes": {
+          "name": attrs.name,
+          "description": attrs.description,
+          "portsActive": attrs.portsActive,
+          "portsTotal": attrs.portsTotal,
+          "portsActivePercent": attrs.portsActivePercent
+        },
         "relationships": {
           "company": {
             "links": {
@@ -276,7 +273,84 @@ export default function() {
     return { "meta": {"deleted":"deleted"}};
   });
 
-  // These comments are here to help you get started. Feel free to delete them.
+  this.get('/buildings', function(db) {
+    let data = db.buildings.map(building => {
+      return {
+        "type": "buildings",
+        "id": building.id,
+        "attributes": {
+          "lat": building.lat,
+          "lng": building.lng,
+          "name": building.name,
+          "description": building.description,
+          "portsActive": building.portsActive,
+          "portsActivePercent": building.portsActivePercent,
+          "portsTotal": building.portsTotal
+        },
+        "relationships": {
+          "network-site": {
+            "data": {
+              "type": "network-site",
+              "id": building.networkSite
+            }
+          }
+        }
+      };
+    });
+    return { data };
+  });
+
+  this.post('/buildings', function(db, request) {
+    let requestBody = JSON.parse(request.requestBody);
+    let data = requestBody.data.attributes;
+    let building = db.buildings.insert(data);
+    let response = {
+      data: {
+        id: building.id,
+        type: 'buildings',
+        attributes: building
+      }
+    };
+
+    return response;
+  });
+
+  this.get('/buildings/:id', function(db, request) {
+    let id = request.params.id;
+
+    let response = {
+      data: {
+        id: id,
+        type: 'buildings',
+        attributes: db.buildings.find(id)
+      }
+    };
+
+    return response;
+  });
+
+  this.patch('/buildings/:id', function(db, request) {
+    let id = request.params.id;
+    let attrs = JSON.parse(request.requestBody);
+    db.buildings.update(id, attrs.data.attributes);
+
+    let response = {
+      data: {
+        type: 'buildings',
+        id: id,
+        attributes: db.buildings.find(id)
+      }
+    };
+
+    return response;
+  });
+
+  this.del('/buildings/:id', function(db, request) {
+    let id = request.params.id;
+    db.buildings.remove(id);
+
+    return { "meta": {"deleted":"deleted"}};
+  });
 
   /*
     Config (with defaults).

@@ -1,8 +1,15 @@
 import Ember from 'ember';
 
+const {
+  RSVP
+} = Ember;
+
 export default Ember.Route.extend({
   model() {
-    return this.modelFor('sites.companies.company').get('networkSites');
+    return RSVP.hash({
+      sites: this.modelFor('sites.companies.company').get('networkSites'),
+      site: this.store.createRecord('networkSite')
+    });
   },
 
   actions: {

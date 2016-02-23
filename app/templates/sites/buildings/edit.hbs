@@ -1,0 +1,26 @@
+<h2>Edit Building</h2>
+
+{{#g-maps-container
+  lat=model.lat
+  lng=model.lng
+  zoom=18
+  model=model
+  buildingmarker=buildingMarker as |map|}}
+  {{g-maps 
+      lat=map.lat 
+      lng=map.lng 
+      zoom=map.zoom 
+      mapType='satellite'
+      markers=buildingMarker
+  }}
+{{/g-maps-container}}
+
+{{building-form
+    building=model
+    name=model.name
+    description=model.description
+    lat=bLat
+    lng=bLng
+    onSubmit=(route-action 'submit')
+    onDelete=(route-action 'destroyBuilding')
+}}

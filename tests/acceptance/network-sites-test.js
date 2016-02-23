@@ -23,6 +23,11 @@ class SitePageObject {
     return this;
   }
 
+  clickDeleteBuilding() {
+    click('[data-test-selector=delete-building-button]');
+    return this;
+  }
+
   submit() {
     click('[data-test-selector=submit-button]');
   }
@@ -45,13 +50,13 @@ test('map is shown on `new` page', function(assert) {
 });
 
 test('can create new network site', function(assert) {
-  assert.expect(2);
+  assert.expect(3);
 
   stubGMapAutocomplete(this);
   visit(`/sites/companies/${company.id}/network-sites/new`);
 
   let name = 'The Coffee Shop';
-  // let address = '100 Main St, Vancouver, BC, Canada'; 
+  let address = '100 Main St, Vancouver, BC, Canada';
   let lat = '49.123';
   let lng = '123.456';
   let place = {
@@ -64,8 +69,8 @@ test('can create new network site', function(assert) {
           return lng;
         }
       }
-    }
-    // formatted_address: address
+    },
+    formatted_address: address
   };
 
   new SitePageObject(this)
@@ -77,7 +82,7 @@ test('can create new network site', function(assert) {
     let site = server.db['network-sites'][0];
     assert.equal(site.name, name, 'has correct name');
     assert.equal(site.lat, lat, 'has correct latitude');
-    // assert.equal(site.address, address, 'has correct address');
+    assert.equal(site.address, address, 'has correct address');
   });
 });
 
@@ -93,7 +98,7 @@ test('map is shown on `edit` page', function(assert) {
 });
 
 test('can update network site', function(assert) {
-  assert.expect(1);
+  assert.expect(2);
 
   stubGMapAutocomplete(this);
   let site = server.create('network-site', {
@@ -103,7 +108,7 @@ test('can update network site', function(assert) {
 
   visit(`/sites/network-sites/${site.id}/edit`);
 
-  // let address = '100 Main St, Vancouver, BC, Canada'; 
+  let address = '100 Main St, Vancouver, BC, Canada';
   let name = 'Site 2';
   let place = {
     geometry: {
@@ -115,8 +120,8 @@ test('can update network site', function(assert) {
           return '123.456';
         }
       }
-    }
-    // formatted_address: address
+    },
+    formatted_address: address
   };
 
   new SitePageObject(this)
@@ -124,10 +129,12 @@ test('can update network site', function(assert) {
     .fillLocation(place)
     .submit();
 
+  visit(`/sites/network-sites/${site.id}/edit`);
+
   andThen(() => {
     let site = server.db['network-sites'][0];
     assert.equal(site.name, name, 'name was updated');
-    // assert.equal(site.address, address, 'has correct address');
+    assert.equal(site.address, address, 'has correct address');
   });
 });
 
@@ -147,5 +154,54 @@ test('can delete network site', function(assert) {
 
   andThen(() => {
     assert.equal(server.db['network-sites'].length, 0, 'no sites were found');
+  });
+});
+
+test('can go to new buildings page', function(assert) {
+  assert.expect(1);
+
+  let site = server.create('network-site', {
+    company: company.id
+  });
+  visit(`/sites/network-sites/${site.id}/edit`);
+  click('[data-test-selector=add-building-button]');
+
+  andThen(() => {
+    assert.equal(currentURL(), `/sites/network-sites/${site.id}/buildings/new`);
+  });
+});
+
+test('shows buildings list', function(assert) {
+  assert.expect(1);
+
+  let site = server.create('network-site', {
+    company: company.id
+  });
+
+  server.create('building', {
+    name: 'foo',
+    networkSite: site.id
+  });
+
+  visit(`/sites/network-sites/${site.id}/edit`);
+
+  andThen(() => {
+    assert.equal(find('[data-test-selector=building-item]').text().trim(), 'foo', 'found building');
+  });
+});
+
+test('can delete buildings in list', function(assert) {
+  assert.expect(1);
+
+  let site = server.create('network-site', { company: company.id });
+  server.create('building', { networkSite: site.id });
+
+  visit(`/sites/network-sites/${site.id}/edit`);
+
+  new SitePageObject()
+    .clickDeleteBuilding();
+
+  andThen(() => {
+    assert.equal(server.db.buildings.length, 0, 'no buildings were found');
   });
 });

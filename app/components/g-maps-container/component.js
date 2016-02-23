@@ -8,14 +8,15 @@ export default Ember.Component.extend({
   lat: 37.0625,
   lng: -95.677068,
   zoom: 4,
-  markers: computed.map('model', function(site) {
+  markers: computed.map('model', function(marker) {
     return {
-      id: site.get('id'),
-      lat: site.get('lat'),
-      lng: site.get('lng'),
+      id: marker.get('id'),
+      lat: marker.get('lat'),
+      lng: marker.get('lng'),
       infoWindow: {
-        content: site.get('name')
-      }
+        content: marker.get('name')
+      },
+      icon: this.get('icon')
     };
   })
 });
