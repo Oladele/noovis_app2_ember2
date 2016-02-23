@@ -2,8 +2,28 @@
 
 {{outlet}}
 
-{{ember-table
-  hasFooter=false
-  columns=tableColumns
-  content=tableContent
-}}
+<h2 class='row-title'>Network Element Counts</h2>
+
+
+<div class="row">
+
+	<div class="col-lg-12">
+		{{ crl-stats-table }}
+	</div>
+
+</div>
+
+<h2 class='row-title'>PON Channel Utilization</h2>
+
+<div class="row">
+  
+  <div class="col-md-6">
+		{{ crl-stats-pie }}
+  </div>
+  
+  <div class="col-md-6">	
+		{{ crl-stats-bar }}
+  </div>
+  
+
+</div>
