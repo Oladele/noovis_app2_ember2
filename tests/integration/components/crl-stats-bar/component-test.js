@@ -12,6 +12,6 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{crl-stats-bar}}`);
 
-  assert.equal(this.$('.chart-header').text().trim(), 'Vertical Bar Chart');
+  assert.equal(this.$('.chart-header').text().trim(), 'Buildings');
 
 });

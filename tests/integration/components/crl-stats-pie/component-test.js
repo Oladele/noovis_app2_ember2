@@ -12,5 +12,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{crl-stats-pie}}`);
 
-  assert.equal(this.$('.chart-title').text().trim(), 'PON Channel Utilization');
+  assert.equal(this.$('.chart-title').text().trim(), 'Network Site');
 });
