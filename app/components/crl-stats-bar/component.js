@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import five_ranges from './crl-stats-bar-data-TEMP';
+import five_ranges from './data-TEMP';
 
 export default Ember.Component.extend({
 
