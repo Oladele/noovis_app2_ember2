@@ -11,7 +11,7 @@ export default Ember.Component.extend({
     const column = ColumnDefinition.create({
       savedWidth: 100,
       headerCellName: columnName.target,
-      tableCellViewClass: 'stats-cell-warning',
+      // tableCellViewClass: 'stats-cell-warning',
       getCellContent: function(row) {
         return row.get(columnName.source);
       }
