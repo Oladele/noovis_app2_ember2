@@ -23,6 +23,7 @@ Router.map(function() {
         this.route('buildings', function() {
           this.route('new');
         });
+        this.route('stats');
       });
     });
 

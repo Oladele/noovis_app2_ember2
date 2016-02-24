@@ -1,2 +1,33 @@
 <h2 data-test-selector="network-site-title">{{model.name}}</h2>
+
+<p>
+<nav role="navigation">
+	<ul class="nav nav-pills nav-justified">
+		{{#link-to 
+			"sites.network-sites.network-site.edit"
+			tagName="li"
+		}}
+			{{link-to
+	      "Map"
+	      "sites.network-sites.network-site.edit"
+	      model
+	      data-test-selector="network-site-link"
+	  	}}
+		{{/link-to}}
+
+	  {{#link-to 
+			"sites.network-sites.network-site.stats"
+			tagName="li"
+		}}
+		  {{link-to
+	      "Stats"
+	      "sites.network-sites.network-site.stats"
+	      model
+	      data-test-selector="network-site-stats-link"
+	  	}}
+		{{/link-to}}
+	</ul>
+</nav>
+</p>
+
 {{outlet}}

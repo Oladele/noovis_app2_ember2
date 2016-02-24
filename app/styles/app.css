@@ -1,3 +1,11 @@
+/* TODO: Replace color references in body of app.css with Less/Sass variables below */
+/*
+	@gray-lighter: lighten(@gray-base, 93.5%); // #eee
+
+	@brand-warning:         #f0ad4e;
+	@brand-danger:          #d9534f;
+*/
+
 body {
   padding-top: 50px;
   padding-bottom: 30px;
@@ -8,14 +16,21 @@ body {
   width: 736px;
 }
 
+/* COMPONENT: crl-stats-table */
 .stats-cell-warning{
-	background-color: orange;
+	background-color: #f0ad4e;
 }
 
 .stats-cell-danger{
-	background-color: red;
+	background-color: #d9534f;
 }
 
+/* COMPONENT: crl-stats-pie */
 .chart-frame .hovered path{
 	fill: #8EC640 !important;
+}
+
+/* Network Site Stats */
+.nav-pills li{
+	background-color: #eee;
 }
