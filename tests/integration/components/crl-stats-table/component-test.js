@@ -13,6 +13,6 @@ test('it renders', function(assert) {
   this.render(hbs`{{crl-stats-table}}`);
 
   // assert.equal(this.$().text().trim(), '');
-  assert.equal(this.$('.table-title').text().trim(), 'Charlestown');
+  assert.equal(this.$('.table-title').text().trim(), 'Network Elements Counts');
 
 });
