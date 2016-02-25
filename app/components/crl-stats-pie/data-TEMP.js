@@ -3,14 +3,15 @@ export function getData( labels ) {
 }
 
 function getDataWithCustomLabels(labels){
-  return [{
-    label: labels.active,
-    value: 614,
-    type: "number",
-  }, {
-    label: labels.other,
-    value: 986,
-    type: "number",
-  }
-];
+  return [
+    {
+      label: labels.active,
+      value: 614,
+      type: "number",
+    }, {
+      label: labels.other,
+      value: 986,
+      type: "number",
+    }
+  ];
 }
