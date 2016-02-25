@@ -23,6 +23,10 @@ a {
 	color: #11253F ;
 }
 
+.navbar-header a img{
+	margin-top: 5px;
+}
+
 .navbar-inverse {
     background-color: #11253F;
     border-color: #11253F;
