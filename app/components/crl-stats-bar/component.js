@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import {getData} from './data-TEMP';
+import {getData, getFloorsData} from './data-TEMP';
 
 export default Ember.Component.extend({
 
@@ -8,8 +8,9 @@ export default Ember.Component.extend({
   // ---------
   activeLabel: "Active",  //passed to component
   otherLabel: "Spare",    //passed to component
+  useFloorsData: false, //use building floors data and ignores custom labels
 
-  betweenGroupPadding: 1,
+  betweenGroupPadding: 0.8,
   withinGroupPadding: 0,
   maxLabelHeight: 40,
   stackBars: true,
@@ -23,10 +24,22 @@ export default Ember.Component.extend({
   // ---------
 
   data: Ember.computed(function() {
-    return getData({
-      active: this.get('activeLabel'), 
-      other: this.get('otherLabel')
-    });  
+    let buildingAndOrFloorsData;
+    
+    if (this.get('useFloorsData')) {
+      
+      buildingAndOrFloorsData = getFloorsData();
+    
+    } else {
+      
+      buildingAndOrFloorsData = getData({
+        active: this.get('activeLabel'), 
+        other: this.get('otherLabel')
+      });
+
+    }
+
+    return buildingAndOrFloorsData;
   }),
 });
 
