@@ -10,7 +10,12 @@ export default Ember.Controller.extend({
     {
       title: "Feeder Capacity", 
       activeLabel: "Active PON Ports", 
-      otherLabel: "Standby Feeder Fibers"
+      otherLabel: "Spare Feeder Fibers"
+    },
+    {
+      title: "Noovis Distribution Network", 
+      activeLabel: "Active Distribution Ports", 
+      otherLabel: "Spare Distribution Ports"
     }
   ],
 
