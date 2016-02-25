@@ -5,6 +5,7 @@ const {
 } = Ember;
 
 export default Ember.Controller.extend({
+  sheetNames: ['Please upload a workbook'],
   buildingMarker: computed('model', function() {
     let building = this.get('model');
     this.set('bLat', building.get('lat'));
@@ -26,5 +27,8 @@ export default Ember.Controller.extend({
     };
 
     return [data];
-  })
+  }),
+
+  actions: {
+  }
 });

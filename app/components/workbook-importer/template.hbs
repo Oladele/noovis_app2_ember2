@@ -1,0 +1,26 @@
+{{#x-file-input multiple=true action=(action 'loadWorkbook')}}
+  <button>Choose file</button>
+{{/x-file-input}}
+
+{{#x-select value=sheetName}}
+  {{#each sheetNames as |sheet|}}
+    {{#x-option value=sheet}}{{sheet}}{{/x-option}}
+  {{/each}}
+{{/x-select}}
+
+<button
+  {{action 'importWorkbook'}}
+  data-test-selector='import-workbook-button'
+>
+  Import
+</button>
+
+{{#x-xml-http-request
+    method='POST'
+    headers=requestHeaders
+    url='/import_cable_run'
+    data=requestData as |xhr|
+}}
+  <div style="width: 200px; height: 5px; background: linear-gradient(90deg, orange 0, orange {{xhr.upload.percentage}}%, rgba(100,100,100,1) {{xhr.upload.percentage}}%, rgba(100,100,100,1) 100%); "></div>
+{{/x-xml-http-request}}
+{{yield}}

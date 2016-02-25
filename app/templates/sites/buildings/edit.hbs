@@ -5,11 +5,12 @@
   lng=model.lng
   zoom=18
   model=model
-  buildingmarker=buildingMarker as |map|}}
-  {{g-maps 
-      lat=map.lat 
-      lng=map.lng 
-      zoom=map.zoom 
+  buildingmarker=buildingMarker as |map|
+}}
+  {{g-maps
+      lat=map.lat
+      lng=map.lng
+      zoom=map.zoom
       mapType='satellite'
       markers=buildingMarker
   }}
@@ -23,4 +24,8 @@
     lng=bLng
     onSubmit=(route-action 'submit')
     onDelete=(route-action 'destroyBuilding')
+}}
+
+{{workbook-importer
+    buildingId=model.id
 }}
