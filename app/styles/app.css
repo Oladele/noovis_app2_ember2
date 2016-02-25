@@ -1,6 +1,8 @@
 /* TODO: Replace color references in body of app.css with Less/Sass variables below */
 /*
-	@gray-lighter: lighten(@gray-base, 93.5%); // #eee
+	@brand-primary: #11253F
+
+	@gray-lighter: #eee
 
 	@brand-warning:         #f0ad4e;
 	@brand-danger:          #d9534f;
@@ -9,6 +11,50 @@
 body {
   padding-top: 50px;
   padding-bottom: 30px;
+  color: #11253F !important;
+  background: url(app-bg.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+a {
+	color: #11253F ;
+}
+
+.navbar-inverse {
+    background-color: #11253F;
+    border-color: #11253F;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #11253F;
+}
+
+.btn-info:active, .btn-info.active, .open > .dropdown-toggle.btn-info {
+    color: #fff;
+    background-color: #11253F;
+    border-color: #11253F;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #11253F;
+    border-color: #11253F;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #8EC640;
+    border-color: #8EC640;
+}
+
+.btn-default {
+    color: #11253F;
+    background-color: #eee;
+    border-color: #eee;
 }
 
 /* COMPONENT: ember-cli-g-map */
