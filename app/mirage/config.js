@@ -352,6 +352,22 @@ export default function() {
     return { "meta": {"deleted":"deleted"}};
   });
 
+  this.post('/import_cable_run', function(db, request) {
+    let data = request.requestBody;
+
+    if (Object.prototype.toString.call(data) === "[object File]") {
+      return {
+        ok: true
+      };
+    } else {
+      return {
+        errors: {
+          status: 400
+        }
+      };
+    }
+  });
+
   /*
     Config (with defaults).
 
