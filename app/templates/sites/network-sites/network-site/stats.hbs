@@ -3,6 +3,7 @@
 <h3 class='row-title'>Summary</h3>
 
 
+
 <div class="row">
 
 	<div class="col-lg-12">
@@ -11,17 +12,18 @@
 
 </div>
 
-<h3 class='row-title'>PON Channel Utilization</h3>
+{{#each chartStatTypes as |type|}}
+	<h3 class='row-title'>{{type.title}}</h3>
 
-<div class="row">
+  <div class="row">
   
-  <div class="col-md-6">
-		{{ crl-stats-pie }}
-  </div>
+	  <div class="col-md-6">
+			{{ crl-stats-pie activeLabel=type.activeLabel otherLabel=type.otherLabel}}
+	  </div>
+	  
+	  <div class="col-md-6">	
+			{{ crl-stats-bar }}
+	  </div>
   
-  <div class="col-md-6">	
-		{{ crl-stats-bar }}
-  </div>
-  
-
-</div>
+	</div>
+{{/each}}

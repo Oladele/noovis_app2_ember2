@@ -1,11 +1,14 @@
 import Ember from 'ember';
-import {asset_values, pon_utilization} from './data-TEMP';
+// import {asset_values, pon_utilization} from './data-TEMP';
+import {getData} from './data-TEMP';
 
 export default Ember.Component.extend({
 
 	// ---------
   // Default Settings
   // ---------
+  activeLabel: "Active",  //passed to component
+  otherLabel: "Spare",    //passed to component
 
   maxNumberOfSlices: 8,
   minSlicePercent: 2,
@@ -14,22 +17,15 @@ export default Ember.Component.extend({
   selectedSeedColor: "rgb(0, 0, 65)",
 
   // ---------
-  // Data Selection
+  // Data
   // ---------
 
-  // availableDataSets: Ember.computed('rawDataHash', function() {
-  //   return Ember.A(_.keys(this.get('rawDataHash')));
-  // }),
-
-  data: Ember.computed('rawDataHash', function() {
-    return this.get('rawDataHash')['pon_utilization'];
+  data: Ember.computed(function() {
+    return getData({
+      active: this.get('activeLabel'), 
+      other: this.get('otherLabel')
+    });
   }),
 
-  rawDataHash: Ember.computed(function() {
-    return {
-      asset_values: asset_values,
-      pon_utilization: pon_utilization,
-    };
-  }),
 
 });
