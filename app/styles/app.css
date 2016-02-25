@@ -78,9 +78,9 @@ a {
 }
 
 /* COMPONENT: crl-stats-pie */
-.chart-frame .hovered path{
+/*.chart-frame .hovered path{
 	fill: #8EC640 !important;
-}
+}*/
 
 /* Network Site Stats */
 .nav-pills li{
