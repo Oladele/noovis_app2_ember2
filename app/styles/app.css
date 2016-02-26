@@ -82,6 +82,21 @@ a {
 	fill: #8EC640 !important;
 }*/
 
+
+/* Network Site Edit*/
+
+.network-site-buildings {
+  list-style: none;
+  margin: 0;
+}
+
+.building-list-item {
+  padding-bottom: 10px;
+  overflow: auto;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
 /* Network Site Stats */
 .nav-pills li{
 	background-color: #eee;

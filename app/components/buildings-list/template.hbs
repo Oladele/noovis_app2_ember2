@@ -9,7 +9,7 @@
 
 <ul class='list-unstyled'>
   {{#each buildings as |building|}}
-    <li>
+    <li class="building-list-item">
       {{#link-to
         'sites.buildings.edit'
         building
@@ -17,12 +17,13 @@
       }}
         {{building.name}}
       {{/link-to}}
+      
       <button
         {{action 'deleteBuilding' building}}
-        class='btn btn-sm btn-danger'
+        class='btn btn-xs btn-danger pull-right'
         data-test-selector='delete-building-button'
       >
-        <span class='glyphicon glyphicon-trash'></span>
+        <span class='glyphicon glyphicon-remove'></span>
       </button>
     </li>
   {{/each}}
