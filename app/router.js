@@ -23,6 +23,7 @@ Router.map(function() {
         this.route('buildings', function() {
           this.route('new');
         });
+        this.route('stats');
       });
     });
 
@@ -30,7 +31,6 @@ Router.map(function() {
       this.route('edit', { path: '/:building_id' });
     });
   });
-  this.route('stats');
 });
 
 export default Router;

@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:stats', 'Unit | Route | stats', {
+moduleFor('route:sites/network-sites/network-site/stats', 'Unit | Route | sites/network sites/network site/stats', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

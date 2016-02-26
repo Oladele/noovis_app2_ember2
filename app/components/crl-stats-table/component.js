@@ -1,17 +1,17 @@
 import Ember from 'ember';
 import ColumnDefinition from 'ember-table/models/column-definition';
-import {getData, getDataHeadings} from './stats_data_TEMP';
+import {getData, getDataHeadings} from './data-TEMP';
 
-export default Ember.Controller.extend({
+export default Ember.Component.extend({
 
-  tableHeadings: getDataHeadings(),
+	tableHeadings: getDataHeadings(),
   tableData: getData(),
 
   tableColumn: function(columnName){
     const column = ColumnDefinition.create({
       savedWidth: 100,
       headerCellName: columnName.target,
-      tableCellViewClass: 'stats-cell-warning',
+      // tableCellViewClass: 'stats-cell-warning',
       getCellContent: function(row) {
         return row.get(columnName.source);
       }
@@ -35,5 +35,5 @@ export default Ember.Controller.extend({
   tableContent: Ember.computed(function() {
     const content = this.get("tableData");
     return content;
-  })
+  }),
 });
