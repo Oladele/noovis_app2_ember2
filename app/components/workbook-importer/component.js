@@ -2,6 +2,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  sheetNames: ['Upload a Workbook'],
   requestHeaders: {
     "Content-Type": "multipart/form-data"
   },
@@ -13,7 +14,9 @@ export default Ember.Component.extend({
       reader.onload = (e) => {
         let data = e.target.result;
         let workbook = XLSX.read(data, {type: 'binary'});
-        this.set('sheetNames', workbook.SheetNames);
+        let sheetNames = workbook.SheetNames;
+        this.set('sheetNames', sheetNames);
+        this.set('sheetName', sheetNames[0]);
       };
       reader.readAsBinaryString(files[0]);
     },
