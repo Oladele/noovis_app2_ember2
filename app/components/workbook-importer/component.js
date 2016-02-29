@@ -28,7 +28,7 @@ export default Ember.Component.extend({
       let data = new FormData();
       data.append('sheet', sheetName);
       data.append('building_id', buildingId);
-      data.append('file', file);
+      data.append('workbookFile', file);
       this.set('requestData', data);
     }
   }

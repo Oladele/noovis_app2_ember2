@@ -15,12 +15,17 @@
   Import
 </button>
 
-{{#x-xml-http-request
-    method='POST'
-    headers=requestHeaders
-    url='/import_cable_run'
-    data=requestData as |xhr|
-}}
-  <div style="width: 200px; height: 5px; background: linear-gradient(90deg, orange 0, orange {{xhr.upload.percentage}}%, rgba(100,100,100,1) {{xhr.upload.percentage}}%, rgba(100,100,100,1) 100%); "></div>
-{{/x-xml-http-request}}
+{{#if requestData}}
+  {{#x-xml-http-request
+      method='POST'
+      headers=requestHeaders
+      url='/import_cable_run'
+      data=requestData as |xhr|
+  }}
+    {{#if xhr.upload.percentage}}
+      {{xhr.upload.percentage}}%
+    {{/if}}
+    <div style="width: 200px; height: 5px; background: linear-gradient(90deg, orange 0, orange {{xhr.upload.percentage}}%, rgba(100,100,100,1) {{xhr.upload.percentage}}%, rgba(100,100,100,1) 100%); "></div>
+  {{/x-xml-http-request}}
+{{/if}}
 {{yield}}
