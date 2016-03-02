@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   sheetNames: ['Upload a Workbook'],
   requestHeaders: {
-    "Content-Type": "multipart/form-data"
+    contentType: false
   },
   actions: {
     loadWorkbook(files) {
@@ -25,11 +25,11 @@ export default Ember.Component.extend({
       let sheetName = this.get('sheetName');
       let file = this.get('file');
       let buildingId = this.get('buildingId');
-      let data = new FormData();
-      data.append('sheet', sheetName);
-      data.append('building_id', buildingId);
-      data.append('workbookFile', file);
-      this.set('requestData', data);
+      let formData = new FormData();
+      formData.append('file', file);
+      formData.append('building_id', buildingId);
+      formData.append('sheet', sheetName);
+      this.set('requestData', formData);
     }
   }
 });

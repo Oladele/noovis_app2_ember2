@@ -29,16 +29,16 @@ test('it renders', function(assert) {
 });
 
 test('should upload workbook', function(assert) {
-  assert.expect(2);
+  assert.expect(3);
   let sheet = 'sheet1';
   this.set('file', new Blob());
   this.set('sheetName', sheet);
 
   let done = assert.async();
-  server.post('/import_cable_run', function(db, request) {
-    let data = request.requestBody;
-    assert.equal(data.get('sheet'), sheet, 'sheet is correct');
-    assert.ok(data.get('file'), 'file was sent');
+  server.post('/import_cable_run', function(db, {requestHeaders, requestBody}) {
+    assert.equal(requestHeaders.contentType, false, 'automatically set content type');
+    assert.equal(requestBody.get('sheet'), sheet, 'sheet is correct');
+    assert.ok(requestBody.get('file'), 'file was sent');
     done();
   });
 
