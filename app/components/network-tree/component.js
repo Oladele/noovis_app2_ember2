@@ -27,7 +27,7 @@ export default Ember.Component.extend({
     let hasNoData = isEmpty(this.get('nodes')) || isEmpty(this.get('edges'));
     if (hasNoData) return;
 
-    let container = this.$('.network-tree-container')[0];
+    let container = this.$('[data-test-selector="network-tree-container"]')[0];
     this.set('container', container);
     let nodes = this.get('nodes');
     let edges = this.get('edges');
