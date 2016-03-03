@@ -32,6 +32,8 @@ module.exports = function(defaults) {
   app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2', { destDir: 'fonts' });
 
   app.import('bower_components/js-xlsx/dist/xlsx.core.min.js');
+  app.import('bower_components/vis/dist/vis.min.js');
+  app.import('bower_components/vis/dist/vis.min.css');
 
   return app.toTree();
 };

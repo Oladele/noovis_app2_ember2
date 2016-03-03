@@ -1,3 +1,5 @@
+import networkTreeData from './network-tree-data';
+
 export default function() {
 
   this.del('/network-sites/:id', function(db, request) {
@@ -366,6 +368,10 @@ export default function() {
         }
       };
     }
+  });
+
+  this.get('/buildings/:id/show_network_graph', function() {
+    return networkTreeData;
   });
 
   /*

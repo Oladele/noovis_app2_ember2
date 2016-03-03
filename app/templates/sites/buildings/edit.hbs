@@ -1,10 +1,10 @@
 <h2>Edit Building</h2>
 
 {{#g-maps-container
-  lat=model.lat
-  lng=model.lng
+  lat=model.building.lat
+  lng=model.building.lng
   zoom=18
-  model=model
+  model=model.building
   buildingmarker=buildingMarker as |map|
 }}
   {{g-maps
@@ -17,9 +17,9 @@
 {{/g-maps-container}}
 
 {{building-form
-    building=model
-    name=model.name
-    description=model.description
+    building=model.building
+    name=model.building.name
+    description=model.building.description
     lat=bLat
     lng=bLng
     onSubmit=(route-action 'submit')
@@ -27,5 +27,10 @@
 }}
 
 {{workbook-importer
-    buildingId=model.id
+    buildingId=model.building.id
+}}
+
+{{network-tree
+    nodes=model.networkTreeData.nodes
+    edges=model.networkTreeData.edges
 }}

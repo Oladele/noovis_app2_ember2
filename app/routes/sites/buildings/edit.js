@@ -1,8 +1,18 @@
 import Ember from 'ember';
 
+const {
+  inject,
+  RSVP
+} = Ember;
+
 export default Ember.Route.extend({
+  ajax: inject.service(),
   model(params) {
-    return this.store.findRecord('building', params.building_id);
+    // return this.store.findRecord('building', params.building_id);
+    return RSVP.hash({
+      building: this.store.findRecord('building', params.building_id),
+      networkTreeData: this.get('ajax').request(`/buildings/${params.building_id}/show_network_graph`)
+    });
   },
 
   actions: {
