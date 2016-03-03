@@ -14,7 +14,9 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     let hasNoData = isEmpty(this.get('nodes')) || isEmpty(this.get('edges'));
-    if (hasNoData) return;
+    if (hasNoData) {
+      return;
+    }
 
     let nodes = new vis.DataSet(this.get('nodes'));
     this.set('nodes', nodes);
@@ -25,7 +27,9 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super(...arguments);
     let hasNoData = isEmpty(this.get('nodes')) || isEmpty(this.get('edges'));
-    if (hasNoData) return;
+    if (hasNoData)  {
+      return;
+    }
 
     let container = this.$('[data-test-selector="network-tree-container"]')[0];
     this.set('container', container);
