@@ -6,6 +6,7 @@ const {
 } = Ember;
 
 export default Ember.Route.extend({
+  flashMessages: inject.service(),
   ajax: inject.service(),
   model(params) {
     return RSVP.hash({
@@ -23,6 +24,26 @@ export default Ember.Route.extend({
 
     destroyBuilding(building) {
       return building.destroyRecord();
+    },
+
+    sendFlash(status, message) {
+      let flashMessages = this.get('flashMessages');
+      if (status >= 200 && status < 300) {
+        let text = message || 'Success';
+        flashMessages.success(text);
+        return;
+      }
+
+      if (status >= 400 && status < 500) {
+        let text = message || 'Client Error';
+        flashMessages.warning(text);
+        return;
+      }
+
+      if (status >= 500) {
+        flashMessages.warning('Server Error: Please try again later');
+        return;
+      }
     }
   }
 });

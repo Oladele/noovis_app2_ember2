@@ -29,6 +29,10 @@ export default Ember.Component.extend({
       formData.append('building_id', buildingId);
       formData.append('sheet', sheetName);
       this.set('requestData', formData);
+    },
+
+    notifyFlash(status, message) {
+      this.get('onFlashReceive')(status, message);
     }
   }
 });

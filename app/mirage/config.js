@@ -1,4 +1,5 @@
 import networkTreeData from './network-tree-data';
+import Mirage from 'ember-cli-mirage';
 
 export default function() {
 
@@ -356,16 +357,15 @@ export default function() {
 
   this.post('/import_cable_run', function(db, request) {
     let data = request.requestBody;
+    let fileType = data.get('file').type;
+
+    if (!fileType) {
+      return new Mirage.Response(400, null, { message: 'File type must be .xls' });
+    }
 
     if (Object.prototype.toString.call(data) === "[object File]") {
       return {
-        ok: true
-      };
-    } else {
-      return {
-        errors: {
-          status: 400
-        }
+        message: 'Successfully created cable runs'
       };
     }
   });

@@ -33,6 +33,8 @@ test('should upload workbook', function(assert) {
   let sheet = 'sheet1';
   this.set('file', new Blob());
   this.set('sheetName', sheet);
+  this.set('componentAction', () => null);
+  this.set('routeAction', () => null);
 
   let done = assert.async();
   server.post('/import_cable_run', function(db, {requestHeaders, requestBody}) {
@@ -47,6 +49,8 @@ test('should upload workbook', function(assert) {
        buildingId=1
        sheetName=sheetName
        file=file
+       notifyFlash=(action componentAction)
+       onFlashReceive=(action routeAction)
     }}
   `);
 
