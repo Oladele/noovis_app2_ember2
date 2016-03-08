@@ -1,5 +1,6 @@
 import networkTreeData from './network-tree-data';
 import Mirage from 'ember-cli-mirage';
+import cableRunData from './cable-run-data';
 
 export default function() {
 
@@ -399,6 +400,10 @@ export default function() {
 
   this.get('/buildings/:id/show_network_graph', function() {
     return networkTreeData;
+  });
+
+  this.get('/sheets/:id/cable_runs', function() {
+    return cableRunData;
   });
 
   /*

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ColumnDefinition from 'ember-table/models/column-definition';
 
 const {
   inject,
@@ -9,10 +10,20 @@ export default Ember.Route.extend({
   flashMessages: inject.service(),
   ajax: inject.service(),
   model(params) {
+    let sheetId = 1;
     return RSVP.hash({
       building: this.store.findRecord('building', params.building_id),
-      networkTreeData: this.get('ajax').request(`/buildings/${params.building_id}/show_network_graph`)
+      networkTreeData: this.get('ajax').request(`/buildings/${params.building_id}/show_network_graph`),
+      cableRuns: this.get('ajax').request(`/sheets/${sheetId}/cable_runs`)
     });
+  },
+
+  afterModel(model) {
+    let cableRuns = model.cableRuns.data;
+    let content = cableRuns.map(cableRun => cableRun.attributes);
+    let columnData = Object.keys(cableRuns[0].attributes);
+    let columns = createTableColumns(columnData);
+    model.cableRuns = { content, columns };
   },
 
   actions: {
@@ -47,3 +58,15 @@ export default Ember.Route.extend({
     }
   }
 });
+
+function createTableColumns(types) {
+  return types.map(type => {
+    return ColumnDefinition.create({
+      savedWidth: 100,
+      headerCellName: type,
+      getCellContent(row) {
+        return row.get(type);
+      }
+    });
+  });
+}
