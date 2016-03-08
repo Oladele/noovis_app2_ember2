@@ -18,14 +18,14 @@
       {{link-to
           company.name
           "sites.companies.company.edit"
-          company
+          company.id
           data-test-selector="company-link"
       }}
     </h4>
     {{#each company.networkSites as |networkSite|}}
       <div>
         <a class='glyphicon glyphicon-chevron-right' data-toggle='collapse' href={{x-id '#building-list' networkSite.id}}></a>
-        {{#link-to "sites.network-sites.network-site.edit" networkSite data-test-selector="network-site-link"}}
+        {{#link-to "sites.network-sites.network-site.edit" networkSite.id data-test-selector="network-site-link"}}
           {{networkSite.name}} ({{networkSite.buildings.length}})
         {{/link-to}}
       </div>
