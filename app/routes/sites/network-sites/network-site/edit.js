@@ -14,15 +14,15 @@ export default Ember.Route.extend({
     return RSVP.hash({
       site: this.modelFor('sites.network-sites.network-site'),
       buildings: this.modelFor('sites.network-sites.network-site').get('buildings'),
-      tableContent: ajax.request(`/network-sites/${siteId}/stats-content`),
-      tableColumns: ajax.request(`/network-sites/${siteId}/stats-columns`)
+      // tableContent: ajax.request(`/network-sites/${siteId}/stats-content`),
+      // tableColumns: ajax.request(`/network-sites/${siteId}/stats-columns`)
     });
   },
 
-  afterModel(model) {
-    let tableColumns = createTableColumns(model.tableColumns);
-    model.tableColumns = tableColumns;
-  },
+  // afterModel(model) {
+    // let tableColumns = createTableColumns(model.tableColumns);
+    // model.tableColumns = tableColumns;
+  // },
 
   actions: {
     submit(data) {
