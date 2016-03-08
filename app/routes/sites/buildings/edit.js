@@ -11,7 +11,7 @@ export default Ember.Route.extend({
   model(params) {
     return RSVP.hash({
       building: this.store.findRecord('building', params.building_id),
-      // networkTreeData: this.get('ajax').request(`/buildings/${params.building_id}/show_network_graph`)
+      networkTreeData: this.get('ajax').request(`/buildings/${params.building_id}/show_network_graph`)
     });
   },
 
