@@ -2,55 +2,27 @@ import Ember from 'ember';
 import ColumnDefinition from 'ember-table/models/column-definition';
 
 const {
-  computed
+  RSVP,
+  inject
 } = Ember;
 
 export default Ember.Route.extend({
+  ajax: inject.service(),
   model() {
-    return Ember.RSVP.hash({
+    let ajax = this.get('ajax');
+    let siteId = this.paramsFor('sites.network-sites.network-site').id;
+    return RSVP.hash({
       site: this.modelFor('sites.network-sites.network-site'),
       buildings: this.modelFor('sites.network-sites.network-site').get('buildings'),
-      tableColumns: this._tableColumns,
-      tableContent: this._tableContent
+      tableContent: ajax.request(`/network-sites/${siteId}/stats-content`),
+      tableColumns: ajax.request(`/network-sites/${siteId}/stats-columns`)
     });
   },
 
-  _tableColumns: computed(function() {
-    let types = ['Bldgs', 'OLTs', 'PON Cards', 'FDHs', 'Splitters', 'RDTs', 'ONTs', 'WAPs', 'Rooms'];
-
-    return types.map(type => {
-      return ColumnDefinition.create({
-        savedWidth: 100,
-        headerCellName: type,
-        getCellContent(row) {
-          return row.get(type);
-        }
-      });
-    });
-  }),
-
-  _tableContent: computed(function() {
-    return [
-      {
-        "Bldgs":18,
-        "OLTs":1,
-        "PON Cards":5,
-        "FDHs":13,
-        "Splitters":50,
-        "RDTs":390,
-        "ONTs":986,
-        "WAPs":719,
-        "Rooms":1505,
-        "Active Channels":986,
-        "Standby Channels":614,
-        "Active PON Ports":50,
-        "Spare Feeder Fibers":106,
-        "Active Distribution Ports":986,
-        "Spare Distribution Ports":1006,
-        "Actual RDT Count":null
-      }
-    ];
-  }),
+  afterModel(model) {
+    let tableColumns = createTableColumns(model.tableColumns);
+    model.tableColumns = tableColumns;
+  },
 
   actions: {
     submit(data) {
@@ -78,3 +50,15 @@ export default Ember.Route.extend({
     }
   }
 });
+
+function createTableColumns(types) {
+  return types.map(type => {
+    return ColumnDefinition.create({
+      savedWidth: 100,
+      headerCellName: type,
+      getCellContent(row) {
+        return row.get(type);
+      }
+    });
+  });
+}
