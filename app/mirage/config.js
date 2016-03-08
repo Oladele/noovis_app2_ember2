@@ -1,3 +1,6 @@
+import networkTreeData from './network-tree-data';
+import Mirage from 'ember-cli-mirage';
+
 export default function() {
 
   this.del('/network-sites/:id', function(db, request) {
@@ -162,6 +165,33 @@ export default function() {
       }
     };
     return response;
+  });
+
+  this.get('/network-sites/:id/stats-columns', () => {
+    return ['Bldgs', 'OLTs', 'PON Cards', 'FDHs', 'Splitters', 'RDTs', 'ONTs', 'WAPs', 'Rooms'];
+  });
+
+  this.get('/network-sites/:id/stats-content', () => {
+    return [
+      {
+        "Bldgs":18,
+        "OLTs":1,
+        "PON Cards":5,
+        "FDHs":13,
+        "Splitters":50,
+        "RDTs":390,
+        "ONTs":986,
+        "WAPs":719,
+        "Rooms":1505,
+        "Active Channels":986,
+        "Standby Channels":614,
+        "Active PON Ports":50,
+        "Spare Feeder Fibers":106,
+        "Active Distribution Ports":986,
+        "Spare Distribution Ports":1006,
+        "Actual RDT Count":null
+      }
+    ];
   });
 
   // this.get('/companies');
@@ -350,6 +380,25 @@ export default function() {
     db.buildings.remove(id);
 
     return { "meta": {"deleted":"deleted"}};
+  });
+
+  this.post('/import_cable_run', function(db, request) {
+    let data = request.requestBody;
+    let fileType = data.get('file').type;
+
+    if (!fileType) {
+      return new Mirage.Response(400, null, { message: 'File type must be .xls' });
+    }
+
+    if (Object.prototype.toString.call(data) === "[object File]") {
+      return {
+        message: 'Successfully created cable runs'
+      };
+    }
+  });
+
+  this.get('/buildings/:id/show_network_graph', function() {
+    return networkTreeData;
   });
 
   /*

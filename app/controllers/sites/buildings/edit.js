@@ -5,8 +5,9 @@ const {
 } = Ember;
 
 export default Ember.Controller.extend({
-  buildingMarker: computed('model', function() {
-    let building = this.get('model');
+  sheetNames: ['Please upload a workbook'],
+  buildingMarker: computed('model.building', function() {
+    let building = this.get('model.building');
     this.set('bLat', building.get('lat'));
     this.set('bLng', building.get('lng'));
     const dragend = (event) => {

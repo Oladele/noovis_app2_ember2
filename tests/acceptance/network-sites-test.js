@@ -28,6 +28,11 @@ class SitePageObject {
     return this;
   }
 
+  clickBuildingLink() {
+    click('[data-test-selector=building-edit-link]');
+    return this;
+  }
+
   submit() {
     click('[data-test-selector=submit-button]');
   }
@@ -203,5 +208,19 @@ test('can delete buildings in list', function(assert) {
 
   andThen(() => {
     assert.equal(server.db.buildings.length, 0, 'no buildings were found');
+  });
+});
+
+test('should navigate to building.edit', function(assert) {
+  let site = server.create('network-site', { company: company.id });
+  server.create('building', { networkSite: site.id });
+
+  visit(`/sites/network-sites/${site.id}/edit`);
+
+  new SitePageObject()
+    .clickBuildingLink();
+
+  andThen(() => {
+    assert.equal(find('[data-test-selector=g-maps-container]').length, 1, 'rendered map container');
   });
 });

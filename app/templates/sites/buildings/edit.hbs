@@ -1,26 +1,41 @@
+{{#each flashMessages.queue as |flash|}}
+  {{flash-message flash=flash}}
+{{/each}}
+
 <h2>Edit Building</h2>
 
 {{#g-maps-container
-  lat=model.lat
-  lng=model.lng
+  lat=model.building.lat
+  lng=model.building.lng
   zoom=18
-  model=model
-  buildingmarker=buildingMarker as |map|}}
-  {{g-maps 
-      lat=map.lat 
-      lng=map.lng 
-      zoom=map.zoom 
+  model=model.building
+  buildingmarker=buildingMarker as |map|
+}}
+  {{g-maps
+      lat=map.lat
+      lng=map.lng
+      zoom=map.zoom
       mapType='satellite'
       markers=buildingMarker
   }}
 {{/g-maps-container}}
 
 {{building-form
-    building=model
-    name=model.name
-    description=model.description
+    building=model.building
+    name=model.building.name
+    description=model.building.description
     lat=bLat
     lng=bLng
     onSubmit=(route-action 'submit')
     onDelete=(route-action 'destroyBuilding')
+}}
+
+{{workbook-importer
+    buildingId=model.building.id
+    onFlashReceive=(route-action 'sendFlash')
+}}
+
+{{network-tree
+    nodes=model.networkTreeData.nodes
+    edges=model.networkTreeData.edges
 }}
