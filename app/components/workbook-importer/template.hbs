@@ -19,7 +19,7 @@
   {{#http-request
       method='POST'
       headers=requestHeaders
-      url='/import_cable_run'
+      url=requestURL
       data=requestData 
       onResponse=(action 'notifyFlash')
       as |xhr|

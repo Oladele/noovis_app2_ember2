@@ -41,7 +41,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.contentSecurityPolicy = contentSecurityPolicy;
-    
+    // ENV['ember-cli-mirage'] = {
+      // enabled: false
+    // }
+    // ENV.apiHost = 'https://noovis2-staging.herokuapp.com';
   }
 
   if (environment === 'test') {
