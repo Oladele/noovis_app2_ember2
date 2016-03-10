@@ -348,12 +348,23 @@ export default function() {
 
   this.get('/buildings/:id', function(db, request) {
     let id = request.params.id;
+    let sheets = db.sheets.where({ building: id })
+      .map(attrs => ({
+        type: 'sheets',
+        id: attrs.id,
+        attributes: attrs
+      }));
 
     let response = {
       data: {
         id: id,
         type: 'buildings',
-        attributes: db.buildings.find(id)
+        attributes: db.buildings.find(id),
+        relationships: {
+          sheets: {
+            data: sheets
+          }
+        }
       }
     };
 
@@ -406,6 +417,40 @@ export default function() {
     return cableRunData;
   });
 
+  this.get('/sheets/:id', function(db, request) {
+    let id = request.params.id;
+
+    let response = {
+      data: {
+        id: id,
+        type: 'sheets',
+        attributes: db.sheets.find(id)
+      }
+    };
+
+    return response;
+  });
+
+  this.get('/sheets', function(db) {
+    let data = db.sheets.map(sheet => {
+      return {
+        "type": "sheets",
+        "id": sheet.id,
+        "attributes": {
+          "name": sheet.name,
+        },
+        "relationships": {
+          "building": {
+            "data": {
+              "type": "building",
+              "id": sheet.building
+            }
+          }
+        }
+      };
+    });
+    return { data };
+  });
   /*
     Config (with defaults).
 
