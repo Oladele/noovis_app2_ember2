@@ -419,12 +419,22 @@ export default function() {
 
   this.get('/sheets/:id', function(db, request) {
     let id = request.params.id;
+    let cableRuns = db['cable-runs'].where({ sheet: id })
+      .map(attrs => ({
+        type: 'cable-runs',
+        id: attrs.id
+      }));
 
     let response = {
       data: {
         id: id,
         type: 'sheets',
-        attributes: db.sheets.find(id)
+        attributes: db.sheets.find(id),
+        relationships: {
+          'cable-runs': {
+            data: cableRuns
+          }
+        }
       }
     };
 
@@ -449,6 +459,37 @@ export default function() {
         }
       };
     });
+    return { data };
+  });
+
+  this.get('/cable-runs', (db) => {
+    let cableRuns = db['cable-runs'];
+    let data = cableRuns.map(attrs => ({
+      id: attrs.id,
+      type: 'cable-runs',
+      attributes: attrs,
+      relationships: {
+        sheet: {
+          data: {
+            type: 'sheet',
+            sheet: attrs.sheet
+          }
+        }
+      }
+    }));
+
+    return { data };
+  });
+
+  this.get('/cable-runs/:id', (db, request) => {
+    let id = request.params.id;
+    let cableRun = db['cable-runs'].find(id);
+    let data = {
+      type: 'cable-runs',
+      id: id,
+      attributes: cableRun
+    };
+
     return { data };
   });
   /*

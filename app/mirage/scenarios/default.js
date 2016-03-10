@@ -99,13 +99,23 @@ export default function( server ) {
     lng: -77.2032638
   });
 
-  server.create('sheet', {
+  let parkTerrace = server.create('sheet', {
     building: arborside.id,
     name: 'Park Terrace'
   });
 
-  server.create('sheet', {
+  let hamptonPlace = server.create('sheet', {
     building: arborside.id,
     name: 'Hampton Place'
+  });
+
+  server.create('cable-run', {
+    sheet: parkTerrace.id,
+    site: parkTerrace.name,
+  });
+
+  server.create('cable-run', {
+    sheet: hamptonPlace.id,
+    site: hamptonPlace.name,
   });
 }
