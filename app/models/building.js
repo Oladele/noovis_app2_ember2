@@ -12,5 +12,6 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   networkSite: DS.belongsTo('network-site'),
   sheets: DS.hasMany('sheet'),
-  latestSheet: computed.alias('sheets.lastObject')
+  latestSheet: computed.alias('sheets.lastObject'),
+  latestCableRuns: computed.alias('latestSheet.cableRuns')
 });

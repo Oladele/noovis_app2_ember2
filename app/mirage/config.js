@@ -427,8 +427,8 @@ export default function() {
 
     let response = {
       data: {
-        id: id,
         type: 'sheets',
+        id: id,
         attributes: db.sheets.find(id),
         relationships: {
           'cable-runs': {
@@ -442,6 +442,12 @@ export default function() {
   });
 
   this.get('/sheets', function(db) {
+    let cableRuns = db['cable-runs'].where({ sheet: id })
+      .map(attrs => ({
+        type: 'cable-runs',
+        id: attrs.id
+      }));
+
     let data = db.sheets.map(sheet => {
       return {
         "type": "sheets",
@@ -455,7 +461,12 @@ export default function() {
               "type": "building",
               "id": sheet.building
             }
-          }
+          },
+          "cable-runs": db['cable-runs'].where({ sheet: sheet.id })
+                          .map(attrs => ({
+                            type: 'cable-runs',
+                            id: attrs.id
+                          }))
         }
       };
     });
@@ -465,8 +476,8 @@ export default function() {
   this.get('/cable-runs', (db) => {
     let cableRuns = db['cable-runs'];
     let data = cableRuns.map(attrs => ({
-      id: attrs.id,
       type: 'cable-runs',
+      id: attrs.id,
       attributes: attrs,
       relationships: {
         sheet: {

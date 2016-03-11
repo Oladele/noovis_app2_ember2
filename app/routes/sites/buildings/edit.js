@@ -14,16 +14,26 @@ export default Ember.Route.extend({
     return RSVP.hash({
       building: this.store.findRecord('building', params.building_id),
       networkTreeData: this.get('ajax').request(`/buildings/${params.building_id}/show_network_graph`),
-      cableRuns: this.get('ajax').request(`/sheets/${sheetId}/cable_runs`)
+      cableRuns: this.get('ajax').request(`/sheets/${sheetId}/cable_runs`),
     });
   },
 
   afterModel(model) {
-    let cableRuns = model.cableRuns.data;
-    let content = cableRuns.map(cableRun => cableRun.attributes);
-    let columnData = Object.keys(cableRuns[0].attributes);
-    let columns = createTableColumns(columnData);
-    model.cableRuns = { content, columns };
+    // let cableRuns = model.cableRuns.data;
+    // let content = cableRuns.map(cableRun => cableRun.attributes);
+    // let columnData = Object.keys(cableRuns[0].attributes);
+    // let columns = createTableColumns(columnData);
+    // model.cableRuns = { content, columns };
+    return model.building.get('sheets')
+      .then(sheets => sheets.get('lastObject.cableRuns'))
+      .then(runs => {
+        let _content = runs;
+        let _columnData = [];
+        runs.objectAt(0).eachAttribute(attr => _columnData.push(attr));
+        let _columns = createTableColumns(_columnData)
+        model.cableRuns = { content: _content, columns: _columns };
+      })
+      .catch(({ errors }) => this.set('errors', errors));
   },
 
   actions: {
