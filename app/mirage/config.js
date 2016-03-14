@@ -1,6 +1,7 @@
 import networkTreeData from './network-tree-data';
 import Mirage from 'ember-cli-mirage';
 import cableRunData from './cable-run-data';
+import networkGraphData from './_latest-network-graph-data';
 
 export default function() {
 
@@ -501,6 +502,10 @@ export default function() {
     };
 
     return { data };
+  });
+
+  this.get('/buildings/:id/latest_network_graph', () => {
+    return networkGraphData;
   });
   /*
     Config (with defaults).

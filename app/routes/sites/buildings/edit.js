@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import ColumnDefinition from 'ember-table/models/column-definition';
-import latestNetworkGraphData from 'noovis-app2-ember2/helpers/_network-tree-data';
 
 const {
   inject,
@@ -14,9 +13,7 @@ export default Ember.Route.extend({
     let sheetId = 1;
     return RSVP.hash({
       building: this.store.findRecord('building', params.building_id),
-      // networkTreeData: this.get('ajax').request(`/buildings/${params.building_id}/show_network_graph`),
-      // TODO: remove stub
-      networkTreeData: latestNetworkGraphData
+      networkTreeData: this.get('ajax').request(`buildings/${params.building_id}/latest_network_graph`)
     });
   },
 
@@ -34,6 +31,9 @@ export default Ember.Route.extend({
         })
       ]
     };
+
+    let { nodes, edges } = model.networkTreeData.data.attributes;
+    model.networkTreeData = { nodes, edges };
 
     return building.get('sheets')
       .then(sheets => sheets.get('lastObject.cableRuns'))
