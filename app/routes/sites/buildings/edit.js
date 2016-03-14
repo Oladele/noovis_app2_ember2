@@ -22,6 +22,19 @@ export default Ember.Route.extend({
 
   afterModel(model) {
     let building = model.building;
+    model.cableRuns = {
+      content: [],
+      columns: [
+        ColumnDefinition.create({
+          headerCellName: 'No sheets found',
+          textAlign: 'text-align-left',
+          getCellContent(row) {
+            return row.get(type);
+          }
+        })
+      ]
+    };
+
     return building.get('sheets')
       .then(sheets => sheets.get('lastObject.cableRuns'))
       .then(runs => {
