@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import ColumnDefinition from 'ember-table/models/column-definition';
+import latestNetworkGraphData from 'noovis-app2-ember2/helpers/_network-tree-data';
 
 const {
   inject,
@@ -13,25 +14,22 @@ export default Ember.Route.extend({
     let sheetId = 1;
     return RSVP.hash({
       building: this.store.findRecord('building', params.building_id),
-      networkTreeData: this.get('ajax').request(`/buildings/${params.building_id}/show_network_graph`),
-      cableRuns: this.get('ajax').request(`/sheets/${sheetId}/cable_runs`),
+      // networkTreeData: this.get('ajax').request(`/buildings/${params.building_id}/show_network_graph`),
+      // TODO: remove stub
+      networkTreeData: latestNetworkGraphData
     });
   },
 
   afterModel(model) {
-    // let cableRuns = model.cableRuns.data;
-    // let content = cableRuns.map(cableRun => cableRun.attributes);
-    // let columnData = Object.keys(cableRuns[0].attributes);
-    // let columns = createTableColumns(columnData);
-    // model.cableRuns = { content, columns };
-    return model.building.get('sheets')
+    let building = model.building;
+    return building.get('sheets')
       .then(sheets => sheets.get('lastObject.cableRuns'))
       .then(runs => {
-        let _content = runs;
-        let _columnData = [];
-        runs.objectAt(0).eachAttribute(attr => _columnData.push(attr));
-        let _columns = createTableColumns(_columnData)
-        model.cableRuns = { content: _content, columns: _columns };
+        let content = runs;
+        let headers = [];
+        runs.objectAt(0).eachAttribute(attr => headers.push(attr));
+        let columns = createTableColumns(headers);
+        model.cableRuns = { content: content, columns: columns };
       })
       .catch(({ errors }) => this.set('errors', errors));
   },

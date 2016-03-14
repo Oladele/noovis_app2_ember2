@@ -351,8 +351,7 @@ export default function() {
     let sheets = db.sheets.where({ building: id })
       .map(attrs => ({
         type: 'sheets',
-        id: attrs.id,
-        attributes: attrs
+        id: attrs.id
       }));
 
     let response = {
