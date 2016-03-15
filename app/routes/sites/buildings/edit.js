@@ -10,10 +10,16 @@ export default Ember.Route.extend({
   flashMessages: inject.service(),
   ajax: inject.service(),
   model(params) {
-    let sheetId = 1;
-    return RSVP.hash({
+    return RSVP.hashSettled({
       building: this.store.findRecord('building', params.building_id),
       networkTreeData: this.get('ajax').request(`buildings/${params.building_id}/latest_network_graph`)
+    }).then(results => {
+      return {
+        building: results.building.value,
+        networkTreeData: initGraphData(results.networkTreeData)
+      };
+    }).catch(({ error }) => {
+      this.set('error', error);
     });
   },
 
@@ -90,4 +96,20 @@ function createTableColumns(types) {
       }
     });
   });
+}
+
+function initGraphData(data) {
+  if (data.state === 'fulfilled') {
+    return data.value;
+  } else {
+    return {
+      data: {
+        id: null,
+        attributes: {
+          nodes: [],
+          edges: []
+        }
+      }
+    }
+  }
 }
