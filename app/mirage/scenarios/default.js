@@ -27,7 +27,7 @@ export default function( server ) {
   });
 
   // ------>Building
-  server.create('building', {
+  let arborside = server.create('building', {
     networkSite: charlestown.id,
     name: "Arborside",
     description: "A building description",
@@ -97,5 +97,25 @@ export default function( server ) {
     address: "7410 Spring Village Drive, Springfield, VA 22150, United States",
     lat: 38.7671371,
     lng: -77.2032638
+  });
+
+  let parkTerrace = server.create('sheet', {
+    building: arborside.id,
+    name: 'Park Terrace'
+  });
+
+  let hamptonPlace = server.create('sheet', {
+    building: arborside.id,
+    name: 'Hampton Place'
+  });
+
+  server.create('cable-run', {
+    sheet: parkTerrace.id,
+    site: parkTerrace.name,
+  });
+
+  server.create('cable-run', {
+    sheet: hamptonPlace.id,
+    site: hamptonPlace.name,
   });
 }

@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import ColumnDefinition from 'ember-table/models/column-definition';
+import Stats from 'noovis-app2-ember2/helpers/_networkSites-edit-data';
 
 const {
   RSVP,
@@ -16,13 +17,16 @@ export default Ember.Route.extend({
       buildings: this.modelFor('sites.network-sites.network-site').get('buildings'),
       // tableContent: ajax.request(`/network-sites/${siteId}/stats-content`),
       // tableColumns: ajax.request(`/network-sites/${siteId}/stats-columns`)
+      // TODO: remove stub
+      tableContent: Stats.columns,
+      tableColumns: Stats.headers
     });
   },
 
-  // afterModel(model) {
-    // let tableColumns = createTableColumns(model.tableColumns);
-    // model.tableColumns = tableColumns;
-  // },
+  afterModel(model) {
+    let tableColumns = createTableColumns(model.tableColumns);
+    model.tableColumns = tableColumns;
+  },
 
   actions: {
     submit(data) {

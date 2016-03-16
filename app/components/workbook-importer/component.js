@@ -1,7 +1,9 @@
 import Ember from 'ember';
+import ENV from '../../config/environment';
 
 export default Ember.Component.extend({
   sheetNames: ['Upload a Workbook'],
+  requestURL: `${ENV.apiHost}/import_cable_run`,
   requestHeaders: {
     contentType: false
   },

@@ -1,17 +1,23 @@
 import Ember from 'ember';
 
 const {
-  inject,
   RSVP
 } = Ember;
 
 export default Ember.Route.extend({
-  flashMessages: inject.service(),
-  ajax: inject.service(),
+  beforeModel() {
+    this.transitionTo('sites.buildings.edit.map');
+  },
+  
   model(params) {
-    return RSVP.hash({
+    return RSVP.hashSettled({
       building: this.store.findRecord('building', params.building_id),
-      // networkTreeData: this.get('ajax').request(`/buildings/${params.building_id}/show_network_graph`)
+    }).then(results => {
+      return {
+        building: results.building.value,
+      };
+    }).catch(({ error }) => {
+      this.set('error', error);
     });
   },
 

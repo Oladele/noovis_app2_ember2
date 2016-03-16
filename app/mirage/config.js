@@ -1,5 +1,7 @@
 import networkTreeData from './network-tree-data';
 import Mirage from 'ember-cli-mirage';
+import cableRunData from './cable-run-data';
+import networkGraphData from './_latest-network-graph-data';
 
 export default function() {
 
@@ -347,12 +349,22 @@ export default function() {
 
   this.get('/buildings/:id', function(db, request) {
     let id = request.params.id;
+    let sheets = db.sheets.where({ building: id })
+      .map(attrs => ({
+        type: 'sheets',
+        id: attrs.id
+      }));
 
     let response = {
       data: {
         id: id,
         type: 'buildings',
-        attributes: db.buildings.find(id)
+        attributes: db.buildings.find(id),
+        relationships: {
+          sheets: {
+            data: sheets
+          }
+        }
       }
     };
 
@@ -401,6 +413,100 @@ export default function() {
     return networkTreeData;
   });
 
+  this.get('/sheets/:id/cable_runs', function() {
+    return cableRunData;
+  });
+
+  this.get('/sheets/:id', function(db, request) {
+    let id = request.params.id;
+    let cableRuns = db['cable-runs'].where({ sheet: id })
+      .map(attrs => ({
+        type: 'cable-runs',
+        id: attrs.id
+      }));
+
+    let response = {
+      data: {
+        type: 'sheets',
+        id: id,
+        attributes: db.sheets.find(id),
+        relationships: {
+          'cable-runs': {
+            data: cableRuns
+          }
+        }
+      }
+    };
+
+    return response;
+  });
+
+  this.get('/sheets', function(db) {
+    let cableRuns = db['cable-runs'].where({ sheet: id })
+      .map(attrs => ({
+        type: 'cable-runs',
+        id: attrs.id
+      }));
+
+    let data = db.sheets.map(sheet => {
+      return {
+        "type": "sheets",
+        "id": sheet.id,
+        "attributes": {
+          "name": sheet.name,
+        },
+        "relationships": {
+          "building": {
+            "data": {
+              "type": "building",
+              "id": sheet.building
+            }
+          },
+          "cable-runs": db['cable-runs'].where({ sheet: sheet.id })
+                          .map(attrs => ({
+                            type: 'cable-runs',
+                            id: attrs.id
+                          }))
+        }
+      };
+    });
+    return { data };
+  });
+
+  this.get('/cable-runs', (db) => {
+    let cableRuns = db['cable-runs'];
+    let data = cableRuns.map(attrs => ({
+      type: 'cable-runs',
+      id: attrs.id,
+      attributes: attrs,
+      relationships: {
+        sheet: {
+          data: {
+            type: 'sheet',
+            sheet: attrs.sheet
+          }
+        }
+      }
+    }));
+
+    return { data };
+  });
+
+  this.get('/cable-runs/:id', (db, request) => {
+    let id = request.params.id;
+    let cableRun = db['cable-runs'].find(id);
+    let data = {
+      type: 'cable-runs',
+      id: id,
+      attributes: cableRun
+    };
+
+    return { data };
+  });
+
+  this.get('/buildings/:id/latest_network_graph', () => {
+    return networkGraphData;
+  });
   /*
     Config (with defaults).
 

@@ -28,7 +28,10 @@ Router.map(function() {
     });
 
     this.route('buildings', function() {
-      this.route('edit', { path: '/:building_id' });
+      this.route('edit', { path: '/:building_id' }, function() {
+        this.route('map');
+        this.route('network');
+      });
     });
   });
 });
