@@ -4,40 +4,63 @@
 
 <h2>Edit Building</h2>
 
-{{#g-maps-container
-  lat=model.building.lat
-  lng=model.building.lng
-  zoom=18
-  model=model.building
-  buildingmarker=buildingMarker as |map|
-}}
-  {{g-maps
-      lat=map.lat
-      lng=map.lng
-      zoom=map.zoom
-      mapType='satellite'
-      markers=buildingMarker
-  }}
-{{/g-maps-container}}
+<ul class='nav nav-tabs' role='tablist'>
+  {{#link-to 'sites.buildings.edit.map' tagName='li' class='presentation'}}
+    <a href='#'>Map</a>
+  {{/link-to}}
 
-{{building-form
-    building=model.building
-    name=model.building.name
-    description=model.building.description
-    lat=bLat
-    lng=bLng
-    onSubmit=(route-action 'submit')
-    onDelete=(route-action 'destroyBuilding')
-}}
+  {{#link-to 'sites.buildings.edit.network' tagName='li' class='presentation'}}
+    <a href='#'>Network</a>
+  {{/link-to}}
+    <!-- <a href='#network' aria-controls='network' role='tab' data-toggle='tab'> -->
+      <!-- Network -->
+    <!-- </a> -->
+</ul>
 
-{{workbook-importer
-    buildingId=model.building.id
-    onFlashReceive=(route-action 'sendFlash')
-}}
+<div class='tab-content'>
+  {{!--
+  <div role='tabpanel' class='tab-pane active' id='map'>
+    {{#g-maps-container
+      lat=model.building.lat
+      lng=model.building.lng
+      zoom=18
+      model=model.building
+      buildingmarker=buildingMarker as |map|
+    }}
+      {{g-maps
+          lat=map.lat
+          lng=map.lng
+          zoom=map.zoom
+          mapType='satellite'
+          markers=buildingMarker
+      }}
+    {{/g-maps-container}}
 
-{{network-tree
-    nodes=model.networkTreeData.nodes
-    edges=model.networkTreeData.edges
-}}
+    {{building-form
+        building=model.building
+        name=model.building.name
+        description=model.building.description
+        lat=bLat
+        lng=bLng
+        onSubmit=(route-action 'submit')
+        onDelete=(route-action 'destroyBuilding')
+    }}
 
-{{cable-runs model=model.cableRuns}}
+    {{workbook-importer
+        buildingId=model.building.id
+        onFlashReceive=(route-action 'sendFlash')
+    }}
+  </div>
+  --}}
+  <div role='tabpanel' class='tab-pane active' id='network'>
+    {{outlet}}
+    {{!--network-tree
+        nodes=model.networkTreeData.nodes
+        edges=model.networkTreeData.edges
+    --}}
+
+    {{!--cable-runs model=model.cableRuns--}}
+  </div>
+</div>
+
+
