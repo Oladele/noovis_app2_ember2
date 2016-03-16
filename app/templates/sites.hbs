@@ -31,7 +31,7 @@
       </div>
       <ul class='list-unstyled list-group collapse' id={{x-id 'building-list' networkSite.id}} >
       {{#each networkSite.buildings as |building|}}
-        <li>{{link-to building.name 'sites.buildings.edit' building.id data-test-selector='building-edit-link'}}</li>
+        <li>{{link-to building.name 'sites.buildings.edit.map' building.id data-test-selector='building-edit-link'}}</li>
       {{/each}}
       </ul>
     {{/each}}
