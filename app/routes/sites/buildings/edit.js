@@ -1,8 +1,6 @@
 import Ember from 'ember';
-import ColumnDefinition from 'ember-table/models/column-definition';
 
 const {
-  inject,
   RSVP
 } = Ember;
 
@@ -10,51 +8,18 @@ export default Ember.Route.extend({
   beforeModel() {
     this.transitionTo('sites.buildings.edit.map');
   },
-  // flashMessages: inject.service(),
-  // ajax: inject.service(),
+  
   model(params) {
     return RSVP.hashSettled({
       building: this.store.findRecord('building', params.building_id),
-      // networkTreeData: this.get('ajax').request(`buildings/${params.building_id}/latest_network_graph`)
     }).then(results => {
       return {
         building: results.building.value,
-        // networkTreeData: initGraphData(results.networkTreeData)
       };
     }).catch(({ error }) => {
       this.set('error', error);
     });
   },
-
-  // afterModel(model) {
-    // let building = model.building;
-    // model.cableRuns = {
-      // content: [],
-      // columns: [
-        // ColumnDefinition.create({
-          // headerCellName: 'No sheets found',
-          // textAlign: 'text-align-left',
-          // getCellContent(row) {
-            // return row.get(type);
-          // }
-        // })
-      // ]
-    // };
-
-    // let { nodes, edges } = model.networkTreeData.data.attributes;
-    // model.networkTreeData = { nodes, edges };
-
-    // return building.get('sheets')
-      // .then(sheets => sheets.get('lastObject.cableRuns'))
-      // .then(runs => {
-        // let content = runs;
-        // let headers = [];
-        // runs.objectAt(0).eachAttribute(attr => headers.push(attr));
-        // let columns = createTableColumns(headers);
-        // model.cableRuns = { content: content, columns: columns };
-      // })
-      // .catch(({ errors }) => this.set('errors', errors));
-  // },
 
   actions: {
     submit(params) {
@@ -88,31 +53,3 @@ export default Ember.Route.extend({
     }
   }
 });
-
-// function createTableColumns(types) {
-  // return types.map(type => {
-    // return ColumnDefinition.create({
-      // savedWidth: 100,
-      // headerCellName: type,
-      // getCellContent(row) {
-        // return row.get(type);
-      // }
-    // });
-  // });
-// }
-
-// function initGraphData(data) {
-  // if (data.state === 'fulfilled') {
-    // return data.value;
-  // } else {
-    // return {
-      // data: {
-        // id: null,
-        // attributes: {
-          // nodes: [],
-          // edges: []
-        // }
-      // }
-    // }
-  // }
-// }

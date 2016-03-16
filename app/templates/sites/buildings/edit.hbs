@@ -12,55 +12,10 @@
   {{#link-to 'sites.buildings.edit.network' tagName='li' class='presentation'}}
     <a href='#'>Network</a>
   {{/link-to}}
-    <!-- <a href='#network' aria-controls='network' role='tab' data-toggle='tab'> -->
-      <!-- Network -->
-    <!-- </a> -->
 </ul>
 
 <div class='tab-content'>
-  {{!--
-  <div role='tabpanel' class='tab-pane active' id='map'>
-    {{#g-maps-container
-      lat=model.building.lat
-      lng=model.building.lng
-      zoom=18
-      model=model.building
-      buildingmarker=buildingMarker as |map|
-    }}
-      {{g-maps
-          lat=map.lat
-          lng=map.lng
-          zoom=map.zoom
-          mapType='satellite'
-          markers=buildingMarker
-      }}
-    {{/g-maps-container}}
-
-    {{building-form
-        building=model.building
-        name=model.building.name
-        description=model.building.description
-        lat=bLat
-        lng=bLng
-        onSubmit=(route-action 'submit')
-        onDelete=(route-action 'destroyBuilding')
-    }}
-
-    {{workbook-importer
-        buildingId=model.building.id
-        onFlashReceive=(route-action 'sendFlash')
-    }}
-  </div>
-  --}}
-  <div role='tabpanel' class='tab-pane active' id='network'>
+  <div role='tabpanel' class='tab-pane active'>
     {{outlet}}
-    {{!--network-tree
-        nodes=model.networkTreeData.nodes
-        edges=model.networkTreeData.edges
-    --}}
-
-    {{!--cable-runs model=model.cableRuns--}}
   </div>
 </div>
-
-
