@@ -32,8 +32,8 @@ test('visiting /sites', function(assert) {
         "All network site links are rendered");
 
     assert.equal(
-        find('[data-test-selector="network-site-link"]:first').text(),
-        "ACME Lab",
+        find('[data-test-selector="network-site-link"]:first').text().trim(),
+        "ACME Lab (0)",
         "Network site links contain the network-site name");
   });
 });
@@ -53,26 +53,29 @@ test('Sites page company links', function(assert) {
     assert.equal(currentURL(), `/sites/companies/${company.id}/edit`);
     assert.equal(
       find('[data-test-selector="company-title"]:first').text(),
-      "ACME", 
+      "ACME",
       "Company title is on show company page");
   });
 });
 
 test('Sites page network-site links', function(assert) {
-  var company = server.create('company', {name: "ACME"});
-  var networkSite = server.create('network-site', {
-     name: "ACME Lab",
+  assert.expect(2);
+
+  let name = 'ACME Lab';
+  let company = server.create('company', {name: "ACME"});
+  let networkSite = server.create('network-site', {
+     name,
      company: company.id
   });
 
   visit('/sites');
   click('[data-test-selector="network-site-link"]');
 
-  andThen(function() {
-    assert.equal(currentURL(), '/sites/network-sites/'+ networkSite.id);
+  andThen(() => {
+    assert.equal(currentURL(), `/sites/network-sites/${networkSite.id}/edit`);
     assert.equal(
       find('[data-test-selector="network-site-title"]:first').text(),
-      "ACME Lab", 
+      name,
       "Network Site title is on show network-site page");
   });
 });

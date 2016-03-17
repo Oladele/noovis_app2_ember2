@@ -1,0 +1,21 @@
+{{#each flashMessages.queue as |flash|}}
+  {{flash-message flash=flash}}
+{{/each}}
+
+<h2>Edit Building</h2>
+
+<ul class='nav nav-tabs' role='tablist'>
+  {{#link-to 'sites.buildings.edit.map' tagName='li' class='presentation'}}
+    <a href='#'>Map</a>
+  {{/link-to}}
+
+  {{#link-to 'sites.buildings.edit.network' tagName='li' class='presentation'}}
+    <a href='#'>Network</a>
+  {{/link-to}}
+</ul>
+
+<div class='tab-content'>
+  <div role='tabpanel' class='tab-pane active'>
+    {{outlet}}
+  </div>
+</div>

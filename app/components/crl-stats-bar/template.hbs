@@ -1,0 +1,21 @@
+{{yield}}
+<h4 class="chart-header" >Buildings</h4>
+<div class="example-container">
+  <div class="chart-container">
+    {{vertical-bar-chart
+      maxBarThickness=maxBarThickness
+      selectedSeedColor=selectedSeedColor
+      data=data
+      maxLabelHeight=maxLabelHeight
+      withinGroupPadding=withinGroupPadding
+      betweenGroupPadding=betweenGroupPadding
+      stackBars=stackBars
+      hasXAxisTitle=hasXAxisTitle
+      hasYAxisTitle=hasYAxisTitle
+      xValueDisplayName=xValueDisplayName
+      yValueDisplayName=yValueDisplayName
+      xTitleHorizontalOffset=xTitleHorizontalOffset
+      yTitleVerticalOffset=yTitleVerticalOffset
+    }}
+  </div>
+</div>

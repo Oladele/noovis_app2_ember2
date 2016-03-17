@@ -1,8 +1,12 @@
 /* jshint node: true */
 
+
 var contentSecurityPolicy = {
-  'script-src': "'self' 'unsafe-eval' 'unsafe-inline' ",
-  'connect-src': "'self' http://localhost:* http://noovis2-staging.herokuapp.com",
+  'script-src': "'self' 'unsafe-eval' 'unsafe-inline' *.googleapis.com maps.gstatic.com",
+  'connect-src': "'self' http://localhost:* http://noovis2-staging.herokuapp.com maps.gstatic.com",
+  'img-src': "'self' data: *.googleapis.com maps.gstatic.com csi.gstatic.com",
+  'style-src': "'self' 'unsafe-inline' fonts.googleapis.com maps.gstatic.com",
+  'font-src': "'self' fonts.gstatic.com"
 };
 
 module.exports = function(environment) {
@@ -12,6 +16,11 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     apiHost: '',
+    googleMap: {
+      apiKey: process.env.GOOGLE_KEY,
+      version: '3',
+      libraries: ['drawing', 'places']
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -32,7 +41,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.contentSecurityPolicy = contentSecurityPolicy;
-    
+    // ENV['ember-cli-mirage'] = {
+      // enabled: false
+    // }
+    // ENV.apiHost = 'https://noovis2-staging.herokuapp.com';
   }
 
   if (environment === 'test') {
@@ -49,7 +61,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.apiHost = 'https://noovis2-staging.herokuapp.com';
   }
 
   return ENV;

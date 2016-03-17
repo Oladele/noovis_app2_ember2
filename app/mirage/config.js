@@ -1,3 +1,8 @@
+import networkTreeData from './network-tree-data';
+import Mirage from 'ember-cli-mirage';
+import cableRunData from './cable-run-data';
+import networkGraphData from './_latest-network-graph-data';
+
 export default function() {
 
   this.del('/network-sites/:id', function(db, request) {
@@ -11,7 +16,6 @@ export default function() {
   });
 
   this.get('/network-sites', function(db, request) {
-
     var company = request.queryParams.company;
     var dbData;
 
@@ -23,8 +27,8 @@ export default function() {
 
     var data = dbData.map(attrs => (
       {
-        "type": 'network-sites', 
-        "id": attrs.id, 
+        "type": 'network-sites',
+        "id": attrs.id,
         "attributes": attrs,
         "relationships": {
           "company": {
@@ -42,30 +46,15 @@ export default function() {
     };
   });
 
-  this.get('/buildings/:id', function(db, request) {
-
-    var id = request.params.id;
-    var building = db["buildings"].find(id);
-    var response = {
-      data:{
-        id: building.id,
-        type: "buildings",
-        attributes: building
-      }
-    };
-    return response;
-  });
-
-  // this.get('companies/:id/network-sites');
   this.get('/companies/:id/network-sites', function(db, request) {
     var id = request.params.id;
     var networkSites = db["network-sites"].where({company: id});
 
     return {
       data: networkSites.map(attrs => (
-        { 
-          type: 'network-sites', 
-          id: attrs.id, 
+        {
+          type: 'network-sites',
+          id: attrs.id,
           attributes: attrs,
           relationships: {
             company: {
@@ -96,6 +85,7 @@ export default function() {
         attributes: networkSite
       }
     };
+
     return response;
   });
 
@@ -104,8 +94,8 @@ export default function() {
     var id = request.params.id;
     var networkSite = db["network-sites"].find(id);
     var data = {
-      "type": 'network-sites', 
-      "id": networkSite.id, 
+      "type": 'network-sites',
+      "id": networkSite.id,
       "attributes": networkSite,
       "relationships": {
         "company": {
@@ -144,6 +134,20 @@ export default function() {
         }
       }
     ));
+
+    // let included = [
+      // {
+        // type: 'companies',
+        // id: networkSite.company
+      // }
+    // ];
+
+    included.push({
+        type: 'companies',
+        id: networkSite.company
+      }
+    );
+
     return {
       data: data,
       included: included
@@ -165,13 +169,40 @@ export default function() {
     return response;
   });
 
+  this.get('/network-sites/:id/stats-columns', () => {
+    return ['Bldgs', 'OLTs', 'PON Cards', 'FDHs', 'Splitters', 'RDTs', 'ONTs', 'WAPs', 'Rooms'];
+  });
+
+  this.get('/network-sites/:id/stats-content', () => {
+    return [
+      {
+        "Bldgs":18,
+        "OLTs":1,
+        "PON Cards":5,
+        "FDHs":13,
+        "Splitters":50,
+        "RDTs":390,
+        "ONTs":986,
+        "WAPs":719,
+        "Rooms":1505,
+        "Active Channels":986,
+        "Standby Channels":614,
+        "Active PON Ports":50,
+        "Spare Feeder Fibers":106,
+        "Active Distribution Ports":986,
+        "Spare Distribution Ports":1006,
+        "Actual RDT Count":null
+      }
+    ];
+  });
+
   // this.get('/companies');
   this.get('/companies', function(db) {
 
     var data = db.companies.map(attrs => (
       {
-        "type": 'companies', 
-        "id": attrs.id, 
+        "type": 'companies',
+        "id": attrs.id,
         "attributes": attrs,
         "relationships": {
           "network-sites": {
@@ -194,7 +225,13 @@ export default function() {
       {
         "id": attrs.id,
         "type": "network-sites",
-        "attributes": attrs,
+        "attributes": {
+          "name": attrs.name,
+          "description": attrs.description,
+          "portsActive": attrs.portsActive,
+          "portsTotal": attrs.portsTotal,
+          "portsActivePercent": attrs.portsActivePercent
+        },
         "relationships": {
           "company": {
             "links": {
@@ -268,8 +305,203 @@ export default function() {
     return { "meta": {"deleted":"deleted"}};
   });
 
-  // These comments are here to help you get started. Feel free to delete them.
+  this.get('/buildings', function(db) {
+    let data = db.buildings.map(building => {
+      return {
+        "type": "buildings",
+        "id": building.id,
+        "attributes": {
+          "lat": building.lat,
+          "lng": building.lng,
+          "name": building.name,
+          "description": building.description,
+          "portsActive": building.portsActive,
+          "portsActivePercent": building.portsActivePercent,
+          "portsTotal": building.portsTotal
+        },
+        "relationships": {
+          "network-site": {
+            "data": {
+              "type": "network-site",
+              "id": building.networkSite
+            }
+          }
+        }
+      };
+    });
+    return { data };
+  });
 
+  this.post('/buildings', function(db, request) {
+    let requestBody = JSON.parse(request.requestBody);
+    let data = requestBody.data.attributes;
+    let building = db.buildings.insert(data);
+    let response = {
+      data: {
+        id: building.id,
+        type: 'buildings',
+        attributes: building
+      }
+    };
+
+    return response;
+  });
+
+  this.get('/buildings/:id', function(db, request) {
+    let id = request.params.id;
+    let sheets = db.sheets.where({ building: id })
+      .map(attrs => ({
+        type: 'sheets',
+        id: attrs.id
+      }));
+
+    let response = {
+      data: {
+        id: id,
+        type: 'buildings',
+        attributes: db.buildings.find(id),
+        relationships: {
+          sheets: {
+            data: sheets
+          }
+        }
+      }
+    };
+
+    return response;
+  });
+
+  this.patch('/buildings/:id', function(db, request) {
+    let id = request.params.id;
+    let attrs = JSON.parse(request.requestBody);
+    db.buildings.update(id, attrs.data.attributes);
+
+    let response = {
+      data: {
+        type: 'buildings',
+        id: id,
+        attributes: db.buildings.find(id)
+      }
+    };
+
+    return response;
+  });
+
+  this.del('/buildings/:id', function(db, request) {
+    let id = request.params.id;
+    db.buildings.remove(id);
+
+    return { "meta": {"deleted":"deleted"}};
+  });
+
+  this.post('/import_cable_run', function(db, request) {
+    let data = request.requestBody;
+    let fileType = data.get('file').type;
+
+    if (!fileType) {
+      return new Mirage.Response(400, null, { message: 'File type must be .xls' });
+    }
+
+    if (Object.prototype.toString.call(data) === "[object File]") {
+      return {
+        message: 'Successfully created cable runs'
+      };
+    }
+  });
+
+  this.get('/buildings/:id/show_network_graph', function() {
+    return networkTreeData;
+  });
+
+  this.get('/sheets/:id/cable_runs', function() {
+    return cableRunData;
+  });
+
+  this.get('/sheets/:id', function(db, request) {
+    let id = request.params.id;
+    let cableRuns = db['cable-runs'].where({ sheet: id })
+      .map(attrs => ({
+        type: 'cable-runs',
+        id: attrs.id
+      }));
+
+    let response = {
+      data: {
+        type: 'sheets',
+        id: id,
+        attributes: db.sheets.find(id),
+        relationships: {
+          'cable-runs': {
+            data: cableRuns
+          }
+        }
+      }
+    };
+
+    return response;
+  });
+
+  this.get('/sheets', function(db) {
+    let data = db.sheets.map(sheet => {
+      return {
+        "type": "sheets",
+        "id": sheet.id,
+        "attributes": {
+          "name": sheet.name,
+        },
+        "relationships": {
+          "building": {
+            "data": {
+              "type": "building",
+              "id": sheet.building
+            }
+          },
+          "cable-runs": db['cable-runs']
+                          .where({ sheet: sheet.id })
+                          .map(attrs => ({
+                            type: 'cable-runs',
+                            id: attrs.id
+                          }))
+        }
+      };
+    });
+    return { data };
+  });
+
+  this.get('/cable-runs', (db) => {
+    let cableRuns = db['cable-runs'];
+    let data = cableRuns.map(attrs => ({
+      type: 'cable-runs',
+      id: attrs.id,
+      attributes: attrs,
+      relationships: {
+        sheet: {
+          data: {
+            type: 'sheet',
+            sheet: attrs.sheet
+          }
+        }
+      }
+    }));
+
+    return { data };
+  });
+
+  this.get('/cable-runs/:id', (db, request) => {
+    let id = request.params.id;
+    let cableRun = db['cable-runs'].find(id);
+    let data = {
+      type: 'cable-runs',
+      id: id,
+      attributes: cableRun
+    };
+
+    return { data };
+  });
+
+  this.get('/buildings/:id/latest_network_graph', () => {
+    return networkGraphData;
+  });
   /*
     Config (with defaults).
 

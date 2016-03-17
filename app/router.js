@@ -20,6 +20,17 @@ Router.map(function() {
     this.route('network-sites', function() {
       this.route('network-site', { path: ':id' }, function() {
         this.route('edit');
+        this.route('buildings', function() {
+          this.route('new');
+        });
+        this.route('stats');
+      });
+    });
+
+    this.route('buildings', function() {
+      this.route('edit', { path: '/:building_id' }, function() {
+        this.route('map');
+        this.route('network');
       });
     });
   });
