@@ -9,7 +9,7 @@ const {
 
 export default Ember.Route.extend({
   ajax: inject.service(),
-  model(params) {
+  model() {
     let id = this.paramsFor('sites.buildings.edit').building_id;
     return RSVP.hashSettled({
       building: this.modelFor('sites.buildings.edit'),
@@ -33,8 +33,8 @@ export default Ember.Route.extend({
         ColumnDefinition.create({
           headerCellName: 'No sheets found',
           textAlign: 'text-align-left',
-          getCellContent(row) {
-            return row.get(type);
+          getCellContent() {
+            return '';
           }
         })
       ]
