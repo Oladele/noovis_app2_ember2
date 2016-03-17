@@ -442,12 +442,6 @@ export default function() {
   });
 
   this.get('/sheets', function(db) {
-    let cableRuns = db['cable-runs'].where({ sheet: id })
-      .map(attrs => ({
-        type: 'cable-runs',
-        id: attrs.id
-      }));
-
     let data = db.sheets.map(sheet => {
       return {
         "type": "sheets",
@@ -462,7 +456,8 @@ export default function() {
               "id": sheet.building
             }
           },
-          "cable-runs": db['cable-runs'].where({ sheet: sheet.id })
+          "cable-runs": db['cable-runs']
+                          .where({ sheet: sheet.id })
                           .map(attrs => ({
                             type: 'cable-runs',
                             id: attrs.id

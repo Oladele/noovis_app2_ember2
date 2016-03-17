@@ -14,8 +14,8 @@ class BuildingFormPageObject {
   }
 
   clickEditMap(lat, lng) {
-    setControllerProperty('sites/buildings/edit', 'bLat', lat);
-    setControllerProperty('sites/buildings/edit', 'bLng', lng);
+    setControllerProperty('sites/buildings/edit/map', 'bLat', lat);
+    setControllerProperty('sites/buildings/edit/map', 'bLng', lng);
     return this;
   }
 

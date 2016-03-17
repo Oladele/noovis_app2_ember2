@@ -10,8 +10,8 @@ const {
 export default Ember.Route.extend({
   ajax: inject.service(),
   model() {
-    let ajax = this.get('ajax');
-    let siteId = this.paramsFor('sites.network-sites.network-site').id;
+    // let ajax = this.get('ajax');
+    // let siteId = this.paramsFor('sites.network-sites.network-site').id;
     return RSVP.hash({
       site: this.modelFor('sites.network-sites.network-site'),
       buildings: this.modelFor('sites.network-sites.network-site').get('buildings'),
