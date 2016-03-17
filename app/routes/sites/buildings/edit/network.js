@@ -39,8 +39,10 @@ export default Ember.Route.extend({
         })
       ]
     };
+
     return building.get('sheets')
-      .then(sheets => sheets.get('lastObject.cableRuns'))
+      .then(sheets => sheets.reload())
+      .then(newSheets => newSheets.get('lastObject.cableRuns'))
       .then(runs => {
         let content = runs;
         let headers = [];
