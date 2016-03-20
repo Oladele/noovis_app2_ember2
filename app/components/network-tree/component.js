@@ -38,10 +38,19 @@ export default Ember.Component.extend({
     let options = this.get('options');
     let data = { nodes, edges };
 
-    new vis.Network(container, data, options);
+    let visNetwork = new vis.Network(container, data, options);
+    this.set('visNetwork', visNetwork);
   },
 
   didReceiveAttrs() {
     this._super(...arguments);
+    let network = this.get('visNetwork');
+    if (network) {
+      let nodes = new vis.DataSet(this.get('nodes'));
+      let edges = new vis.DataSet(this.get('edges'));
+      this.set('nodes', nodes);
+      this.set('edges', edges);
+      network.setData({ nodes, edges });
+    }
   }
 });

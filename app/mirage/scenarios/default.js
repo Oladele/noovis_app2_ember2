@@ -115,6 +115,13 @@ export default function( server ) {
   });
 
   server.create('cable-run', {
+    id: 18297,
+    sheet: hamptonPlace.id,
+    site: hamptonPlace.name,
+  });
+
+  server.create('cable-run', {
+    id: 18296,
     sheet: hamptonPlace.id,
     site: hamptonPlace.name,
   });
