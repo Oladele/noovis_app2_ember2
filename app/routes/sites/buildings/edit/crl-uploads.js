@@ -11,5 +11,19 @@ export default Ember.Route.extend({
       building,
       sheets: building.get('sheets')
     });
+  },
+
+  afterModel(model) {
+    let sheets = model.sheets;
+    return sheets.reload()
+      .then(newSheets => {
+        model.sheets = newSheets;
+      });
+  },
+
+  actions: {
+    refreshFileList() {
+      this.refresh();
+    }
   }
 });

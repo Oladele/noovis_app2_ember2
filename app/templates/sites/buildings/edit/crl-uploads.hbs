@@ -1,6 +1,7 @@
 {{workbook-importer
     buildingId=model.building.id
     onFlashReceive=(route-action 'sendFlash')
+    onComplete=(route-action 'refreshFileList')
 }}
 
 <table class='table'>
