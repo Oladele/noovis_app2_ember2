@@ -16,5 +16,11 @@ export default Ember.Component.extend({
     let selection = this.get('selection');
     let ids = selection.map(cableRun => cableRun.get('id'));
     this.get('onSelect')(ids);
-  })
+  }),
+
+  actions: {
+    clearSelection() {
+      this.set('selection', []);
+    }
+  }
 });
