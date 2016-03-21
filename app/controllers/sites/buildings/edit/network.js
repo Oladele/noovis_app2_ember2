@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 const {
-  inject,
   computed,
   isEmpty
 } = Ember;

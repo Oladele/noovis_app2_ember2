@@ -1,0 +1,22 @@
+<table class='table'>
+  <thead>
+      <tr>
+        <th>File</th>
+        <th>Sheet</th>
+        <th>Records</th>
+        <th>Date</th>
+      </tr>
+  </thead>
+  <tbody>
+    {{#each model as |sheet|}}
+      <tr>
+        <td>{{sheet.workbook.name}}</td>
+        <td>{{sheet.name}}</td>
+        <td>{{sheet.recordCount}}</td>
+        <td>{{sheet.updatedDate}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+
