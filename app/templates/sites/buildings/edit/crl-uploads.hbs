@@ -1,3 +1,8 @@
+{{workbook-importer
+    buildingId=model.building.id
+    onFlashReceive=(route-action 'sendFlash')
+}}
+
 <table class='table'>
   <thead>
       <tr>
@@ -8,7 +13,7 @@
       </tr>
   </thead>
   <tbody>
-    {{#each model as |sheet|}}
+    {{#each model.sheets as |sheet|}}
       <tr>
         <td>{{sheet.workbook.name}}</td>
         <td>{{sheet.name}}</td>
@@ -18,5 +23,4 @@
     {{/each}}
   </tbody>
 </table>
-
 
