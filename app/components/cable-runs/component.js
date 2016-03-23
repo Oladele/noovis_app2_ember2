@@ -13,8 +13,7 @@ export default Ember.Component.extend({
   },
   selection: [],
   rowSelected: observer('selection', function() {
-    let selection = this.get('selection');
-    let ids = selection.map(cableRun => cableRun.get('id'));
+    let ids = this.get('selection').mapBy('id');
     this.get('onSelect')(ids);
   }),
 

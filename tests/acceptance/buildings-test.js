@@ -40,7 +40,6 @@ moduleForAcceptance('Acceptance | buildings', {
   beforeEach() {
     company = server.create('company', { name: 'ACME' });
     site = company.createNetworkSite({ name: 'Herbert' });
-    // site = server.create('network-site', { company: company.id });
   }
 });
 
