@@ -5,12 +5,11 @@ moduleForAcceptance('Acceptance | sites');
 
 test('visiting /sites', function(assert) {
   var company = server.create('company', {name: "ACME"});
-  server.create('network-site', {
-     name: "ACME Lab",
-     company: company.id
+  company.createNetworkSite({
+     name: "ACME Lab"
   });
 
-  server.createList('network-site', 3, {company: company.id});
+  server.createList('network-site', 3, { companyId: company.id });
   visit('/sites');
 
   andThen(function() {
@@ -41,10 +40,6 @@ test('visiting /sites', function(assert) {
 
 test('Sites page company links', function(assert) {
   var company = server.create('company', {name: "ACME"});
-  // server.create('network-site', {
-  //    name: "ACME Lab",
-  //    company: company.id
-  // });
 
   visit('/sites');
   click('[data-test-selector="company-link"]');
@@ -63,10 +58,7 @@ test('Sites page network-site links', function(assert) {
 
   let name = 'ACME Lab';
   let company = server.create('company', {name: "ACME"});
-  let networkSite = server.create('network-site', {
-     name,
-     company: company.id
-  });
+  let networkSite = company.createNetworkSite({ name });
 
   visit('/sites');
   click('[data-test-selector="network-site-link"]');

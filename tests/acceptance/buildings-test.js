@@ -39,7 +39,8 @@ let site;
 moduleForAcceptance('Acceptance | buildings', {
   beforeEach() {
     company = server.create('company', { name: 'ACME' });
-    site = server.create('network-site', { company: company.id });
+    site = company.createNetworkSite({ name: 'Herbert' });
+    // site = server.create('network-site', { company: company.id });
   }
 });
 
@@ -76,10 +77,11 @@ test('can add a building to a site', function(assert) {
 test('can update building info', function(assert) {
   assert.expect(4);
 
-  let building = server.create('building', {
+  let building = site.createBuilding({
     name: 'foo',
     description: 'bar',
-    networkSite: site.id
+    lat: -49.876,
+    lng: 123.312
   });
   let lat = 49.876;
   let lng = -123.321;
@@ -104,9 +106,7 @@ test('can update building info', function(assert) {
 test('can delete a building', function(assert) {
   assert.expect(1);
 
-  let building = server.create('building', {
-    networkSite: site.id
-  });
+  let building = site.createBuilding();
 
   visit(`/sites/buildings/${building.id}`);
 

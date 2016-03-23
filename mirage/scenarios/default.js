@@ -4,8 +4,7 @@ export default function( server ) {
 
   var princetonCompany = server.create('company', {name: "Princeton University"});
 
-  server.create('network-site', {
-    company: princetonCompany.id,
+  princetonCompany.createNetworkSite({
     name: "Princeton Campus",
     address: "Princeton, NJ 08544, United States",
     lat: 40.3467174,
@@ -18,8 +17,7 @@ export default function( server ) {
   var ericksonCompany = server.create('company', {name: "Erickson Living"});
 
   // --->Network Site
-  var charlestown = server.create('network-site', {
-    company: ericksonCompany.id,
+  var charlestown = ericksonCompany.createNetworkSite({
     name: "Charlestown",
     address: "715 Maiden Choice Lane, Catonsville, MD, United States",
     lat: 39.2690103,
@@ -27,8 +25,7 @@ export default function( server ) {
   });
 
   // ------>Building
-  let arborside = server.create('building', {
-    networkSite: charlestown.id,
+  let arborside = charlestown.createBuilding({
     name: "Arborside",
     description: "A building description",
     portsActive: 65,
@@ -39,8 +36,7 @@ export default function( server ) {
   });
 
   // ------>Building
-  server.create('building', {
-    networkSite: charlestown.id,
+  charlestown.createBuilding({
     name: "Brookside",
     description: "A building description",
     portsActive: 66,
@@ -51,8 +47,7 @@ export default function( server ) {
   });
 
   // ------>Building
-  server.create('building', {
-    networkSite: charlestown.id,
+  charlestown.createBuilding({
     name: "Chapel Court",
     description: "A building description",
     portsActive: 133,
@@ -63,8 +58,7 @@ export default function( server ) {
   });
 
   // ------>Building
-  server.create('building', {
-    networkSite: charlestown.id,
+  charlestown.createBuilding({
     name: "Caton Ridge",
     description: "A building description",
     portsActive: 89,
@@ -75,54 +69,54 @@ export default function( server ) {
   });
 
 
-  server.create('network-site', {
-    company: ericksonCompany.id,
+  ericksonCompany.createNetworkSite({
     name: "Lantern Hill",
     address: "603 Mountain Avenue, New Providence, NJ 07974, United States",
     lat: 40.687177,
     lng: -74.400954
   });
 
-  server.create('network-site', {
-    company: ericksonCompany.id,
+  ericksonCompany.createNetworkSite({
     name: "Ashby Ponds",
     address: "21170 Ashby Ponds Boulevard, Ashburn, VA 20147, United States",
     lat: 39.0294136,
     lng: -77.4549737
   });
 
-  server.create('network-site', {
-    company: ericksonCompany.id,
+  ericksonCompany.createNetworkSite({
     name: "Greenspring Valley",
     address: "7410 Spring Village Drive, Springfield, VA 22150, United States",
     lat: 38.7671371,
     lng: -77.2032638
   });
 
-  let parkTerrace = server.create('sheet', {
-    building: arborside.id,
-    name: 'Park Terrace'
+  let parkTerrace = arborside.createSheet({
+    name: 'Park Terrace',
+    updatedAt: new Date()
   });
 
-  let hamptonPlace = server.create('sheet', {
-    building: arborside.id,
-    name: 'Hampton Place'
+  let hamptonPlace = arborside.createSheet({
+    name: 'Hampton Place',
+    updatedAt: new Date()
   });
 
-  server.create('cable-run', {
-    sheet: parkTerrace.id,
+  parkTerrace.createCableRun({
     site: parkTerrace.name,
   });
 
-  server.create('cable-run', {
+  hamptonPlace.createCableRun({
     id: 18297,
-    sheet: hamptonPlace.id,
     site: hamptonPlace.name,
   });
 
-  server.create('cable-run', {
-    id: 18296,
-    sheet: hamptonPlace.id,
-    site: hamptonPlace.name,
-  });
+  // server.create('cable-run', {
+    // id: 18296,
+    // sheet: hamptonPlace.id,
+    // site: hamptonPlace.name,
+  // });
+
+  // server.create('workbook', {
+    // name: 'my workbook',
+    // sheet: hamptonPlace.id
+  // });
 }

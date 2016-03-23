@@ -9,11 +9,8 @@ moduleForAcceptance('Acceptance | companies network sites', {
     // company = server.create('company', { id, name: 'ACME', networkSites: sites });
     // sites = server.createList('network-site', 1, { company: id });
     company = server.create('company', { name: 'ACME' });
-    sites = server.createList('network-site', 3, { company: company.id });
+    sites = server.createList('network-site', 3, { companyId: company.id });
     company.networkSites = sites;
-  },
-
-  afterEach() {
   }
 });
 

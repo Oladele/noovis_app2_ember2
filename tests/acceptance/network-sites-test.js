@@ -84,7 +84,7 @@ test('can create new network site', function(assert) {
     .submit();
 
   andThen(() => {
-    let site = server.db['network-sites'][0];
+    let site = server.db.networkSites[0];
     assert.equal(site.name, name, 'has correct name');
     assert.equal(site.lat, lat, 'has correct latitude');
     assert.equal(site.address, address, 'has correct address');
@@ -94,7 +94,7 @@ test('can create new network site', function(assert) {
 test('map is shown on `edit` page', function(assert) {
   assert.expect(1);
 
-  const site = server.create('network-site', { company: company.id });
+  const site = company.createNetworkSite();
   visit(`/sites/network-sites/${site.id}/edit`);
 
   andThen(() => {
@@ -106,9 +106,9 @@ test('can update network site', function(assert) {
   assert.expect(2);
 
   stubGMapAutocomplete(this);
-  let site = server.create('network-site', {
+  let site = company.createNetworkSite({
     name: 'Site 1',
-    company: company.id
+    address: '123 Main St, Vancouver, BC, Canada'
   });
 
   visit(`/sites/network-sites/${site.id}/edit`);
@@ -137,7 +137,7 @@ test('can update network site', function(assert) {
   visit(`/sites/network-sites/${site.id}/edit`);
 
   andThen(() => {
-    let site = server.db['network-sites'][0];
+    let site = server.db.networkSites[0];
     assert.equal(site.name, name, 'name was updated');
     assert.equal(site.address, address, 'has correct address');
   });
@@ -147,10 +147,7 @@ test('can delete network site', function(assert) {
   assert.expect(1);
 
   const company = server.create('company', { name: 'ACME' });
-  const site = server.create('network-site', {
-    name: 'Site 1',
-    company: company.id
-  });
+  const site = company.createNetworkSite({ name: 'Site 1' });
 
   visit(`/sites/network-sites/${site.id}/edit`);
 
@@ -158,16 +155,15 @@ test('can delete network site', function(assert) {
     .clickDelete();
 
   andThen(() => {
-    assert.equal(server.db['network-sites'].length, 0, 'no sites were found');
+    assert.equal(server.db.networkSites.length, 0, 'no sites were found');
   });
 });
 
 test('can go to new buildings page', function(assert) {
   assert.expect(1);
 
-  let site = server.create('network-site', {
-    company: company.id
-  });
+  let site = company.createNetworkSite();
+
   visit(`/sites/network-sites/${site.id}/edit`);
   click('[data-test-selector=add-building-button]');
 
@@ -179,14 +175,9 @@ test('can go to new buildings page', function(assert) {
 test('shows buildings list', function(assert) {
   assert.expect(1);
 
-  let site = server.create('network-site', {
-    company: company.id
-  });
+  let site = company.createNetworkSite();
 
-  server.create('building', {
-    name: 'foo',
-    networkSite: site.id
-  });
+  site.createBuilding({ name: 'foo' });
 
   visit(`/sites/network-sites/${site.id}/edit`);
 
@@ -198,8 +189,8 @@ test('shows buildings list', function(assert) {
 test('can delete buildings in list', function(assert) {
   assert.expect(1);
 
-  let site = server.create('network-site', { company: company.id });
-  server.create('building', { networkSite: site.id });
+  let site = company.createNetworkSite();
+  site.createBuilding();
 
   visit(`/sites/network-sites/${site.id}/edit`);
 
@@ -212,8 +203,8 @@ test('can delete buildings in list', function(assert) {
 });
 
 test('should navigate to building.edit', function(assert) {
-  let site = server.create('network-site', { company: company.id });
-  server.create('building', { networkSite: site.id });
+  let site = company.createNetworkSite();
+  site.createBuilding();
 
   visit(`/sites/network-sites/${site.id}/edit`);
 
