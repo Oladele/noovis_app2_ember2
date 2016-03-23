@@ -16,13 +16,51 @@ export default function( server ) {
   // - Company
   var ericksonCompany = server.create('company', {name: "Erickson Living"});
 
+  let nodeCounts = [{
+    node_type: "olt_chassis",
+    count: 0,
+    node_type_pretty: "Olt chasses"
+  },
+  {
+    node_type: "pon_card",
+    count: 2,
+    node_type_pretty: "Pon cards"
+  },
+  {
+    node_type: "fdh",
+    count: 3,
+    node_type_pretty: "Fdhs"
+  },
+  {
+    node_type: "splitter",
+    count: 3,
+    node_type_pretty: "Splitters"
+  },
+  {
+    node_type: "rdt",
+    count: 26,
+    node_type_pretty: "Rdts"
+  },
+  {
+    node_type: "ont_sn",
+    count: 26,
+    node_type_pretty: "Ont sns"
+  },
+  {
+    node_type: "room",
+    count: 26,
+    node_type_pretty: "Rooms"
+  }];
+
   // --->Network Site
   var charlestown = ericksonCompany.createNetworkSite({
     name: "Charlestown",
     address: "715 Maiden Choice Lane, Catonsville, MD, United States",
     lat: 39.2690103,
-    lng: -76.7014073
+    lng: -76.7014073,
+    nodeCounts
   });
+
 
   // ------>Building
   let arborside = charlestown.createBuilding({
@@ -32,7 +70,8 @@ export default function( server ) {
     portsTotal: 126,
     portsActivePercent: 51,
     lat: 39.2660111,
-    lng: -76.7034171
+    lng: -76.7034171,
+    nodeCounts
   });
 
   // ------>Building
@@ -67,7 +106,6 @@ export default function( server ) {
     lat: 39.2710144,
     lng: -76.7004474
   });
-
 
   ericksonCompany.createNetworkSite({
     name: "Lantern Hill",
@@ -119,4 +157,5 @@ export default function( server ) {
     // name: 'my workbook',
     // sheet: hamptonPlace.id
   // });
+  //
 }

@@ -6,7 +6,7 @@ const {
 
 export default Ember.Controller.extend({
   buildingMarker: computed('model', function() {
-    let building = this.get('model');
+    let building = this.get('model.building');
     this.set('bLat', building.get('lat'));
     this.set('bLng', building.get('lng'));
     const dragend = (event) => {

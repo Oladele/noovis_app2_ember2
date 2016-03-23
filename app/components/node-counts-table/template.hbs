@@ -1,0 +1,18 @@
+<div class='table-responsive'>
+  <table class='table table-bordered'>
+    <thead>
+      <tr>
+        {{#each headers as |header|}}
+          <th>{{header}}</th>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {{#each counts as |count|}}
+          <td>{{count}}</td>
+        {{/each}}
+      </tr>
+    </tbody>
+  </table>
+</div>
