@@ -128,14 +128,22 @@ export default function( server ) {
     lng: -77.2032638
   });
 
+  let workbook = server.create('workbook', {
+    name: 'my workbook'
+  });
+
   let parkTerrace = arborside.createSheet({
     name: 'Park Terrace',
-    updatedAt: new Date()
+    updatedAt: new Date(),
+    workbookId: workbook.id,
+    recordCount: 10
   });
 
   let hamptonPlace = arborside.createSheet({
     name: 'Hampton Place',
-    updatedAt: new Date()
+    updatedAt: new Date(),
+    workbookId: workbook.id,
+    recordCount: 5
   });
 
   parkTerrace.createCableRun({
