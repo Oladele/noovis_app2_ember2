@@ -6,7 +6,6 @@ const {
   RSVP
 } = Ember;
 
-
 export default Ember.Route.extend({
   ajax: inject.service(),
   model() {

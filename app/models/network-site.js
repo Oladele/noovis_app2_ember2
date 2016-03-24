@@ -6,5 +6,6 @@ export default DS.Model.extend({
   lat: DS.attr('number'),
   lng: DS.attr('number'),
   buildings: DS.hasMany('building'),
-  address: DS.attr('string')
+  address: DS.attr('string'),
+  nodeCounts: DS.attr()
 });

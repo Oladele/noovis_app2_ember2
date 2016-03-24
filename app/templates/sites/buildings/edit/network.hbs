@@ -1,6 +1,6 @@
 {{network-tree
-    nodes=model.nodes
-    edges=model.edges
+    nodes=filteredGraph.nodes
+    edges=filteredGraph.edges
 }}
 
-{{cable-runs model=model.cableRuns}}
+{{cable-runs model=model.cableRuns onSelect=(action 'filterGraph')}}

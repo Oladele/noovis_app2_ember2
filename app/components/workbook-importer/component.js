@@ -35,6 +35,7 @@ export default Ember.Component.extend({
 
     notifyFlash(status, message) {
       this.get('onFlashReceive')(status, message);
+      this.get('onComplete')();
     }
   }
 });

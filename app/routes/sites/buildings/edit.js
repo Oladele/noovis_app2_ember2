@@ -5,8 +5,13 @@ const {
 } = Ember;
 
 export default Ember.Route.extend({
-  beforeModel() {
-    this.transitionTo('sites.buildings.edit.map');
+  beforeModel(transition) {
+    let target = transition.targetName;
+    if (target === 'sites.buildings.edit.index') {
+      this.transitionTo('sites.buildings.edit.map');
+      return;
+    }
+    this.transitionTo(target);
   },
   
   model(params) {

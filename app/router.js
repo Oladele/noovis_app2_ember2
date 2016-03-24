@@ -31,6 +31,7 @@ Router.map(function() {
       this.route('edit', { path: '/:building_id' }, function() {
         this.route('map');
         this.route('network');
+        this.route('crl-uploads');
       });
     });
   });
