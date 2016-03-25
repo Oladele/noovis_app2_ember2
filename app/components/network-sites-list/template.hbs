@@ -4,14 +4,17 @@
     'sites.companies.company.network-sites.new'
     company
     data-test-selector='new-site-button'
+    class='btn btn-primary'
 }}
   Add a New Site
 {{/link-to}}
 
-<ul>
+<ul class='list-unstyled'>
 {{#each sites as |site|}}
-  {{#link-to 'sites.network-sites.network-site.edit' site data-test-selector='network-site-item'}}
-    {{site.name}}
-  {{/link-to}}
+	<li class="associated-model-list-item">
+	  {{#link-to 'sites.network-sites.network-site.edit' site data-test-selector='network-site-item'}}
+	    {{site.name}}
+	  {{/link-to}}
+  </li>
 {{/each}}
 </ul>

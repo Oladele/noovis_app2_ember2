@@ -23,15 +23,31 @@
       }}
     </h4>
     {{#each company.networkSites as |networkSite|}}
+      
       <div>
-        <a class='glyphicon glyphicon-chevron-right' data-toggle='collapse' href={{x-id '#building-list' networkSite.id}}></a>
-        {{#link-to "sites.network-sites.network-site.edit" networkSite.id data-test-selector="network-site-link"}}
+        <a class='glyphicon glyphicon-chevron-right' data-toggle='collapse' href={{x-id '#building-list' networkSite.id}}>
+        </a>
+        {{#link-to 
+          "sites.network-sites.network-site.edit" 
+          networkSite.id data-test-selector="network-site-link"
+        }}
           {{networkSite.name}} ({{networkSite.buildings.length}})
         {{/link-to}}
       </div>
-      <ul class='list-unstyled list-group collapse' id={{x-id 'building-list' networkSite.id}} >
+      
+      <ul 
+        class='list-unstyled list-group collapse' 
+        id={{x-id 'building-list' networkSite.id}} 
+      >
       {{#each networkSite.buildings as |building|}}
-        <li>{{link-to building.name 'sites.buildings.edit.map' building.id data-test-selector='building-edit-link'}}</li>
+        <li class="left-nav-sub-list-item">
+          {{link-to 
+            building.name 
+            'sites.buildings.edit.map'
+            building.id 
+            data-test-selector='building-edit-link'
+          }}
+        </li>
       {{/each}}
       </ul>
     {{/each}}

@@ -27,6 +27,10 @@ a {
 	color: #11253F ;
 }
 
+a:hover {
+  text-decoration: none ;
+}
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* APP-WIDE: Style changes to Bootstrap classes */
@@ -90,6 +94,17 @@ form{
   margin-top: 15px;
 }
 
+.associated-model-list-item {
+  padding-bottom: 10px;
+  overflow: auto;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.left-nav-sub-list-item{
+  padding-left: 5px;
+  font-size: .8em;
+}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* COMPONENT: ember-cli-g-map */
@@ -119,21 +134,6 @@ form{
 	fill: #8EC640 !important;
 }*/
 
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/* TEMPLATE: Network Site Edit*/
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.network-site-buildings {
-  list-style: none;
-  margin: 0;
-}
-
-.building-list-item {
-  padding-bottom: 10px;
-  overflow: auto;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* TEMPLATE: Network Site Stats */
