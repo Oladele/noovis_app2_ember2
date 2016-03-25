@@ -68,6 +68,14 @@ a {
   border-radius: 10px;
 }
 
+
+.tab-content{
+  margin-top: 15px;
+}
+
+form{
+  margin-top: 15px;
+}
 /* COMPONENT: crl-stats-table */
 .stats-cell-warning{
 	background-color: #f0ad4e;
@@ -107,4 +115,5 @@ a {
   height: 400px;
   border: 1px solid lightgray;
 }
+
 
