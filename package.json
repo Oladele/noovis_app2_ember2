@@ -49,8 +49,8 @@
     "ember-route-action-helper": "0.3.0",
     "ember-table": "artych/ember-table#1181b1c5d7271c8d276c5ba015d95dce4a9930a3",
     "emberx-file-input": "1.0.0",
-    "emberx-select": "2.0.2",
-    "emberx-xml-http-request": "git://github.com/thefrontside/emberx-xml-http-request.git#2c37b244dd8942b8c5a0f79c7b9d6fc813b28aeb",
+    "emberx-select": "2.1.1",
+    "emberx-xml-http-request": "0.1.0",
     "loader.js": "^4.0.1"
   }
 }
