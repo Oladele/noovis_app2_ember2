@@ -108,3 +108,10 @@ a {
   border: 1px solid lightgray;
 }
 
+.center-block {
+  float: none;
+}
+
+.login-form {
+  margin-top: 200px;
+}

@@ -91,4 +91,26 @@ export default function() {
   this.get('/cable-runs/:id', 'cable-run');
 
   this.get('/workbooks/:id', 'workbook');
+
+  this.post('/login', (schema, request) => {
+    return new Mirage.Response(
+      200,
+      { myHeader: 'header' },
+      {
+        access_token: 'secret-token',
+        account_id: 1
+      }
+    );
+  });
+
+  this.post('/api/token-auth', (schema, request) => {
+    return new Mirage.Response(
+      201,
+      { 'Content-Type': 'application/json' },
+      {
+        access_token: 'secret-token',
+        account_id: 1
+      }
+    );
+  });
 }
