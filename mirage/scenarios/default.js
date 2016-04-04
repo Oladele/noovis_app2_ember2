@@ -11,7 +11,6 @@ export default function( server ) {
     lng: -74.6568772
   });
 
-
   let nodeCounts = [{
     node_type: "olt_chassis",
     count: 0,
