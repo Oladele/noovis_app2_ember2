@@ -7,7 +7,9 @@ const {
 export default Ember.Component.extend({
   options: {
     layout: {
-      hierarchical: true
+      hierarchical: {
+        direction: 'LR'
+      }
     }
   },
 
