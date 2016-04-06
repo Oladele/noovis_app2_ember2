@@ -1,5 +1,6 @@
 /* jshint node: true */
 
+
 var contentSecurityPolicy = {
   'script-src': "'self' 'unsafe-eval' 'unsafe-inline' *.googleapis.com maps.gstatic.com",
   'connect-src': "'self' http://localhost:* http://noovis2-staging.herokuapp.com maps.gstatic.com",
@@ -31,12 +32,6 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     }
-  };
-
-  ENV['ember-simple-auth'] = {
-    authorizer: 'authorizer:token',
-    routeAfterAuthentication: 'sites',
-    baseURL: 'login'
   };
 
   if (environment === 'development') {
