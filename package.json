@@ -51,10 +51,11 @@
     "ember-simple-auth": "1.1.0-beta.3",
     "ember-simple-auth-token": "1.1.0",
     "ember-table": "artych/ember-table#1181b1c5d7271c8d276c5ba015d95dce4a9930a3",
+    "ember-test-selectors": "0.0.2",
+    "ember-truth-helpers": "1.2.0",
     "emberx-file-input": "1.0.0",
     "emberx-select": "2.1.1",
     "emberx-xml-http-request": "0.1.0",
-    "ember-test-selectors": "0.0.2",
     "loader.js": "^4.0.1"
   }
 }

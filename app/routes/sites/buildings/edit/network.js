@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import ColumnDefinition from 'ember-table/models/column-definition';
 
 const {
   inject,
@@ -26,45 +25,13 @@ export default Ember.Route.extend({
     model.edges = edges;
 
     let building = this.modelFor('sites.buildings.edit').building;
-    model.cableRuns = {
-      content: [],
-      columns: [
-        ColumnDefinition.create({
-          headerCellName: 'No sheets found',
-          textAlign: 'text-align-left',
-          getCellContent() {
-            return '';
-          }
-        })
-      ]
-    };
 
     return building.get('sheets')
       .then(sheets => sheets.reload())
       .then(newSheets => newSheets.get('lastObject.cableRuns'))
-      .then(runs => {
-        let content = runs;
-        let headers = [];
-        runs.objectAt(0).eachAttribute(attr => headers.push(attr));
-        let columns = createTableColumns(headers);
-        model.cableRuns = { content: content, columns: columns };
-      })
-      .catch(({ errors }) => this.set('errors', errors));
+      .then(runs => model.cableRuns = runs);
   }
 });
-
-
-function createTableColumns(types) {
-  return types.map(type => {
-    return ColumnDefinition.create({
-      savedWidth: 100,
-      headerCellName: type,
-      getCellContent(row) {
-        return row.get(type);
-      }
-    });
-  });
-}
 
 function initGraphData(data) {
   if (data.state === 'fulfilled') {

@@ -35,8 +35,8 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
-    filterGraph(ids) {
-      this.set('filterIds', ids);
+    filterGraph(id) {
+      this.set('filterIds', [id]);
     }
   }
 });
