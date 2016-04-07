@@ -10,9 +10,7 @@ export default Ember.Controller.extend({
     let nodes = this.get('model.nodes');
     let ids = this.get('filterIds');
 
-    return nodes.filter(node => {
-      return ids.includes(node.cable_run_id.toString());
-    });
+    return nodes.filter(node => ids.includes(node.cable_run_id.toString()));
   }),
 
   filteredGraph: computed('filterIds', 'model.nodes.[]', 'model.edges.[]', function() {
@@ -29,7 +27,7 @@ export default Ember.Controller.extend({
 
     let shallowestNode = findShallowestNode(branch);
     let ancestors = findAllAncestors(shallowestNode, nodes);
-    branch.push.apply(branch, ancestors);
+    branch.push(...ancestors);
 
     return { edges, nodes: branch };
   }),

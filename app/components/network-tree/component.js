@@ -1,9 +1,5 @@
 import Ember from 'ember';
 
-const {
-  isEmpty
-} = Ember;
-
 export default Ember.Component.extend({
   options: {
     layout: {
@@ -27,7 +23,7 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    let container = this.$('[data-test-selector="network-tree-container"]')[0];
+    let container = this.$('.network-tree-container')[0];
     let data = { nodes: [], edges: [] };
     let options = this.get('options');
     let visNetwork = new vis.Network(container, data, options);
