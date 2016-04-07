@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  containerSelector: 'network-tree-container',
   options: {
     layout: {
       hierarchical: {
@@ -23,7 +24,8 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    let container = this.$('.network-tree-container')[0];
+    let selector = `.${this.containerSelector}`;
+    let container = this.$(selector)[0];
     let data = { nodes: [], edges: [] };
     let options = this.get('options');
     let visNetwork = new vis.Network(container, data, options);
