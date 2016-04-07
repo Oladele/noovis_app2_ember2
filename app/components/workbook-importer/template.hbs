@@ -1,5 +1,5 @@
 {{#x-file-input multiple=true action=(action 'loadWorkbook')}}
-  <button>Choose file</button>
+  <button class='btn btn-primary'>Choose file</button>
 {{/x-file-input}}
 
 {{#x-select value=sheetName}}
@@ -11,6 +11,7 @@
 <button
   {{action 'importWorkbook'}}
   data-test-selector='import-workbook-button'
+  class='btn btn-primary'
 >
   Import
 </button>

@@ -8,6 +8,10 @@
 	@brand-danger:          #d9534f;
 */
 
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* APP-WIDE: Style changes to standard elements */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 body {
   padding-top: 50px;
   padding-bottom: 30px;
@@ -23,6 +27,14 @@ a {
 	color: #11253F ;
 }
 
+a:hover {
+  text-decoration: none ;
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* APP-WIDE: Style changes to Bootstrap classes */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .navbar-header a img{
 	margin-top: 5px;
 }
@@ -31,6 +43,11 @@ a {
     background-color: #11253F;
     border-color: #11253F;
 }
+
+.nav-pills li{
+  background-color: #eee;
+}
+
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     color: #fff;
@@ -61,14 +78,47 @@ a {
     border-color: #eee;
 }
 
+.tab-content{
+  margin-top: 15px;
+}
+
+form{
+  margin-top: 15px;
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* APP-WIDE: Style changes to custom classes */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.spacer{
+  margin-top: 15px;
+}
+
+.associated-model-list-item {
+  padding-bottom: 10px;
+  overflow: auto;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.left-nav-sub-list-item{
+  padding-left: 5px;
+  font-size: .8em;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* COMPONENT: ember-cli-g-map */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .ember-cli-g-map {
   height: 400px;
   width: auto;
   border-radius: 10px;
 }
 
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* COMPONENT: crl-stats-table */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .stats-cell-warning{
 	background-color: #f0ad4e;
 }
@@ -77,31 +127,17 @@ a {
 	background-color: #d9534f;
 }
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* COMPONENT: crl-stats-pie */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*.chart-frame .hovered path{
 	fill: #8EC640 !important;
 }*/
 
 
-/* Network Site Edit*/
-
-.network-site-buildings {
-  list-style: none;
-  margin: 0;
-}
-
-.building-list-item {
-  padding-bottom: 10px;
-  overflow: auto;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-}
-
-/* Network Site Stats */
-.nav-pills li{
-	background-color: #eee;
-}
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* TEMPLATE: Network Site Stats */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .network-tree-container {
   width: auto;
   height: 400px;

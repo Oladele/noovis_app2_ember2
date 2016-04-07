@@ -1,29 +1,32 @@
 <form {{action 'submit' on='submit'}}>
   <div class='form-group'>
     <label>
-      Building Name<br>
+      Building Name
+    </label>
       {{x-input
           value=name
           data-test-selector='name-input'
           placeholder='Building, got a name?'
+          class='form-control'
       }}
-    </label>
   </div>
   <div class='form-group'>
     <label>
-      Building Description<br>
+      Building Description
+    </label>
       {{x-input
           value=description
           data-test-selector='description-input'
           placeholder='Any noteworthy comment about the building?'
+          class='form-control'
       }}
-    </label>
   </div>
 
   <button
     type='submit'
     {{action 'submit'}}
     data-test-selector='submit-button'
+    class='btn btn-primary'
   >
     Update
   </button>
@@ -31,6 +34,7 @@
   <button
     {{action 'delete'}}
     data-test-selector='delete-building-button'
+    class='btn btn-danger'
   >
     Delete {{model.name}}
   </button>
