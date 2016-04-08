@@ -32,6 +32,18 @@ export default Ember.Controller.extend({
     return { edges, nodes: branch };
   }),
 
+  tableHeaders: computed('model.cableRuns.[]', function() {
+    let cableRun = this.get('model.cableRuns.firstObject');
+    if (cableRun) {
+      let keys = Object.keys(cableRun.toJSON());
+      let sheetIndex = keys.indexOf('sheet');
+      debugger;
+      return keys.slice(0, sheetIndex);
+    } else {
+      return ['No sheets uploaded'];
+    }
+  }),
+
   actions: {
     filterGraph(id) {
       this.set('filterIds', [id]);
