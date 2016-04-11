@@ -37,7 +37,6 @@ export default Ember.Controller.extend({
     if (cableRun) {
       let keys = Object.keys(cableRun.toJSON());
       let sheetIndex = keys.indexOf('sheet');
-      debugger;
       return keys.slice(0, sheetIndex);
     } else {
       return ['No sheets uploaded'];
