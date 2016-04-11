@@ -91,6 +91,28 @@ export default function() {
 
   this.get('/workbooks/:id', 'workbook');
 
+  this.post('/login', (schema, request) => {
+    return new Mirage.Response(
+      200,
+      { myHeader: 'header' },
+      {
+        access_token: 'secret-token',
+        account_id: 1
+      }
+    );
+  });
+
+  this.post('/api/token-auth', (schema, request) => {
+    return new Mirage.Response(
+      201,
+      { 'Content-Type': 'application/json' },
+      {
+        access_token: 'secret-token',
+        account_id: 1
+      }
+    );
+  });
+
   this.get('/global_node_counts', (schema, request) => {
     return [{
       node_type: "olt_chassis",
