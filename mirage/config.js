@@ -86,9 +86,46 @@ export default function() {
     return cableRunData;
   });
 
-
   this.get('/cable-runs', 'cable-runs');
   this.get('/cable-runs/:id', 'cable-run');
 
   this.get('/workbooks/:id', 'workbook');
+
+  this.get('/global_node_counts', (schema, request) => {
+    return [{
+      node_type: "olt_chassis",
+      count: 0,
+      node_type_pretty: "Olt chasses"
+    },
+    {
+      node_type: "pon_card",
+      count: 2,
+      node_type_pretty: "Pon cards"
+    },
+    {
+      node_type: "fdh",
+      count: 3,
+      node_type_pretty: "Fdhs"
+    },
+    {
+      node_type: "splitter",
+      count: 3,
+      node_type_pretty: "Splitters"
+    },
+    {
+      node_type: "rdt",
+      count: 26,
+      node_type_pretty: "Rdts"
+    },
+    {
+      node_type: "ont_sn",
+      count: 26,
+      node_type_pretty: "Ont sns"
+    },
+    {
+      node_type: "room",
+      count: 26,
+      node_type_pretty: "Rooms"
+    }];
+  });
 }

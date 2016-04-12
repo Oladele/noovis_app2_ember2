@@ -10,9 +10,7 @@ export default Ember.Controller.extend({
     let nodes = this.get('model.nodes');
     let ids = this.get('filterIds');
 
-    return nodes.filter(node => {
-      return ids.includes(node.cable_run_id.toString());
-    });
+    return nodes.filter(node => ids.includes(node.cable_run_id.toString()));
   }),
 
   filteredGraph: computed('filterIds', 'model.nodes.[]', 'model.edges.[]', function() {
@@ -29,14 +27,25 @@ export default Ember.Controller.extend({
 
     let shallowestNode = findShallowestNode(branch);
     let ancestors = findAllAncestors(shallowestNode, nodes);
-    branch.push.apply(branch, ancestors);
+    branch.push(...ancestors);
 
     return { edges, nodes: branch };
   }),
 
+  tableHeaders: computed('model.cableRuns.[]', function() {
+    let cableRun = this.get('model.cableRuns.firstObject');
+    if (cableRun) {
+      let keys = Object.keys(cableRun.toJSON());
+      let sheetIndex = keys.indexOf('sheet');
+      return keys.slice(0, sheetIndex);
+    } else {
+      return ['No sheets uploaded'];
+    }
+  }),
+
   actions: {
-    filterGraph(ids) {
-      this.set('filterIds', ids);
+    filterGraph(id) {
+      this.set('filterIds', [id]);
     }
   }
 });

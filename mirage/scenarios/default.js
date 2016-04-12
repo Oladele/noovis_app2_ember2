@@ -11,11 +11,6 @@ export default function( server ) {
     lng: -74.6568772
   });
 
-  // Erickson
-
-  // - Company
-  var ericksonCompany = server.create('company', {name: "Erickson Living"});
-
   let nodeCounts = [{
     node_type: "olt_chassis",
     count: 0,
@@ -51,6 +46,14 @@ export default function( server ) {
     count: 26,
     node_type_pretty: "Rooms"
   }];
+
+  // Erickson
+
+  // - Company
+  var ericksonCompany = server.create('company', {
+    name: "Erickson Living",
+    nodeCounts
+  });
 
   // --->Network Site
   var charlestown = ericksonCompany.createNetworkSite({

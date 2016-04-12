@@ -1,45 +1,13 @@
 import Ember from 'ember';
 
-const {
-  isEmpty
-} = Ember;
-
 export default Ember.Component.extend({
+  containerSelector: 'network-tree-container',
   options: {
     layout: {
-      hierarchical: true
+      hierarchical: {
+        direction: 'LR'
+      }
     }
-  },
-
-  init() {
-    this._super(...arguments);
-    let hasNoData = isEmpty(this.get('nodes')) || isEmpty(this.get('edges'));
-    if (hasNoData) {
-      return;
-    }
-
-    let nodes = new vis.DataSet(this.get('nodes'));
-    this.set('nodes', nodes);
-    let edges = new vis.DataSet(this.get('edges'));
-    this.set('edges', edges);
-  },
-
-  didInsertElement() {
-    this._super(...arguments);
-    let hasNoData = isEmpty(this.get('nodes')) || isEmpty(this.get('edges'));
-    if (hasNoData)  {
-      return;
-    }
-
-    let container = this.$('[data-test-selector="network-tree-container"]')[0];
-    this.set('container', container);
-    let nodes = this.get('nodes');
-    let edges = this.get('edges');
-    let options = this.get('options');
-    let data = { nodes, edges };
-
-    let visNetwork = new vis.Network(container, data, options);
-    this.set('visNetwork', visNetwork);
   },
 
   didReceiveAttrs() {
@@ -52,5 +20,15 @@ export default Ember.Component.extend({
       this.set('edges', edges);
       network.setData({ nodes, edges });
     }
-  }
+  },
+
+  didInsertElement() {
+    this._super(...arguments);
+    let selector = `.${this.containerSelector}`;
+    let container = this.$(selector)[0];
+    let data = { nodes: [], edges: [] };
+    let options = this.get('options');
+    let visNetwork = new vis.Network(container, data, options);
+    this.set('visNetwork', visNetwork);
+  },
 });

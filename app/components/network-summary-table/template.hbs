@@ -1,0 +1,23 @@
+<div class='table-responsive'>
+  <table class='table table-bordered'>
+    <thead>
+      <tr>
+        {{#each headers as |header|}}
+          <td>{{header}}</td>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each cableRuns as |cableRun|}}
+        <tr 
+          {{action (action 'selectRow' cableRun.id)}} 
+          class="{{if (eq cableRun.id selectedId) 'is-selected'}}"
+        >
+          {{#each headers as |header|}}
+            <td>{{get cableRun header}}</td>
+          {{/each}}
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
