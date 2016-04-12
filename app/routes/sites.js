@@ -16,7 +16,12 @@ export default Ember.Route.extend({
       companies: this.store.findAll('company'),
       sites: this.store.findAll('networkSite'),
       buildings: this.store.findAll('building'),
-      // nodeCounts: this.get('ajax').request('global_node_counts')
+      global: this.get('ajax').request('global')
     });
+  },
+
+  afterModel(model) {
+    model.nodeCounts = model.global.data.attributes['node-counts'];
+    delete model.global;
   }
 });
