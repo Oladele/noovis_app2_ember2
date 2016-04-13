@@ -36,6 +36,11 @@ Router.map(function() {
     });
   });
   this.route('login');
+  this.route('admin', function() {
+    this.route('users', function() {
+      this.route('new');
+    });
+  });
 });
 
 export default Router;
