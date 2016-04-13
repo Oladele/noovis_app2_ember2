@@ -150,4 +150,6 @@ export default function() {
       node_type_pretty: "Rooms"
     }];
   });
+
+  this.get('/users', 'users');
 }

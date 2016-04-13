@@ -1,3 +1,5 @@
+import { faker } from 'ember-cli-mirage';
+
 export default function( server ) {
 
   // Princeton
@@ -54,6 +56,8 @@ export default function( server ) {
     name: "Erickson Living",
     nodeCounts
   });
+
+  let noovis = server.create('company', { name: 'Noovis' });
 
   // --->Network Site
   var charlestown = ericksonCompany.createNetworkSite({
@@ -169,4 +173,21 @@ export default function( server ) {
     // sheet: hamptonPlace.id
   // });
   //
+  noovis.createUser({
+    email: 'admin@noovis.com',
+    role: 'admin',
+    last_accessed: faker.date.recent(),
+  });
+
+  noovis.createUser({
+    email: 'user@noovis.com',
+    role: 'user',
+    last_accessed: faker.date.recent(),
+  });
+
+  princetonCompany.createUser({
+    email: 'employee@princeton.edu',
+    role: 'customer',
+    last_accessed: faker.date.recent(),
+  });
 }
