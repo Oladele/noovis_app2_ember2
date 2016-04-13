@@ -1,0 +1,50 @@
+<form {{action 'submit' on='submit'}}>
+  <div class='form-group'>
+    <label>
+      Email
+      {{x-input 
+        value=email
+        size=50
+        placeholder='Your email'
+        class='form-control'
+      }}
+    </label>
+  </div>
+
+  <div class='form-group'>
+    <label>
+      Company
+      {{#x-select 
+          value=company
+          class='form-control'
+      }}
+        {{#x-option value=null}}Select a company{{/x-option}}
+        {{#each companies as |_company| }}
+          {{#x-option value=_company}}{{_company.name}}{{/x-option}}
+        {{/each}}
+      {{/x-select}}
+    </label>
+  </div>
+
+  <div class='form-group'>
+    <label>
+      Role
+      {{#x-select 
+          value=role
+          class='form-control'
+      }}
+        {{#x-option value=null}}Select a role{{/x-option}}
+        {{#each roles as |_role|}}
+          {{#x-option value=_role}}{{capitalize _role}}{{/x-option}}
+        {{/each}}
+      {{/x-select}}
+    </label>
+  </div>
+
+  <button
+    {{action 'submit'}}
+    class='btn btn-primary'
+  >
+    Update
+  </button>
+</form>

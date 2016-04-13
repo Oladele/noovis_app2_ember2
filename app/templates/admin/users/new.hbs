@@ -1,0 +1,9 @@
+<h2>New Users</h2>
+
+{{user-form
+    user=model.user
+    companies=model.companies
+    onSubmit=(route-action 'createUser')
+}}
+
+{{outlet}}
