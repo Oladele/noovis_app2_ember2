@@ -152,5 +152,12 @@ export default function() {
   });
 
   this.get('/users', 'users');
-  this.post('/users', 'user');
+  this.post('/users', ({user, company}, request) => {
+    let { data } = JSON.parse(request.requestBody);
+    let _company = company.find(data.relationships.company.data.id);
+    let _user = _company.createUser(data.attributes);
+    _company.save();
+
+    return _user;
+  });
 }

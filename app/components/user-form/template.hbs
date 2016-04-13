@@ -3,10 +3,11 @@
     <label>
       Email
       {{x-input 
-        value=email
-        size=50
-        placeholder='Your email'
-        class='form-control'
+          value=email
+          size=50
+          placeholder='Your email'
+          data-test-selector='email-input'
+          class='form-control'
       }}
     </label>
   </div>
@@ -16,7 +17,7 @@
       Company
       {{#x-select 
           value=company
-          class='form-control'
+          class='form-control company-select'
       }}
         {{#x-option value=null}}Select a company{{/x-option}}
         {{#each companies as |_company| }}
@@ -31,7 +32,7 @@
       Role
       {{#x-select 
           value=role
-          class='form-control'
+          class='form-control role-select'
       }}
         {{#x-option value=null}}Select a role{{/x-option}}
         {{#each roles as |_role|}}
@@ -41,8 +42,35 @@
     </label>
   </div>
 
+  <div class='form-group'>
+    <label>
+      Password
+      {{x-input 
+          value=password
+          type='password'
+          size=50
+          data-test-selector='password-input'
+          class='form-control'
+      }}
+    </label>
+  </div>
+
+  <div class='form-group'>
+    <label>
+      Password Confirmation
+      {{x-input 
+          value=passwordConfirmation
+          type='password'
+          size=50
+          data-test-selector='passwordConfirmation-input'
+          class='form-control'
+      }}
+    </label>
+  </div>
+
   <button
     {{action 'submit'}}
+    data-test-selector='submit-button'
     class='btn btn-primary'
   >
     Update

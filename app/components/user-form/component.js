@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 const {
   getProperties,
-  get
 } = Ember;
 
 export default Ember.Component.extend({
@@ -10,9 +9,8 @@ export default Ember.Component.extend({
 
   actions: {
     submit() {
-      let props = getProperties(this, 'email', 'company', 'role');
-      let user = get(this, 'user');
-      this.get('onSubmit')(user, props);
+      let attrs = getProperties(this, 'email', 'company', 'role', 'password', 'passwordConfirmation');
+      this.get('onSubmit')(attrs);
     }
   }
 });
