@@ -6,7 +6,7 @@ let company;
 
 moduleForAcceptance('Acceptance | users', {
   beforeEach() {
-    server.create('company', { name: 'Noovis' });
+    company = server.create('company', { name: 'Noovis' });
   }
 });
 
@@ -27,5 +27,25 @@ test('should create a new user', function(assert) {
     assert.equal(currentURL(), '/admin/users', 'transitioned to correct path');
     assert.equal(user.email, email, 'has correct email');
     assert.equal(user.role, role.toLowerCase(), 'has correct role');
+  });
+});
+
+test('should update user', function(assert) {
+  let newCompany = server.create('company', { name: 'Princeton' });
+  let user = company.createUser({
+    email: 'user@example.com',
+    role: 'admin'
+  });
+  let newRole = 'User';
+
+  visit(`/admin/users/${user.id}`);
+  select('.role-select', newRole);
+  select('.company-select', 'Princeton');
+  click(testSelector('selector', 'submit-button'));
+
+  andThen(function() {
+    user = server.db.users[0];
+    assert.equal(user.role, newRole.toLowerCase(), 'updated role');
+    assert.equal(user.companyId, newCompany.id, 'updated company');
   });
 });

@@ -152,6 +152,7 @@ export default function() {
   });
 
   this.get('/users', 'users');
+  this.get('/users/:id', 'user');
   this.post('/users', ({user, company}, request) => {
     let { data } = JSON.parse(request.requestBody);
     let _company = company.find(data.relationships.company.data.id);
@@ -160,4 +161,5 @@ export default function() {
 
     return _user;
   });
+  this.patch('/users/:id', 'user');
 }

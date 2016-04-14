@@ -39,6 +39,7 @@ Router.map(function() {
   this.route('admin', function() {
     this.route('users', function() {
       this.route('new');
+      this.route('edit', { path: ':user_id'});
     });
   });
 });
