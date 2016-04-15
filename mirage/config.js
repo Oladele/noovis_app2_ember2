@@ -47,12 +47,7 @@ export default function() {
   this.get('/buildings', 'buildings');
   this.get('/buildings/:id', 'building');
   this.post('/buildings', 'building');
-  // this.patch('/buildings/:id', 'building');
-  this.patch('/buildings/:id', ({ building }, request) => {
-    let id = request.params.id;
-    let { attributes } = JSON.parse(request.requestBody).data;
-    return building.find(id).update(attributes);
-  });
+  this.patch('/buildings/:id', 'building');
   this.del('/buildings/:id', 'building');
 
   this.get('/buildings/:id/latest_network_graph', (schema, request) => {
@@ -116,42 +111,46 @@ export default function() {
     );
   });
 
-  this.get('/global_node_counts', (schema, request) => {
-    return [{
-      node_type: "olt_chassis",
-      count: 0,
-      node_type_pretty: "Olt chasses"
-    },
-    {
-      node_type: "pon_card",
-      count: 2,
-      node_type_pretty: "Pon cards"
-    },
-    {
-      node_type: "fdh",
-      count: 3,
-      node_type_pretty: "Fdhs"
-    },
-    {
-      node_type: "splitter",
-      count: 3,
-      node_type_pretty: "Splitters"
-    },
-    {
-      node_type: "rdt",
-      count: 26,
-      node_type_pretty: "Rdts"
-    },
-    {
-      node_type: "ont_sn",
-      count: 26,
-      node_type_pretty: "Ont sns"
-    },
-    {
-      node_type: "room",
-      count: 26,
-      node_type_pretty: "Rooms"
-    }];
+  this.get('/global', (schema, request) => {
+    return {
+      data: {
+        attributes: [{
+          node_type: "olt_chassis",
+          count: 0,
+          node_type_pretty: "Olt chasses"
+        },
+        {
+          node_type: "pon_card",
+          count: 2,
+          node_type_pretty: "Pon cards"
+        },
+        {
+          node_type: "fdh",
+          count: 3,
+          node_type_pretty: "Fdhs"
+        },
+        {
+          node_type: "splitter",
+          count: 3,
+          node_type_pretty: "Splitters"
+        },
+        {
+          node_type: "rdt",
+          count: 26,
+          node_type_pretty: "Rdts"
+        },
+        {
+          node_type: "ont_sn",
+          count: 26,
+          node_type_pretty: "Ont sns"
+        },
+        {
+          node_type: "room",
+          count: 26,
+          node_type_pretty: "Rooms"
+        }]
+      }
+    };
   });
 
   this.get('/users', 'users');
