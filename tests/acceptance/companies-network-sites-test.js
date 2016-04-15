@@ -1,11 +1,13 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'noovis-app2-ember2/tests/helpers/module-for-acceptance';
+import { authenticateSession } from 'noovis-app2-ember2/tests/helpers/ember-simple-auth';
 
 let company;
 let sites;
 
 moduleForAcceptance('Acceptance | companies network sites', {
   beforeEach() {
+    authenticateSession(this.application);
     // company = server.create('company', { id, name: 'ACME', networkSites: sites });
     // sites = server.createList('network-site', 1, { company: id });
     company = server.create('company', { name: 'ACME' });

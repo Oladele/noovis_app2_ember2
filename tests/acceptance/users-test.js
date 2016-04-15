@@ -1,11 +1,13 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'noovis-app2-ember2/tests/helpers/module-for-acceptance';
 import testSelector from 'noovis-app2-ember2/tests/helpers/ember-test-selectors';
+import { authenticateSession } from 'noovis-app2-ember2/tests/helpers/ember-simple-auth';
 
 let company;
 
 moduleForAcceptance('Acceptance | users', {
   beforeEach() {
+    authenticateSession(this.application);
     company = server.create('company', { name: 'Noovis' });
   }
 });

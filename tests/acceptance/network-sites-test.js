@@ -2,6 +2,7 @@
 /* global stubGMapAutocomplete */
 import { test } from 'qunit';
 import moduleForAcceptance from 'noovis-app2-ember2/tests/helpers/module-for-acceptance';
+import { authenticateSession } from 'noovis-app2-ember2/tests/helpers/ember-simple-auth';
 
 class SitePageObject {
   constructor(env) {
@@ -42,6 +43,7 @@ let company;
 
 moduleForAcceptance('Acceptance | network sites', {
   beforeEach() {
+    authenticateSession(this.application);
     company = server.create('company', { name: 'ACME' });
  }
 });

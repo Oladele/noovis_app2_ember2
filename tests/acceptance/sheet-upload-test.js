@@ -1,5 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'noovis-app2-ember2/tests/helpers/module-for-acceptance';
+import { authenticateSession } from 'noovis-app2-ember2/tests/helpers/ember-simple-auth';
 
 let company;
 let site;
@@ -8,6 +9,7 @@ let workbook;
 
 moduleForAcceptance('Acceptance | sheet upload', {
   beforeEach() {
+    authenticateSession(this.application);
     company = server.create('company', { name: 'ACME' });
     site = company.createNetworkSite();
     building = site.createBuilding();

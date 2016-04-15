@@ -1,7 +1,12 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'noovis-app2-ember2/tests/helpers/module-for-acceptance';
+import { authenticateSession } from 'noovis-app2-ember2/tests/helpers/ember-simple-auth';
 
-moduleForAcceptance('Acceptance | sites');
+moduleForAcceptance('Acceptance | sites', {
+  beforeEach() {
+    authenticateSession(this.application);
+  }
+});
 
 test('visiting /sites', function(assert) {
   var company = server.create('company', {name: "ACME"});
