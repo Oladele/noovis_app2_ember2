@@ -91,24 +91,27 @@ export default function() {
 
   this.get('/workbooks/:id', 'workbook');
 
-  this.post('/login', (schema, request) => {
-    return new Mirage.Response(
-      200,
-      { myHeader: 'header' },
-      {
-        access_token: 'secret-token',
-        account_id: 1
-      }
-    );
-  });
-
   this.post('/api/token-auth', (schema, request) => {
+    let { username } = JSON.parse(request.requestBody);
+    let account_id;
+    switch (username) {
+      case 'admin':
+        account_id = 1;
+        break;
+      case 'user':
+        account_id = 2;
+        break;
+      case 'customer':
+        account_id = 3;
+        break;
+    }
+
     return new Mirage.Response(
       201,
       { 'Content-Type': 'application/json' },
       {
+        account_id,
         access_token: 'secret-token',
-        account_id: 1
       }
     );
   });

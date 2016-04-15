@@ -1,13 +1,15 @@
 import Ember from 'ember';
 import config from '../config/environment';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 const {
-  inject,
+  inject: { service },
   RSVP
 } = Ember;
 
-export default Ember.Route.extend({
-  ajax: inject.service(),
+export default Ember.Route.extend(AuthenticatedRouteMixin, {
+  ajax: service(),
+
   model() {
     console.log("config.environment:", config.environment);
     console.log("config.apiHost:", config.apiHost);

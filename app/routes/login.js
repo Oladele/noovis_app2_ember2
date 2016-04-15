@@ -8,7 +8,11 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
     authenticate(email, password) {
       let authenticator = 'authenticator:token';
       let session = this.get('session');
-      session.authenticate(authenticator, email, password)
+      let credentials = {
+        password,
+        identification: email,
+      };
+      session.authenticate(authenticator, credentials)
         .catch(({ error }) => this.set('error', error));
     }
   }

@@ -174,19 +174,22 @@ export default function( server ) {
   // });
   //
   noovis.createUser({
-    email: 'admin@noovis.com',
+    id: 1,
+    email: 'admin',
     role: 'admin',
     last_accessed: faker.date.recent(),
   });
 
   noovis.createUser({
-    email: 'user@noovis.com',
+    id: 2,
+    email: 'user',
     role: 'user',
     last_accessed: faker.date.recent(),
   });
 
   princetonCompany.createUser({
-    email: 'employee@princeton.edu',
+    id: 3,
+    email: 'customer',
     role: 'customer',
     last_accessed: faker.date.recent(),
   });
