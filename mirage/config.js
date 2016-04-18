@@ -164,4 +164,5 @@ export default function() {
     return _user;
   });
   this.patch('/users/:id', 'user');
+  this.del('/users/:id', 'user');
 }

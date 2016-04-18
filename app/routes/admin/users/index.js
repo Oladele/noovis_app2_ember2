@@ -9,5 +9,12 @@ export default Ember.Route.extend({
     return RSVP.hash({
       users: this.store.findAll('user')
     });
+  },
+
+  actions: {
+    destroyUser(user) {
+      user.destroyRecord()
+        .catch(({ errors }) => this.controller.set('errors', errors));
+    }
   }
 });
