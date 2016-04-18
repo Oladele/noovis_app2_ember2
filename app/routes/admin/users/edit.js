@@ -1,10 +1,17 @@
 import Ember from 'ember';
+import { CanMixin } from 'ember-can';
 
 const {
   RSVP
 } = Ember;
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(CanMixin, {
+  beforeModel() {
+    if (!this.can('write user')) {
+      this.transitionTo('admin.users');
+    }
+  },
+
   model(params) {
     return RSVP.hash({
       user: this.store.findRecord('user', params.user_id),

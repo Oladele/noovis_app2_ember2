@@ -13,7 +13,6 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        {{!--#if session.isAuthenticated--}}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <span class="glyphicon glyphicon-user"></span>
@@ -21,6 +20,11 @@
             <span class="caret"></span>
           </a>
           <ul class='dropdown-menu'>
+            {{#if (can 'read user')}}
+            <li>
+              {{link-to 'Manage Users' 'admin.users.index'}}
+            </li>
+            {{/if}}
             <li
               {{action (route-action 'invalidateSession')}}
               data-test-sign-out-link
@@ -29,8 +33,6 @@
             </li>
           </ul>
         </li>
-        {{!--else--}}
-        {{!--/if--}}
       </ul>
     </div><!--/.nav-collapse -->
 
