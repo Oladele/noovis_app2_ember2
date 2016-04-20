@@ -14,7 +14,8 @@ export default Ember.Service.extend({
 
   loadCurrentUser() {
     return new RSVP.Promise((resolve, reject) => {
-      let accountId = this.get('session.data.authenticated.account_id');
+      // session data is set in `authenticate` success handler in authenticator
+      let accountId = this.get('session.data.authenticated.accountId');
       if (!isEmpty(accountId)) {
         return this.get('store').findRecord('user', accountId)
           .then(user => {

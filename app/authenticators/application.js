@@ -35,7 +35,8 @@ export default DeviseAuthenticator.extend({
             expiry: xhr.getResponseHeader('expiry'),
             tokenType: xhr.getResponseHeader('token-type'),
             uid: xhr.getResponseHeader('uid'),
-            client: xhr.getResponseHeader('client')
+            client: xhr.getResponseHeader('client'),
+            accountId: response.data.id
           };
 
           run(null, resolve, result);
