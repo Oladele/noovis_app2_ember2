@@ -6,7 +6,7 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
 
   actions: {
     authenticate(email, password) {
-      let authenticator = 'authenticator:token';
+      let authenticator = 'authenticator:application';
       let session = this.get('session');
       let credentials = {
         password,

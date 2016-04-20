@@ -4,7 +4,6 @@ import cableRunData from './cable-run-data';
 import networkGraphData from './_latest-network-graph-data';
 
 export default function() {
-
   this.get('/network-sites', 'network-sites');
   this.get('/network-sites/:id', 'network-site');
   this.del('/network-sites/:id', 'network-site');
@@ -86,27 +85,45 @@ export default function() {
 
   this.get('/workbooks/:id', 'workbook');
 
-  this.post('/api/token-auth', (schema, request) => {
-    let { username } = JSON.parse(request.requestBody);
+  this.post('/auth/sign_in', (schema, request) => {
+    let result = _queryStringToJSON(request.requestBody);
+    let { email: uid, password } = result;
+
     let account_id;
-    switch (username) {
+    let role;
+    switch (uid) {
       case 'admin':
         account_id = 1;
+        role = 'admin';
         break;
       case 'user':
         account_id = 2;
+        role = 'user';
         break;
       case 'customer':
         account_id = 3;
+        role = 'customer';
         break;
     }
 
     return new Mirage.Response(
       201,
-      { 'Content-Type': 'application/json' },
       {
-        account_id,
-        access_token: 'secret-token',
+        'Content-Type': 'application/json',
+        'access-token': 'secret-token',
+        'client': 'client-token',
+        'expiry': 12345,
+        'token-type': 'Bearer',
+        'uid': uid
+      },
+      {
+        "data": {
+          "type": "users",
+         "id": account_id,
+         "attributes": {
+           "email": uid
+         }
+        }
       }
     );
   });
@@ -165,4 +182,14 @@ export default function() {
   });
   this.patch('/users/:id', 'user');
   this.del('/users/:id', 'user');
+}
+
+function _queryStringToJSON(s) {
+  let result = s.split('&').reduce((acc, attr) => {
+    let [key, value] = attr.split('=');
+    acc[key] = value;
+    return acc;
+  }, {});
+
+  return result;
 }

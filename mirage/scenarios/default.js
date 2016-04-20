@@ -187,7 +187,7 @@ export default function( server ) {
     last_accessed: faker.date.recent(),
   });
 
-  princetonCompany.createUser({
+  ericksonCompany.createUser({
     id: 3,
     email: 'customer',
     role: 'customer',
