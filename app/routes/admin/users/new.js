@@ -39,10 +39,10 @@ export default Ember.Route.extend({
       };
 
       return ajax.post('/users', {
-        contentType: 'application/json',
+        contentType: 'application/vnd.api+json',
         data: JSON.stringify(data)
       })
-      .then(this.transitionTo('admin.users'))
+      .then(() => this.transitionTo('admin.users.index'))
       .catch(({ errors }) => this.controller.set('errors', errors));
     }
   }
