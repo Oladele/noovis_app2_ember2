@@ -1,5 +1,6 @@
 import DeviseAuthenticator from 'ember-simple-auth/authenticators/devise';
 import Ember from 'ember';
+import ENV from '../config/environment';
 
 const {
   RSVP: { Promise },
@@ -10,7 +11,7 @@ const {
 
 export default DeviseAuthenticator.extend({
   session: service(),
-  serverTokenEndpoint: '/auth/sign_in',
+  serverTokenEndpoint: `${ENV.apiHost}/auth/sign_in`,
 
   restore(data){
     if (!isEmpty(data.accessToken) && !isEmpty(data.expiry) &&
@@ -30,6 +31,7 @@ export default DeviseAuthenticator.extend({
 
       this.makeRequest(data).then(
         (response, status, xhr) => {
+          // the result will be assigned to session.data.authenticated
           let result = {
             accessToken: xhr.getResponseHeader('access-token'),
             expiry: xhr.getResponseHeader('expiry'),
