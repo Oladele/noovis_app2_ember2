@@ -25,7 +25,7 @@ export default Ember.Route.extend({
             email: attrs.email,
             role: attrs.role,
             password: attrs.password,
-            passwordConfirmation: attrs.passwordConfirmation
+            "password-confirmation": attrs.passwordConfirmation
           },
           relationships: {
             company: {
