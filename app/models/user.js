@@ -12,7 +12,6 @@ export default Model.extend({
   email: attr(),
   role: attr(),
   company: belongsTo(),
-  last_accessed: attr('date'),
   isAdmin: computed('role', function() {
     return isEqual(this.get('role'), 'admin');
   }),
