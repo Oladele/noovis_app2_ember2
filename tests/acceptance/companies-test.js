@@ -2,6 +2,8 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'noovis-app2-ember2/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'noovis-app2-ember2/tests/helpers/ember-simple-auth';
 
+let currentUser;
+
 class CompanyFormPageObject {
   fillName(name) {
     fillIn('[data-test-selector="company-name-input"]', name);
@@ -16,7 +18,8 @@ class CompanyFormPageObject {
 
 moduleForAcceptance('Acceptance | companies', {
   beforeEach() {
-    authenticateSession(this.application);
+    currentUser = server.create('user', { role: 'admin' });
+    authenticateSession(this.application, { accountId: currentUser.id });
   }
 });
 

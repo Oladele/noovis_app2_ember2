@@ -40,10 +40,12 @@ class SitePageObject {
 }
 
 let company;
+let currentUser;
 
 moduleForAcceptance('Acceptance | network sites', {
   beforeEach() {
-    authenticateSession(this.application);
+    currentUser = server.create('user', { role: 'admin' });
+    authenticateSession(this.application, { accountId: currentUser.id });
     company = server.create('company', { name: 'ACME' });
  }
 });

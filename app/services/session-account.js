@@ -17,11 +17,10 @@ export default Ember.Service.extend({
       // session data is set in `authenticate` success handler in authenticator
       let accountId = this.get('session.data.authenticated.accountId');
       if (!isEmpty(accountId)) {
-        return this.get('store').findRecord('user', accountId)
-          .then(user => {
-            this.set('account', user);
-            resolve();
-          }, reject);
+        return this.get('store').findRecord('user', accountId).then(user => {
+          this.set('account', user);
+          resolve();
+        }, reject);
       } else {
         resolve();
       }

@@ -7,10 +7,10 @@ const {
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   session: service(),
-  sessionAccount: service('session-account'),
+  sessionAccount: service(),
 
   beforeModel() {
-    this.get('sessionAccount').loadCurrentUser();
+    return this.get('sessionAccount').loadCurrentUser();
   },
 
   sessionAuthenticated() {

@@ -4,7 +4,8 @@ import { authenticateSession } from 'noovis-app2-ember2/tests/helpers/ember-simp
 
 moduleForAcceptance('Acceptance | sites', {
   beforeEach() {
-    authenticateSession(this.application);
+    let currentUser = server.create('user', { role: 'admin' });
+    authenticateSession(this.application, { accountId: currentUser.id});
   }
 });
 

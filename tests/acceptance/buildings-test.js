@@ -36,10 +36,12 @@ class BuildingFormPageObject {
 
 let company;
 let site;
+let currentUser;
 
 moduleForAcceptance('Acceptance | buildings', {
   beforeEach() {
-    authenticateSession(this.application);
+    currentUser = server.create('user', { role: 'admin' });
+    authenticateSession(this.application, { accountId: currentUser.id });
     company = server.create('company', { name: 'ACME' });
     site = company.createNetworkSite({ name: 'Herbert' });
   }
