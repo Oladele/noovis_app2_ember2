@@ -34,6 +34,10 @@ module.exports = function(environment) {
     }
   };
 
+  if (environment === 'ngrok') {
+    ENV.apiHost = 'http://26788553.ngrok.io';
+  }
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
