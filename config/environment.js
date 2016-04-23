@@ -25,6 +25,10 @@ module.exports = function(environment) {
     }
   };
 
+  if (environment === 'ngrok') {
+    ENV.apiHost = 'http://26788553.ngrok.io';
+  }
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -32,7 +36,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.contentSecurityPolicy = contentSecurityPolicy;
-    
+
   }
 
   if (environment === 'test') {
