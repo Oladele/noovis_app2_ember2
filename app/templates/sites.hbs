@@ -59,7 +59,9 @@
 <div class="col-xs-9">
   {{#if showMap}}
     <h2>All Noovis @FiberSpeed™ Sites</h2>
+    {{#if (can 'read globalNodeCounts')}}
     {{node-counts-table data=model.nodeCounts}}
+    {{/if}}
     {{#g-maps-container model=model.sites as |map|}}
       {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
     {{/g-maps-container}}

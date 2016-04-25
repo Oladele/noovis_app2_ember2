@@ -13,12 +13,22 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     console.log("config.environment:", config.environment);
     console.log("config.apiHost:", config.apiHost);
+    let global = this.get('ajax').request('global')
+      .then(results => results, () => {
+        return {
+          data: {
+            attributes: {
+              "node-counts": []
+            }
+          }
+        };
+      });
 
     return RSVP.hash({
       companies: this.store.findAll('company'),
       sites: this.store.findAll('networkSite'),
       buildings: this.store.findAll('building'),
-      global: this.get('ajax').request('global')
+      global
     });
   },
 
