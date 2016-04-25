@@ -10,12 +10,16 @@ const {
 export default AjaxService.extend({
   host: ENV.apiHost,
   session: service(),
-  headers: computed('session.data.authenticated.access_token', {
+  headers: computed('session.data.authenticated', {
     get() {
       let headers = {};
-      let token = this.get('session.data.authenticated.access_token');
-      if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
+      let { accessToken, client, expiry, uid, tokenType} = this.get('session.data.authenticated');
+      if (accessToken) {
+        headers['access-token'] = accessToken;
+        headers['token-type'] = tokenType;
+        headers['client'] = client;
+        headers['expiry'] = expiry;
+        headers['uid'] = uid;
       }
       return headers;
     }
