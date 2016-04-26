@@ -1,5 +1,8 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'noovis-app2-ember2/tests/helpers/module-for-acceptance';
+import { authenticateSession } from 'noovis-app2-ember2/tests/helpers/ember-simple-auth';
+
+let currentUser;
 
 class CompanyFormPageObject {
   fillName(name) {
@@ -13,7 +16,12 @@ class CompanyFormPageObject {
   }
 }
 
-moduleForAcceptance('Acceptance | companies');
+moduleForAcceptance('Acceptance | companies', {
+  beforeEach() {
+    currentUser = server.create('user', { role: 'admin' });
+    authenticateSession(this.application, { accountId: currentUser.id });
+  }
+});
 
 test('can create new company', function(assert) {
   visit('/sites/companies/new');

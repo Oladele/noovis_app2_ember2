@@ -2,6 +2,8 @@
   {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
 {{/g-maps-container}}
 
-{{company-form on-submit=(route-action 'updateCompany') on-delete=(route-action 'deleteCompany') isEditing=true name=model.company.name company=model.company}}
+{{#if (can 'write company')}}
+  {{company-form on-submit=(route-action 'updateCompany') on-delete=(route-action 'deleteCompany') isEditing=true name=model.company.name company=model.company}}
+{{/if}}
 
 {{network-sites-list company=model.company sites=model.sites}}

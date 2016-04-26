@@ -35,6 +35,13 @@ Router.map(function() {
       });
     });
   });
+  this.route('login');
+  this.route('admin', function() {
+    this.route('users', function() {
+      this.route('new');
+      this.route('edit', { path: ':user_id'});
+    });
+  });
 });
 
 export default Router;

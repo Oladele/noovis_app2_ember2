@@ -17,16 +17,21 @@
   }}
 {{/g-maps-container}}
 
-{{network-site-form
-    site=model.site
-    name=model.site.name
-    address=model.site.address
-    onPlaceUpdate=(route-action 'didUpdatePlace')
-    onSubmit=(route-action 'submit')
-    onDelete=(route-action 'deleteNetworkSite' model.site)
-    place=place
-    isEditing=true
-}}
+{{#if (can 'write networkSite')}}
+  {{network-site-form
+      site=model.site
+      name=model.site.name
+      address=model.site.address
+      onPlaceUpdate=(route-action 'didUpdatePlace')
+      onSubmit=(route-action 'submit')
+      onDelete=(route-action 'deleteNetworkSite' model.site)
+      place=place
+      isEditing=true
+  }}
+{{else}}
+  <div><label>Site Name:</label> {{model.site.name}}</div>
+  <div><label>Site Address:</label> {{model.site.address}}</div>
+{{/if}}
 
 {{buildings-list
     buildings=model.buildings

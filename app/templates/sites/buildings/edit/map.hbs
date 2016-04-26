@@ -14,12 +14,23 @@
   }}
 {{/g-maps-container}}
 
-{{building-form
-    building=model.building
-    name=model.building.name
-    description=model.building.description
-    lat=bLat
-    lng=bLng
-    onSubmit=(route-action 'submit')
-    onDelete=(route-action 'destroyBuilding')
-}}
+{{#if (can 'write building')}}
+  {{building-form
+      building=model.building
+      name=model.building.name
+      description=model.building.description
+      lat=bLat
+      lng=bLng
+      onSubmit=(route-action 'submit')
+      onDelete=(route-action 'destroyBuilding')
+  }}
+{{else}}
+  <div>
+    <h5>Building Name</h5>
+    {{model.building.name}}
+  </div>
+  <div>
+    <h5>Description</h5>
+    {{model.building.description}}
+  </div>
+{{/if}}

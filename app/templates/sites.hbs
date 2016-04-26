@@ -4,6 +4,7 @@
   
   <br>
   <p>
+  {{#if (can 'write company')}}
     {{#link-to
         "sites.companies.new"
         data-test-selector="new-company-button"
@@ -11,6 +12,7 @@
     }}
         Add Company
     {{/link-to}}
+  {{/if}}
   </p>
 
   {{#each model.companies as |company|}}
@@ -57,7 +59,9 @@
 <div class="col-xs-9">
   {{#if showMap}}
     <h2>All Noovis @FiberSpeed™ Sites</h2>
+    {{#if (can 'read globalNodeCounts')}}
     {{node-counts-table data=model.nodeCounts}}
+    {{/if}}
     {{#g-maps-container model=model.sites as |map|}}
       {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
     {{/g-maps-container}}
