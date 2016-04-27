@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { CanMixin } from 'ember-can';
 
 const {
   inject,
@@ -6,8 +7,14 @@ const {
   RSVP,
 } = Ember;
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(CanMixin, {
   ajax: inject.service(),
+  beforeModel() {
+    if (!this.can('write user')) {
+      this.transitionTo('admin.users');
+    }
+  },
+
   model() {
     return RSVP.hash({
       companies: this.store.findAll('company'),

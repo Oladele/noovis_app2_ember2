@@ -6,10 +6,12 @@ let company;
 let site;
 let building;
 let workbook;
+let admin;
 
 moduleForAcceptance('Acceptance | sheet upload', {
   beforeEach() {
-    authenticateSession(this.application);
+    admin = server.create('user', { role: 'admin' });
+    authenticateSession(this.application, { accountId: admin.id });
     company = server.create('company', { name: 'ACME' });
     site = company.createNetworkSite();
     building = site.createBuilding();

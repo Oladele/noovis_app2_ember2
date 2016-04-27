@@ -1,10 +1,17 @@
 import Ember from 'ember';
+import { CanMixin } from 'ember-can';
 
 const {
   RSVP
 } = Ember;
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(CanMixin, {
+  beforeModel() {
+    if (!this.can('write networkSite')) {
+      this.transitionTo('sites.companies.company.edit');
+    }
+  },
+
   model() {
     return RSVP.hash({
       sites: this.modelFor('sites.companies.company').get('networkSites'),
