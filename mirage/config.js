@@ -121,7 +121,8 @@ export default function() {
           "type": "users",
          "id": account_id,
          "attributes": {
-           "email": uid
+           "email": uid,
+           "role": role
          }
         }
       }

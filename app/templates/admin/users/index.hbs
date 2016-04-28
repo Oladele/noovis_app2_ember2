@@ -13,7 +13,15 @@
   <tbody>
     {{#each model.users as |user|}}
       <tr>
-        <td>{{#link-to 'admin.users.edit' user.id}}{{user.email}}{{/link-to}}</td>
+        <td>
+          {{#link-to
+              'admin.users.edit'
+              user.id
+              data-test-selector='edit-user-link'
+          }}
+              {{user.email}}
+          {{/link-to}}
+        </td>
         <td>{{user.last_accessed}}</td>
         <td>{{user.company.name}}</td>
         <td><span class='label label-primary'>{{user.role}}</span></td>
@@ -36,6 +44,7 @@
       'Add User'
       'admin.users.new'
       class='btn btn-primary'
+      data-test-selector='add-user-link'
   }}
 {{/if}}
 

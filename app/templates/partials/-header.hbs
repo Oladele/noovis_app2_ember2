@@ -22,7 +22,7 @@
           <ul class='dropdown-menu'>
             {{#if (can 'read user')}}
             <li>
-              {{link-to 'Manage Users' 'admin.users.index'}}
+              {{link-to 'Manage Users' 'admin.users.index' data-test-selector='manage-users-link'}}
             </li>
             {{/if}}
             <li
