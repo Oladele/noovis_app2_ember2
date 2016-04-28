@@ -1,0 +1,42 @@
+<h2>N2OA Users Admin</h2>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Last accessed</th>
+      <th>Company</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.users as |user|}}
+      <tr>
+        <td>{{#link-to 'admin.users.edit' user.id}}{{user.email}}{{/link-to}}</td>
+        <td>{{user.last_accessed}}</td>
+        <td>{{user.company.name}}</td>
+        <td><span class='label label-primary'>{{user.role}}</span></td>
+        {{#if (can 'write user')}}
+          <td><button class='btn btn-danger btn-sm' {{action (route-action 'destroyUser' user)}}>Delete</button></td>
+        {{/if}}
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{link-to
+    'Back to Sites'
+    'sites'
+    class='btn btn-primary'
+}}
+
+{{#if (can 'write user')}}
+  {{link-to
+      'Add User'
+      'admin.users.new'
+      class='btn btn-primary'
+  }}
+{{/if}}
+
+{{outlet}}

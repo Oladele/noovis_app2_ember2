@@ -1,5 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'noovis-app2-ember2/tests/helpers/module-for-acceptance';
+import { authenticateSession } from 'noovis-app2-ember2/tests/helpers/ember-simple-auth';
 
 class BuildingFormPageObject {
   fillName(name) {
@@ -35,9 +36,12 @@ class BuildingFormPageObject {
 
 let company;
 let site;
+let currentUser;
 
 moduleForAcceptance('Acceptance | buildings', {
   beforeEach() {
+    currentUser = server.create('user', { role: 'admin' });
+    authenticateSession(this.application, { accountId: currentUser.id });
     company = server.create('company', { name: 'ACME' });
     site = company.createNetworkSite({ name: 'Herbert' });
   }

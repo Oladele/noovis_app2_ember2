@@ -1,11 +1,13 @@
 <h2>Buildings</h2>
-{{#link-to
-    'sites.network-sites.network-site.buildings.new'
-    data-test-selector='add-building-button'
-    class='btn btn-primary'
-}}
-  Add a New Building
-{{/link-to}}
+{{#if (can 'write building')}}
+  {{#link-to
+      'sites.network-sites.network-site.buildings.new'
+      data-test-selector='add-building-button'
+      class='btn btn-primary'
+  }}
+    Add a New Building
+  {{/link-to}}
+{{/if}}
 
 <ul class='list-unstyled'>
   {{#each buildings as |building|}}

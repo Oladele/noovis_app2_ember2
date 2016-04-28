@@ -6,19 +6,15 @@ const {
 
 export default Ember.Route.extend({
   model() {
-    let building = this.modelFor('sites.buildings.edit').building;
+    let { building } = this.modelFor('sites.buildings.edit');
+    let sheets = building.get('sheets')
+      .then(sheets => sheets.reload())
+      .then(newSheets => newSheets);
+
     return RSVP.hash({
       building,
-      sheets: building.get('sheets')
+      sheets
     });
-  },
-
-  afterModel(model) {
-    let sheets = model.sheets;
-    return sheets.reload()
-      .then(newSheets => {
-        model.sheets = newSheets;
-      });
   },
 
   actions: {

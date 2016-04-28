@@ -1,6 +1,5 @@
 /* jshint node: true */
 
-
 var contentSecurityPolicy = {
   'script-src': "'self' 'unsafe-eval' 'unsafe-inline' *.googleapis.com maps.gstatic.com",
   'connect-src': "'self' http://localhost:* http://noovis2-staging.herokuapp.com maps.gstatic.com",
@@ -37,6 +36,11 @@ module.exports = function(environment) {
   if (environment === 'ngrok') {
     ENV.apiHost = 'http://26788553.ngrok.io';
   }
+
+  ENV['ember-simple-auth'] = {
+    authorizer: 'authorizer:application',
+    authenticationRoute: 'login',
+  };
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
