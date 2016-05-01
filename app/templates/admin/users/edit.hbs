@@ -2,6 +2,12 @@
   {{flash-message flash=flash}}
 {{/each}}
 
+<ol class='breadcrumb'>
+  <li>{{link-to 'Network Sites' 'sites'}}</li>
+  <li>{{link-to 'Users' 'admin.users'}}</li>
+  <li>{{link-to 'Edit' 'admin.users.edit'}}</li>
+</ol>
+
 <h2>Edit User</h2>
 
 {{user-form 
@@ -11,12 +17,6 @@
     role=model.user.role
     company=model.user.company
     onSubmit=(route-action 'updateUser')
-}}
-
-{{link-to
-    'Back to Users'
-    'admin.users'
-    class='btn btn-primary'
 }}
 
 {{outlet}}

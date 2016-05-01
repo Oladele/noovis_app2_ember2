@@ -168,3 +168,9 @@ form{
   margin-top: 15px;
 }
 
+.breadcrumb {
+  margin-top: 15px;
+}
+.breadcrumb > li + li:before {
+  content: '\232A';
+}
