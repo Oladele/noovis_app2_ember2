@@ -28,8 +28,14 @@ export default Ember.Controller.extend({
     let shallowestNode = findShallowestNode(branch);
     let ancestors = findAllAncestors(shallowestNode, nodes);
     branch.push(...ancestors);
+    let nodesWithImages = branch.map(node => {
+      node['brokenImage'] = 'assets/building.png';
+      node['shape'] = 'image';
+      node['image'] = `assets/${node.node_type}.png`;
+      return node;
+    });
 
-    return { edges, nodes: branch };
+    return { edges, nodes: nodesWithImages };
   }),
 
   tableHeaders: computed('model.cableRuns.[]', function() {

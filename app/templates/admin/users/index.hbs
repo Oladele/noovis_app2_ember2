@@ -1,3 +1,8 @@
+<ol class='breadcrumb'>
+  <li>{{link-to 'Network Sites' 'sites'}}</li>
+  <li>{{link-to 'Users' 'admin.users'}}</li>
+</ol>
+
 <h2>N2OA Users Admin</h2>
 
 <table class='table'>
@@ -32,12 +37,6 @@
     {{/each}}
   </tbody>
 </table>
-
-{{link-to
-    'Back to Sites'
-    'sites'
-    class='btn btn-primary'
-}}
 
 {{#if (can 'write user')}}
   {{link-to

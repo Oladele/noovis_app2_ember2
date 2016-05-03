@@ -6,6 +6,9 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     dotEnv: {
       clientAllowedKeys: ['GOOGLE_KEY']
+    },
+    babel: {
+      includePolyfill: true,
     }
   });
 
