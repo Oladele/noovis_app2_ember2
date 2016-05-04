@@ -13,8 +13,7 @@ export default Ember.Component.extend({
   didInsertElement() {
     this.set('timer', this.schedule(this.get('onPoll')));
     this.get('buildingJobStatus').registerPoll(() => {
-      debugger;
-      this.get('onPoll')
+      this.get('onPoll');
     });
   },
 
