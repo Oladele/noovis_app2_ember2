@@ -2,6 +2,7 @@ import Ember from 'ember';
 import ENV from '../../config/environment';
 
 export default Ember.Component.extend({
+  buildingJobStatus: Ember.inject.service(),
   sheetNames: ['Upload a Workbook'],
   requestURL: `${ENV.apiHost}/import_cable_run`,
   requestHeaders: {
@@ -36,6 +37,8 @@ export default Ember.Component.extend({
     notifyFlash(status, message) {
       this.get('onFlashReceive')(status, message);
       this.get('onComplete')();
+      // action
+      this.get('buildingJobStatus').checkNow();
     }
   }
 });

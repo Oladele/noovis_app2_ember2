@@ -7,5 +7,6 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   networkSite: DS.belongsTo('network-site'),
   sheets: DS.hasMany('sheet'),
-  nodeCounts: DS.attr()
+  nodeCounts: DS.attr(),
+  importJobStatus: DS.attr('string')
 });
