@@ -1,0 +1,36 @@
+{{#g-maps-container
+    lat=model.building.lat
+    lng=model.building.lng
+    zoom=18
+    model=model.building
+    buildingmarker=buildingMarker as |map|
+}}
+  {{g-maps
+      lat=map.lat
+      lng=map.lng
+      zoom=map.zoom
+      mapType='satellite'
+      markers=buildingMarker
+  }}
+{{/g-maps-container}}
+
+{{#if (can 'write building')}}
+  {{building-form
+      building=model.building
+      name=model.building.name
+      description=model.building.description
+      lat=bLat
+      lng=bLng
+      onSubmit=(route-action 'submit')
+      onDelete=(route-action 'destroyBuilding')
+  }}
+{{else}}
+  <div>
+    <h5>Building Name</h5>
+    {{model.building.name}}
+  </div>
+  <div>
+    <h5>Description</h5>
+    {{model.building.description}}
+  </div>
+{{/if}}

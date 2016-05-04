@@ -1,0 +1,33 @@
+<h2>Buildings</h2>
+{{#if (can 'write building')}}
+  {{#link-to
+      'sites.network-sites.network-site.buildings.new'
+      data-test-selector='add-building-button'
+      class='btn btn-primary'
+  }}
+    Add a New Building
+  {{/link-to}}
+{{/if}}
+
+<ul class='list-unstyled'>
+  {{#each buildings as |building|}}
+    <li class="associated-model-list-item">
+      {{#link-to
+        'sites.buildings.edit'
+        building.id
+        data-test-selector='building-item'
+      }}
+        {{building.name}}
+      {{/link-to}}
+      
+      <button
+        {{action 'deleteBuilding' building}}
+        class='btn btn-xs btn-danger pull-right'
+        data-test-selector='delete-building-button'
+      >
+        <span class='glyphicon glyphicon-remove'></span>
+      </button>
+    </li>
+  {{/each}}
+</ul>
+{{yield}}

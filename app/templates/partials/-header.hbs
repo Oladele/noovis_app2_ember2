@@ -7,23 +7,34 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">NNOA 2.0</a>
+      {{#link-to "sites" data-test-selector="sites-link"}}
+        <img src="/assets/logo-white.png">
+      {{/link-to}}
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          {{link-to "Sites" "sites" data-test-selector="sites-link"}}
-        </li>
-        <li><a href="#about">Stats</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li role="separator" class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+      <ul class="nav navbar-nav navbar-right">
+        {{#if session.isAuthenticated}}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-user"></span>
+                {{!-- Settings --}}
+                <span class="caret"></span>
+              </a>
+              <ul class='dropdown-menu'>
+                {{#if (can 'read user')}}
+                <li>
+                  {{link-to 'Manage Users' 'admin.users.index' data-test-selector='manage-users-link'}}
+                </li>
+                {{/if}}
+                <li
+                  {{action (route-action 'invalidateSession')}}
+                  data-test-sign-out-link
+                >
+                  <a href='#'>Sign Out</a>
+                </li>
+              </ul>
+            </li>
+      {{/if}}
       </ul>
     </div><!--/.nav-collapse -->
 

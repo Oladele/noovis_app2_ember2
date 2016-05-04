@@ -2,18 +2,31 @@
   <div class='form-group'>
     <label>
       Company Name
-      <br>
-      {{x-input
-          value=name
-          size=50
-          placeholder='Company, got a name?'
-          data-test-selector='company-name-input'
-      }}
     </label>
+    {{x-input
+        value=name
+        size=50
+        placeholder='Company, got a name?'
+        data-test-selector='company-name-input'
+        class='form-control'
+    }}
   </div>
-  <button data-test-selector='submit-button' {{action 'submit'}}>Update</button>
+  
+  <button 
+    data-test-selector='submit-button'
+    {{action 'submit'}}
+    class='btn btn-primary'
+  >
+    Update
+  </button>
 
   {{#if isEditing}}
-    <button data-test-selector='delete-button' {{action 'delete'}}>Delete</button>
+    <button 
+      data-test-selector='delete-button'
+      {{action 'delete'}}
+      class='btn btn-danger'
+    >
+      Delete
+    </button>
   {{/if}}
 </form>
