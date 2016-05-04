@@ -32,9 +32,6 @@ export default DeviseAuthenticator.extend({
 
       this.makeRequest(data).then(
         (response, status, xhr) => {
-          // the result will be assigned to session.data.authenticated
-          let store = this.get('store');
-          run(() => store.createRecord('user', response.data));
           let result = {
             accessToken: xhr.getResponseHeader('access-token'),
             expiry: xhr.getResponseHeader('expiry'),

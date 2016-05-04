@@ -17,6 +17,9 @@ const NODES = [
   cable_run_id: 18291,
   node_type: "ont_ge_4_mac",
   label: " ONT_GE_4_MAC: F40F1B72D5C0",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/pon_port.png",
   level: "9"
 },
 {
@@ -30,6 +33,9 @@ const NODES = [
   cable_run_id: 18291,
   node_type: "ont_sn",
   label: " ONT_SN: 90EF1",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/ont_sn.png",
   level: "8"
 },
 {
@@ -43,6 +49,9 @@ const NODES = [
   cable_run_id: 18291,
   node_type: "room",
   label: " ROOM: 103.0",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/room.png",
   level: "7"
 },
 {
@@ -56,6 +65,9 @@ const NODES = [
   cable_run_id: 18290,
   node_type: "ont_ge_4_mac",
   label: " ONT_GE_4_MAC: F40F1B72D488",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/pon_port.png",
   level: "9"
 },
 {
@@ -69,6 +81,9 @@ const NODES = [
   cable_run_id: 18290,
   node_type: "ont_sn",
   label: " ONT_SN: 90DE2",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/ont_sn.png",
   level: "8"
 },
 {
@@ -82,6 +97,9 @@ const NODES = [
   cable_run_id: 18290,
   node_type: "room",
   label: " ROOM: 101.0",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/room.png",
   level: "7"
 },
 {
@@ -95,6 +113,9 @@ const NODES = [
   cable_run_id: 18290,
   node_type: "rdt",
   label: " RDT: 1.0",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/rdt.png",
   level: "6"
 },
 {
@@ -108,6 +129,9 @@ const NODES = [
   cable_run_id: 18290,
   node_type: "splitter",
   label: " SPLITTER: 1.0",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/splitter.png",
   level: "5"
 },
 {
@@ -121,6 +145,9 @@ const NODES = [
   cable_run_id: 18290,
   node_type: "fdh",
   label: " FDH: HV1",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/fdh.png",
   level: "4"
 },
 {
@@ -134,6 +161,9 @@ const NODES = [
   cable_run_id: 18290,
   node_type: "building",
   label: " BUILDING: Harborview",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/building.png",
   level: "3"
 },
 {
@@ -147,6 +177,9 @@ const NODES = [
   cable_run_id: 18290,
   node_type: "pon_port",
   label: " PON_PORT: 14",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/pon_port.png",
   level: "2"
 },
 {
@@ -160,6 +193,9 @@ const NODES = [
   cable_run_id: 18290,
   node_type: "pon_card",
   label: " PON_CARD: 5",
+  shape: "image",
+  brokenImage: "assets/building.png",
+  image: "assets/pon_card.png",
   level: "1"
 }
 ];
@@ -334,6 +370,9 @@ test('should filter nodes with filter ids', function(assert) {
     cable_run_id: 18291,
     node_type: "ont_ge_4_mac",
     label: " ONT_GE_4_MAC: F40F1B72D5C0",
+    shape: "image",
+    brokenImage: "assets/building.png",
+    image: "assets/pon_port.png",
     level: "9"
   },
   {
@@ -347,6 +386,9 @@ test('should filter nodes with filter ids', function(assert) {
     cable_run_id: 18291,
     node_type: "ont_sn",
     label: " ONT_SN: 90EF1",
+    shape: "image",
+    brokenImage: "assets/building.png",
+    image: "assets/ont_sn.png",
     level: "8"
   },
   {
@@ -360,6 +402,9 @@ test('should filter nodes with filter ids', function(assert) {
     cable_run_id: 18291,
     node_type: "room",
     label: " ROOM: 103.0",
+    shape: "image",
+    brokenImage: "assets/building.png",
+    image: "assets/room.png",
     level: "7"
   },
   {
@@ -373,6 +418,9 @@ test('should filter nodes with filter ids', function(assert) {
     cable_run_id: 18290,
     node_type: "rdt",
     label: " RDT: 1.0",
+    shape: "image",
+    brokenImage: "assets/building.png",
+    image: "assets/rdt.png",
     level: "6"
   },
   {
@@ -386,6 +434,9 @@ test('should filter nodes with filter ids', function(assert) {
     cable_run_id: 18290,
     node_type: "splitter",
     label: " SPLITTER: 1.0",
+    shape: "image",
+    brokenImage: "assets/building.png",
+    image: "assets/splitter.png",
     level: "5"
   },
   {
@@ -399,6 +450,9 @@ test('should filter nodes with filter ids', function(assert) {
     cable_run_id: 18290,
     node_type: "fdh",
     label: " FDH: HV1",
+    shape: "image",
+    brokenImage: "assets/building.png",
+    image: "assets/fdh.png",
     level: "4"
   },
   {
@@ -412,6 +466,9 @@ test('should filter nodes with filter ids', function(assert) {
     cable_run_id: 18290,
     node_type: "building",
     label: " BUILDING: Harborview",
+    shape: "image",
+    brokenImage: "assets/building.png",
+    image: "assets/building.png",
     level: "3"
   },
   {
@@ -425,6 +482,9 @@ test('should filter nodes with filter ids', function(assert) {
     cable_run_id: 18290,
     node_type: "pon_port",
     label: " PON_PORT: 14",
+    shape: "image",
+    brokenImage: "assets/building.png",
+    image: "assets/pon_port.png",
     level: "2"
   },
   {
@@ -438,6 +498,9 @@ test('should filter nodes with filter ids', function(assert) {
     cable_run_id: 18290,
     node_type: "pon_card",
     label: " PON_CARD: 5",
+    shape: "image",
+    brokenImage: "assets/building.png",
+    image: "assets/pon_card.png",
     level: "1"
   }];
 

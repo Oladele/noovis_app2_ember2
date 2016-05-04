@@ -163,3 +163,14 @@ form{
   margin-left: auto;
   margin-right: auto;
 }
+
+.alert {
+  margin-top: 15px;
+}
+
+.breadcrumb {
+  margin-top: 15px;
+}
+.breadcrumb > li + li:before {
+  content: '\232A';
+}

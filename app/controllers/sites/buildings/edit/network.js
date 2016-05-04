@@ -5,6 +5,24 @@ const {
   isEmpty
 } = Ember;
 
+const IMAGE_PATHS = {
+  room: 'assets/room.png',
+  pon_port: 'assets/pon_port.png',
+  building: 'assets/building.png',
+  door: 'assets/door.png',
+  fdh: 'assets/fdh.png',
+  olt_chassis: 'assets/olt_chassis.png',
+  ont_sn: 'assets/ont_sn.png',
+  pon_card: 'assets/pon_card.png',
+  rdt: 'assets/rdt.png',
+  splitter: 'assets/splitter.png',
+  wap: 'assets/wap.png',
+  ont_ge_1_mac: 'assets/pon_port.png',
+  ont_ge_2_mac: 'assets/pon_port.png',
+  ont_ge_3_mac: 'assets/pon_port.png',
+  ont_ge_4_mac: 'assets/pon_port.png',
+};
+
 export default Ember.Controller.extend({
   runNodes: computed('model.nodes.[]', 'filterIds', function() {
     let nodes = this.get('model.nodes');
@@ -28,8 +46,15 @@ export default Ember.Controller.extend({
     let shallowestNode = findShallowestNode(branch);
     let ancestors = findAllAncestors(shallowestNode, nodes);
     branch.push(...ancestors);
+    let nodesWithImages = branch.map(node => {
+      let _node = node;
+      _node.brokenImage = 'assets/building.png';
+      _node.shape = 'image';
+      _node.image = IMAGE_PATHS[node.node_type];
+      return _node;
+    });
 
-    return { edges, nodes: branch };
+    return { edges, nodes: nodesWithImages };
   }),
 
   tableHeaders: computed('model.cableRuns.[]', function() {

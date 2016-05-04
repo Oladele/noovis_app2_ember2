@@ -11,5 +11,10 @@ export default Ability.extend({
 
   canWrite: computed('sessionAccount.account', function() {
     return this.get('sessionAccount.account.isAdmin');
+  }),
+
+  canRead: computed('sessionAccount.account', function() {
+    return this.get('sessionAccount.account.isAdmin') ||
+      this.get('sessionAccount.account.isUser');
   })
 });

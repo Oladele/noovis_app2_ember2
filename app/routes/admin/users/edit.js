@@ -31,7 +31,7 @@ export default Ember.Route.extend(CanMixin, {
 
       user.setProperties(attrs);
       user.save()
-        .then(flashMessages.success('User has been updated.'))
+        .then(() => flashMessages.success('User has been updated.'))
         .catch(({errors}) => flashMessages.warning(errors));
     }
   }

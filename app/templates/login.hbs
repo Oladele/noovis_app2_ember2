@@ -1,3 +1,7 @@
+{{#each flashMessages.queue as |flash|}}
+  {{flash-message flash=flash}}
+{{/each}}
+
 <div class='row'>
   <div class='col-md-6 col-sm-8 center-block'>
     <div class='panel panel-default login-form'>
@@ -21,18 +25,19 @@
                 data-test-selector='password-input'
             }}
           </div>
-          <div class='checkbox'>
-            <label>
-              <input type='checkbox'>Remember me
-            </label>
-          </div>
           <button
             type='submit'
             {{action (route-action 'authenticate' email password)}}
             class='btn btn-default'
             data-test-submit-button
+            disabled={{authenticateTask.isRunning}}
           >
-            Submit
+            {{#if authenticateTask.isIdle}}
+              Submit
+            {{else}}
+              Signing in...
+              {{fa-icon "spinner" spin=true}}
+            {{/if}}
           </button>
         </form>
       </div>
