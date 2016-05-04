@@ -2,6 +2,8 @@
   {{flash-message flash=flash}}
 {{/each}}
 
+
+{{building-job-status building=model.building}}
 <h2>{{model.building.name}}</h2>
 
 {{node-counts-table data=model.building.nodeCounts}}
