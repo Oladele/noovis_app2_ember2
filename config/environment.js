@@ -37,6 +37,9 @@ module.exports = function(environment) {
     authorizer: 'authorizer:application',
     authenticationRoute: 'login',
   };
+  if (environment === 'ngrok') {
+    ENV.apiHost = 'http://26788553.ngrok.io';
+  }
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
