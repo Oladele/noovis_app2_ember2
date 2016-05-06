@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 const {
-  RSVP
+  RSVP: { hash }
 } = Ember;
 
 export default Ember.Route.extend({
@@ -15,15 +15,10 @@ export default Ember.Route.extend({
   },
   
   model(params) {
-    return RSVP.hashSettled({
+    return hash({
       building: this.store.findRecord('building', params.building_id),
-    }).then(results => {
-      return {
-        building: results.building.value,
-      };
-    }).catch(({ error }) => {
-      this.set('error', error);
-    });
+    })
+    .catch(({ errors }) => this.set('errors', errors));
   },
 
   actions: {
