@@ -21,6 +21,10 @@ export default Ember.Route.extend({
     .catch(({ errors }) => this.set('errors', errors));
   },
 
+  breadCrumb: {
+    title: 'Building'
+  },
+
   actions: {
     submit(params) {
       let { building, name, description, lat, lng } = params;
