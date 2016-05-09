@@ -26,6 +26,9 @@
                   {{link-to 'Manage Users' 'admin.users.index' data-test-selector='manage-users-link'}}
                 </li>
                 {{/if}}
+                <li>
+                  {{link-to 'Edit Profile' 'users.edit'}}
+                </li>
                 <li
                   {{action (route-action 'invalidateSession')}}
                   data-test-sign-out-link

@@ -1,0 +1,45 @@
+<form {{action 'submit' on='submit'}}>
+  <div class='form-group'>
+    <label>
+      Email
+      {{x-input
+        value=email
+        size=50
+        placeholder=email
+        class='form-control'
+      }}
+    </label>
+  </div>
+
+  <div class='form-group'>
+    <label>
+      Password
+      {{x-input
+          value=password
+          type='password'
+          size=50
+          class='form-control'
+      }}
+    </label>
+  </div>
+
+  <div class='form-group'>
+    <label>
+      Password Confirmation
+      {{x-input
+          value=passwordConfirmation
+          type='password'
+          size=50
+          class='form-control'
+      }}
+    </label>
+  </div>
+
+  <button
+    {{action 'submit'}}
+    class='btn btn-primary'
+  >
+    Update
+  </button>
+</form>
+{{yield}}
