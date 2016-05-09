@@ -1,0 +1,363 @@
+<form {{action 'submit' on='submit'}}>
+  <div class='form-group'>
+    <label>
+      Site
+      {{x-input
+        value=cableRun.site
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+
+  <div class='form-group'>
+    <label>
+      Building
+      {{x-input
+        value=cableRun.building
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      Room
+      {{x-input
+        value=cableRun.room
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      Drop
+      {{x-input
+        value=cableRun.drop
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      RDT
+      {{x-input
+        value=cableRun.rdt
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      RDT Port
+      {{x-input
+        value=cableRun.rdtPort
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label></label>
+    <label>
+      FDH Port 
+      {{x-input
+        value=cableRun.fdhPort
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      Splitter
+      {{x-input
+        value=cableRun.splitter
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label></label>
+    <label>
+      Splitter Fiber
+      {{x-input
+        value=cableRun.splitterFiber
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      PON Card
+      {{x-input
+        value=cableRun.ponCard
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      PON Port
+      {{x-input
+        value=cableRun.ponPort
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      FDH
+      {{x-input
+        value=cableRun.fdh
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      Notes
+      {{x-input
+        value=cableRun.notes
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      OTL Rack
+      {{x-input
+        value=cableRun.oltRack
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      OLT Chassis
+      {{x-input
+        value=cableRun.oltChassis
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      VAM shelf
+      {{x-input
+        value=cableRun.vamShelf
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      VAM Module
+      {{x-input
+        value=cableRun.vamModule
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      VAM Port
+      {{x-input
+        value=cableRun.vamPort
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      Backbone Shelf
+      {{x-input
+        value=cableRun.backboneShelf
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      Backbone Cable
+      {{x-input
+        value=cableRun.backboneCable
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      Backbone Port
+      {{x-input
+        value=cableRun.backbonePort
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      FDH Location
+      {{x-input
+        value=cableRun.fdhLocation
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      RDT Location
+      {{x-input
+        value=cableRun.rdtLocation
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      ONT Model
+      {{x-input
+        value=cableRun.ontModel
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      ONT SN
+      {{x-input
+        value=cableRun.ontSn
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      RDT Port Count
+      {{x-input
+        value=cableRun.rdtPortCount
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      ONT GE 1 Device
+      {{x-input
+        value=cableRun.ontGe1Device
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      ONT GE 1 MAC
+      {{x-input
+        value=cableRun.ontGe1Mac
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      ONT GE 2 Device
+      {{x-input
+        value=cableRun.ontGe2Device
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      ONT GE 2 Mac
+      {{x-input
+        value=cableRun.ontGe2Mac
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      ONT GE 3 Device
+      {{x-input
+        value=cableRun.ontGe3Device
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      ONT GE 3 MAC
+      {{x-input
+        value=cableRun.ontGe3Mac
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      ONT GE 4 Device
+      {{x-input
+        value=cableRun.ontGe4Device
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      ONT GE 4 MAC
+      {{x-input
+        value=cableRun.ontGe4Mac
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+  <div class='form-group'>
+    <label>
+      Sheet
+      {{x-input
+        value=cableRun.sheet.name
+        size=50
+        class='form-control'
+      }}
+    </label>
+  </div>
+
+  <button 
+    {{action 'submit'}} 
+    class='btn btn-primary'
+  >
+    Update
+  </button>
+</form>
+{{yield}}

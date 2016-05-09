@@ -34,6 +34,10 @@ Router.map(function() {
         this.route('crl-uploads');
       });
     });
+
+    this.route('cable-runs', function() {
+      this.route('edit', { path: '/:cableRun_id' });
+    });
   });
   this.route('login');
   this.route('admin', function() {
