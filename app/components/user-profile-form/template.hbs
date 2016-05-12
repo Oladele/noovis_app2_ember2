@@ -7,6 +7,7 @@
         size=50
         placeholder=email
         class='form-control'
+        data-test-selector='email-input'
       }}
     </label>
   </div>
@@ -19,6 +20,7 @@
           type='password'
           size=50
           class='form-control'
+          data-test-selector='password-input'
       }}
     </label>
   </div>
@@ -31,6 +33,7 @@
           type='password'
           size=50
           class='form-control'
+          data-test-selector='passwordConfirmation-input'
       }}
     </label>
   </div>
@@ -38,6 +41,7 @@
   <button
     {{action 'submit'}}
     class='btn btn-primary'
+    data-test-selector='submit-button'
   >
     Update
   </button>
