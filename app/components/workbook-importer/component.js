@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import ENV from '../../config/environment';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Component.extend({
   buildingJobStatus: Ember.inject.service(),
@@ -8,6 +9,20 @@ export default Ember.Component.extend({
   requestHeaders: {
     contentType: false
   },
+
+  // TODO:
+  // When we fetch the file list right after server response, it does
+  // not contain our newly uploaded file yet. Here, we're inserting a delay
+  // until we find a better solutions. 3s seems sufficient in the current
+  // (May 6, 2016) environment.
+  //
+  // The number of records for the sheet may be lower than the actual number
+  // of records while server is processing the file.
+  refreshListTask: task(function * () {
+    yield timeout(3000);
+    this.get('onComplete')();
+  }),
+
   actions: {
     loadWorkbook(files) {
       let reader = new FileReader();
@@ -36,7 +51,7 @@ export default Ember.Component.extend({
 
     notifyFlash(status, message) {
       this.get('onFlashReceive')(status, message);
-      this.get('onComplete')();
+      this.get('refreshListTask').perform();
       // action
       this.get('buildingJobStatus').checkNow();
     }

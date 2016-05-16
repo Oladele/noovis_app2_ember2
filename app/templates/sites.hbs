@@ -57,6 +57,8 @@
 </div>
 
 <div class="col-xs-9">
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+
   {{#if showMap}}
     <h2>All Noovis @FiberSpeed™ Sites</h2>
     {{#if (can 'read globalNodeCounts')}}

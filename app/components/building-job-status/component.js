@@ -1,13 +1,24 @@
 import Ember from 'ember';
+// import { task, timeout } from 'ember-concurrency';
+
+const {
+  computed
+} = Ember;
 
 export default Ember.Component.extend({
   buildingJobStatus: Ember.inject.service(),
-  interval: 10000,
-  schedule: function(f) {
-    return Ember.run.later(this, function() {
-      f.apply(this);
-      this.set('timer', this.schedule(f));
-    }, this.get('interval'));
+
+  interval: computed(function() {
+    return !Ember.testing ? 10000 : 0;
+  }),
+
+  schedule(f) {
+    if (!Ember.testing) {
+      return Ember.run.later(this, function() {
+        f.apply(this);
+        this.set('timer', this.schedule(f));
+      }, this.get('interval'));
+    }
   },
 
   didInsertElement() {
@@ -22,7 +33,16 @@ export default Ember.Component.extend({
     this.get('buildingJobStatus').clearPoll();
   },
 
-  onPoll: function(){
+  onPoll() {
     this.get('building').reload();
-  }
+  },
+
+  // ember-concurrency
+  // getJobStatus: task(function * () {
+    // let interval = this.get('interval');
+    // while (true) {
+      // this.get('building').reload();
+      // yield timeout(interval);
+    // }
+  // }).on('init').cancelOn('deactivate')
 });

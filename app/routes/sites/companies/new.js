@@ -15,7 +15,15 @@ export default Ember.Route.extend(CanMixin, {
   actions: {
     createCompany(company, name) {
       company.set('name', name);
-      return company.save();
+      let flashMessages = this.get('flashMessages');
+      return company.save()
+        .then(resolvedCompany => {
+          this.transitionTo('sites.companies.company.edit', resolvedCompany.id);
+          flashMessages.success('Company was created.');
+        })
+        .catch(({ errors }) => {
+          flashMessages.danger(errors.join('. '));
+        });
     }
   }
 });

@@ -42,6 +42,9 @@ Router.map(function() {
       this.route('edit', { path: ':user_id'});
     });
   });
+  this.route('users', function() {
+    this.route('edit');
+  });
   this.route('not-found', { path: '/*wildcard' });
 });
 

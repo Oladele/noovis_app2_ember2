@@ -11,7 +11,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{building-job-status}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim(), 'No Jobs.');
 
   // Template block usage:
   this.render(hbs`
@@ -20,5 +20,5 @@ test('it renders', function(assert) {
     {{/building-job-status}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), 'No Jobs.');
 });

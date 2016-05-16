@@ -12,6 +12,10 @@ export default Ember.Route.extend(CanMixin, {
     }
   },
 
+  breadCrumb: {
+    title: 'CRL Uploads'
+  },
+
   model() {
     let { building } = this.modelFor('sites.buildings.edit');
     let sheets = building.get('sheets')
