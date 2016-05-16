@@ -150,7 +150,27 @@ export default function( server ) {
     name: 'Hampton Place',
     updatedAt: new Date(),
     workbookId: workbook.id,
-    recordCount: 5
+    recordCount: 5,
+    versions: [{
+      user: {
+        id: '1',
+        email: 'wusteven@gmail.com'
+      },
+      event_type: 'update',
+      changes: {
+        room: [
+          'N/A',
+          '456'
+        ],
+        updated_at: [
+          '2016-05-12T22:55:15.895Z',
+          '2016-05-14T21:37:22.569Z'
+        ]
+      },
+      cable_run: {
+        ont_sn: '90EF1'
+      }
+    }]
   });
 
   parkTerrace.createCableRun({

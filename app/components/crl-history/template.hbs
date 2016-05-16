@@ -1,54 +1,7 @@
 <h2>CRL Changes</h2>
 
-<div>List of changes made since the last uploaded spreadsheet</div>
-<div>Changes in red have not yet been incorporated to graphs and statsUpdate graphs and stats</div>
-<button class='btn btn-danger'>Update graphs and stats</button>
+<p>List of changes made since the last uploaded spreadsheet</p>
 
-<div class='panel panel-info'>
-  <div class='panel-heading'>
-    <div class='history-description'>ONT 91517 UPDATED 8 months ago by oladele@gmail.com:</div>
-  </div>
-<div class='panel-body'>
-<div class='history-unsynced'><span class='history-update'>created_at</span> changed from <span class='history-update'>2015-03-17T20:14:27.867Z</span> to <span class='history-update'>2015-03-17T20:14:27.867Z</span></div>
-<div class='history-unsynced'><span class='history-update'>pon_card</span> changed from <span class='history-update'>6</span> to <span class='history-update'>5Restore</span></div>
-</div>
-  <div class='panel-footer'>
-    <button class='btn btn-danger btn-xs'>Restore</button>
-    <button class='btn btn-danger btn-xs'>Edit Current</button>
-  </div>
-</div>
-
-<div class='panel panel-danger'>
-  <div class='panel-heading'>
-    <div><span class='history-description'>ONT 90EF1_0109PM DELETED 10 months ago by oladele@gmail.comRestore</span></div>
-  </div>
-  <div class='panel-footer'>
-    <button class='btn btn-danger btn-xs'>Restore</button>
-  </div>
-</div>
-
-<div class='panel panel-info'>
-  <div class='panel-heading'>
-    <div><span class='history-description'>ONT 90EF1 UPDATED 10 months ago by oladele@gmail.com:</span></div>
-  </div>
-  <div class='panel-body'>
-    <div><span class='history-update'>room</span> changed from <span class='history-update'>103.0</span> to <span class='history-update'>103.0_0109PM</span></div>
-  </div>
-  <div class='panel-footer'>
-    <button class='btn btn-accept btn-xs'>Restore</button>
-    <button class='btn btn-accept btn-xs'>Edit Current</button>
-  </div>
-</div>
-
-<div class='panel panel-success'>
-  <div class='panel-heading'>
-    <div><span class='history-description'>ONT 90EF1_0109PM CREATED about 1 year ago by oladele@gmail.comRestore</span></div>
-  </div>
-  <div class='panel-footer'>
-    <button class='btn btn-accept btn-xs'>Restore</button>
-    <button class='btn btn-accept btn-xs'>Edit Current</button>
-  </div>
-</div>
-
-
-
+{{#each versions as |version|}}
+  {{crl-history-card version=version}}
+{{/each}}

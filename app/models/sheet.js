@@ -12,6 +12,7 @@ export default DS.Model.extend({
   updatedAt: DS.attr('date'),
   recordCount: DS.attr(),
   workbook: DS.belongsTo('workbook'),
+  versions: DS.attr(),
   updatedDate: computed('updatedAt', function() {
     let date = this.get('updatedAt');
     let options = { 
