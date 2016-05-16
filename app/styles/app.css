@@ -174,3 +174,18 @@ form{
 .breadcrumb > li + li:before {
   content: '\232A';
 }
+
+.history-update {
+  background-color: #d9edf7;
+  padding: 0 4px;
+  border-radius: 3px;
+  margin-bottom: 2px;
+}
+
+.history-unsynced {
+  color: #a94442;
+}
+
+.history-description {
+  font-weight: bold;
+}

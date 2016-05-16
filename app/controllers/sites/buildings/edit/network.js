@@ -47,6 +47,10 @@ export default Ember.Controller.extend({
     let ancestors = findAllAncestors(shallowestNode, nodes);
     branch.push(...ancestors);
     let nodesWithImages = branch.map(node => {
+      if (node === undefined) {
+        return;
+      }
+
       let _node = node;
       _node.brokenImage = 'assets/building.png';
       _node.shape = 'image';
@@ -81,9 +85,11 @@ function findShallowestNode(tree) {
 
 function findAllAncestors(node, tree) {
   let nodes = [];
-  while (node.node_level > 1) {
+  while (node && node.node_level > 1) {
     let parent = tree.findBy('id', node.parent_id);
-    nodes.push(parent);
+    if (parent) {
+      nodes.push(parent);
+    }
     node = parent;
   }
   return nodes;

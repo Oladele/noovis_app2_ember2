@@ -6,25 +6,6 @@
   }}
 {{/if}}
 
+{{crl-uploads-list sheets=model.sheets}}
 
-<table class='table'>
-  <thead>
-      <tr>
-        <th>File</th>
-        <th>Sheet</th>
-        <th>Records</th>
-        <th>Date</th>
-      </tr>
-  </thead>
-  <tbody>
-    {{#each model.sheets as |sheet|}}
-      <tr data-test-selector='sheet-item'>
-        <td>{{sheet.workbook.name}}</td>
-        <td>{{sheet.name}}</td>
-        <td>{{sheet.recordCount}}</td>
-        <td>{{sheet.updatedDate}}</td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
-
+{{crl-history versions=model.sheets.lastObject.versions}}
