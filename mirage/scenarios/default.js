@@ -165,6 +165,10 @@ export default function( server ) {
         updated_at: [
           '2016-05-12T22:55:15.895Z',
           '2016-05-14T21:37:22.569Z'
+        ],
+        notes: [
+          '',
+          'Follow up in 2 weeks'
         ]
       },
       cable_run: {
