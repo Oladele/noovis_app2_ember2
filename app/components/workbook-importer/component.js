@@ -1,14 +1,29 @@
+/* global XLSX */
 import Ember from 'ember';
 import ENV from '../../config/environment';
 import { task, timeout } from 'ember-concurrency';
 
+const {
+  computed,
+  inject: { service }
+} = Ember;
+
 export default Ember.Component.extend({
+  session: service(),
   buildingJobStatus: Ember.inject.service(),
   sheetNames: ['Upload a Workbook'],
   requestURL: `${ENV.apiHost}/import_cable_run`,
-  requestHeaders: {
-    contentType: false
-  },
+  requestHeaders: computed('session.data.authenticated', function() {
+    let { accessToken, client, expiry, uid, tokenType } = this.get('session.data.authenticated');
+    return {
+      contentType: false,
+      client,
+      expiry,
+      uid,
+      'access-token': accessToken,
+      'token-type': tokenType,
+    };
+  }),
 
   // TODO:
   // When we fetch the file list right after server response, it does
@@ -29,13 +44,17 @@ export default Ember.Component.extend({
       this.set('file', files[0]);
 
       reader.onload = (e) => {
-        let data = e.target.result;
-        let workbook = XLSX.read(data, {type: 'binary'});
+        let arrayBuffer = e.target.result;
+        let data = new Uint8Array(arrayBuffer);
+        let bstr = data.reduce((acc, char) => {
+          return acc + String.fromCharCode(char);
+        }, '');
+        let workbook = XLSX.read(bstr, { type: 'binary' });
         let sheetNames = workbook.SheetNames;
         this.set('sheetNames', sheetNames);
         this.set('sheetName', sheetNames[0]);
       };
-      reader.readAsBinaryString(files[0]);
+      reader.readAsArrayBuffer(files[0]);
     },
 
     importWorkbook() {
