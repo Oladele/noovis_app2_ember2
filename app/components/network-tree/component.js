@@ -5,8 +5,12 @@ export default Ember.Component.extend({
   options: {
     layout: {
       hierarchical: {
+        nodeSpacing: 200,
         direction: 'LR'
       }
+    },
+    physics: {
+      enabled: false
     }
   },
 

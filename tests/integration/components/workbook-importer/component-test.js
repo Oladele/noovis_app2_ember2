@@ -35,6 +35,17 @@ test('should upload workbook', function(assert) {
   this.set('sheetName', sheet);
   this.set('componentAction', () => null);
   this.set('routeAction', () => null);
+  this.set('session', {
+    data: {
+      authenticated: {
+        accessToken: 'secret',
+        client: 'test',
+        expiry: 'future',
+        uid: 'test@example.com',
+        tokenType: 'Bearer'
+      }
+    }
+  });
 
   let done = assert.async();
   server.post('/import_cable_run', function(db, {requestHeaders, requestBody}) {
@@ -51,6 +62,7 @@ test('should upload workbook', function(assert) {
        file=file
        notifyFlash=(action componentAction)
        onFlashReceive=(action routeAction)
+       session=session
     }}
   `);
 
