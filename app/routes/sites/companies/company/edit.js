@@ -14,7 +14,9 @@ export default Ember.Route.extend({
     },
 
     deleteCompany(company) {
-      return company.destroyRecord();
+      return company.destroyRecord()
+        .then(() => this.transitionTo('sites'))
+        .catch(({ errors }) => this.set('errors', errors));
     }
   }
 });
