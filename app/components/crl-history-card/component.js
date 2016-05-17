@@ -2,7 +2,8 @@ import Ember from 'ember';
 import moment from 'moment';
 
 const {
-  computed
+  computed,
+  isEmpty
 } = Ember;
 
 export default Ember.Component.extend({
@@ -49,9 +50,14 @@ export default Ember.Component.extend({
     let diffs = [];
     Object.keys(changes).forEach(key => {
       let [previous, current] = changes[key];
+      previous = this._initValue(previous);
       let attribute = key;
       diffs.push({ attribute, previous, current });
     });
     return diffs;
-  })
+  }),
+
+  _initValue(value) {
+    return isEmpty(value) ? '-' : value;
+  }
 });
