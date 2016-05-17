@@ -15,7 +15,11 @@ export default Ember.Route.extend({
 
     deleteCompany(company) {
       return company.destroyRecord()
-        .then(() => this.transitionTo('sites'))
+        .then(() => {
+          this.transitionTo('sites');
+          let flashMessages = this.get('flashMessages');
+          flashMessages.success('Company was deleted.');
+        })
         .catch(({ errors }) => this.set('errors', errors));
     }
   }
