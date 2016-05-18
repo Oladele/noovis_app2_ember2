@@ -17,10 +17,10 @@ const IMAGE_PATHS = {
   rdt: 'assets/rdt.png',
   splitter: 'assets/splitter.png',
   wap: 'assets/wap.png',
-  ont_ge_1_mac: 'assets/pon_port.png',
-  ont_ge_2_mac: 'assets/pon_port.png',
-  ont_ge_3_mac: 'assets/pon_port.png',
-  ont_ge_4_mac: 'assets/pon_port.png',
+  ont_ge_1_mac: 'assets/wap.png',
+  ont_ge_2_mac: 'assets/wap.png',
+  ont_ge_3_mac: 'assets/wap.png',
+  ont_ge_4_mac: 'assets/wap.png',
 };
 
 export default Ember.Controller.extend({
