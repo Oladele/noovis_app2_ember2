@@ -29,9 +29,8 @@ export default Ember.Component.extend({
     return `${type.toUpperCase()}D`;
   }),
 
-  /*jshint unused: false*/
   updatedAt: computed('version', function() {
-    let [_, recent] = this.get('version.changes.updated_at');
+    let [, recent] = this.get('version.changes.updated_at');
     return moment(recent).fromNow();
   }),
 

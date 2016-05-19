@@ -1,3 +1,12 @@
+<ol class='breadcrumb'>
+  <li>
+    {{#link-to 'sites.companies.company' model.company.id}}
+      {{model.company.name}}
+    {{/link-to}}
+  </li>
+  <li>{{model.name}} Map</li>
+</ol>
+
 <h2 data-test-selector="network-site-title">{{model.name}}</h2>
 
 <p>
