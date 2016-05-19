@@ -19,7 +19,7 @@ const NODES = [
   label: " ONT_GE_4_MAC: F40F1B72D5C0",
   shape: "image",
   brokenImage: "assets/building.png",
-  image: "assets/pon_port.png",
+  image: "assets/wap.png",
   level: "9"
 },
 {
@@ -67,7 +67,7 @@ const NODES = [
   label: " ONT_GE_4_MAC: F40F1B72D488",
   shape: "image",
   brokenImage: "assets/building.png",
-  image: "assets/pon_port.png",
+  image: "assets/wap.png",
   level: "9"
 },
 {
@@ -372,7 +372,7 @@ test('should filter nodes with filter ids', function(assert) {
     label: " ONT_GE_4_MAC: F40F1B72D5C0",
     shape: "image",
     brokenImage: "assets/building.png",
-    image: "assets/pon_port.png",
+    image: "assets/wap.png",
     level: "9"
   },
   {
