@@ -1,4 +1,19 @@
+<ol class='breadcrumb'>
+  <li>
+    {{#link-to 'sites.companies.company' model.building.networkSite.company.id}}
+      {{model.building.networkSite.company.name}}
+    {{/link-to}}
+  </li>
+  <li>
+    {{#link-to 'sites.network-sites.network-site' model.building.networkSite.id}}
+      {{model.building.networkSite.name}}
+    {{/link-to}}
+  </li>
+  <li>{{model.building.name}} Map</li>
+</ol>
+
 {{building-job-status building=model.building}}
+
 <h2>{{model.building.name}}</h2>
 
 {{node-counts-table data=model.building.nodeCounts}}
