@@ -1,39 +1,25 @@
 import Ember from 'ember';
 import ColumnDefinition from 'ember-table/models/column-definition';
-import {getData, getDataHeadings} from './data-TEMP';
+
+const {
+  computed
+} = Ember;
 
 export default Ember.Component.extend({
-
-	tableHeadings: getDataHeadings(),
-  tableData: getData(),
-
-  tableColumn: function(columnName){
-    const column = ColumnDefinition.create({
+  tableColumn(columnName) {
+    let column = ColumnDefinition.create({
       savedWidth: 100,
-      headerCellName: columnName.target,
-      // tableCellViewClass: 'stats-cell-warning',
-      getCellContent: function(row) {
-        return row.get(columnName.source);
+      headerCellName: columnName,
+      getCellContent(row) {
+        return row.get(columnName);
       }
     });
-    return(column);
+    return column;
   },
 
-  tableColumns: Ember.computed('tableHeadings',function() {
-    const tableHeadings = this.get("tableHeadings");
-    const columns = [];
-    const getColumn = this.get("tableColumn");
-
-    tableHeadings.forEach(function(columnName){
-      const column = getColumn(columnName);
-      columns.pushObject(column);
-    });
-
-    return(columns);
-  }),
-
-  tableContent: Ember.computed(function() {
-    const content = this.get("tableData");
-    return content;
-  }),
+  tableColumns: computed('headers', function() {
+    let headers = this.get('headers');
+    let columns = headers.map(header => this.tableColumn(header));
+    return columns;
+  })
 });

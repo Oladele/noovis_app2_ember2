@@ -2,6 +2,10 @@ import networkTreeData from './network-tree-data';
 import Mirage from 'ember-cli-mirage';
 import cableRunData from './cable-run-data';
 import networkGraphData from './_latest-network-graph-data';
+import {
+  data as networkElementCounts,
+  headers as networkElementHeaders
+} from './data-network-element-count';
 
 export default function() {
   this.get('/network-sites', 'network-sites');
@@ -183,6 +187,20 @@ export default function() {
   });
   this.patch('/users/:id', 'user');
   this.del('/users/:id', 'user');
+
+  this.get('/network-element-counts/', (schema, request) => {
+    let headers = networkElementHeaders;
+    return {
+      data: {
+        type: 'network-element-count',
+        id: 1,
+        attributes: {
+          'attribute-names': networkElementHeaders,
+          counts: networkElementCounts
+        }
+      }
+    };
+  });
 }
 
 function _queryStringToJSON(s) {
