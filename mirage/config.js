@@ -201,6 +201,19 @@ export default function() {
       }
     };
   });
+
+  this.get('/pon-use-sites/', (schema, request) => {
+    return {
+      data: {
+        type: 'pon-use-site',
+        id: 1,
+        attributes: {
+          types: ['active', 'standby'],
+          values: { active: 614, standby: 986 }
+        }
+      }
+    };
+  });
 }
 
 function _queryStringToJSON(s) {

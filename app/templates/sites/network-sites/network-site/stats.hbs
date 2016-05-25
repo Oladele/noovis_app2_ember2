@@ -12,7 +12,7 @@
   <h3 class='row-title'>{{type.title}}</h3>
   <div class="row">
     <div class="col-md-6">
-      {{ crl-stats-pie activeLabel=type.activeLabel otherLabel=type.otherLabel}}
+      {{crl-stats-pie labels=model.ponUseSite.types values=model.ponUseSite.values}}
     </div>
     <div class="col-md-6">	
       {{ crl-stats-bar activeLabel=type.activeLabel otherLabel=type.otherLabel }}
