@@ -254,6 +254,19 @@ export default function() {
       }
     };
   });
+
+  this.get('distribution-sites', () => {
+    return {
+      data: {
+        type: 'distribution-site',
+        id: 1,
+        attributes: {
+          types: ['activeDistributionPorts', 'spareDistributionPorts'],
+          values: { activeDistributionPorts: 123, spareDistributionPorts: 456 }
+        }
+      }
+    }
+  });
 }
 
 function _queryStringToJSON(s) {

@@ -22,13 +22,17 @@ export default Ember.Route.extend({
     let feederCapacityBuilding = this.store.queryRecord('feederCapacityBuilding', {
       networkId: id
     });
+    let distributionSite = this.store.queryRecord('distributionSite', {
+      networkId: id
+    });
 
     return hash({
       networkElementCount,
       ponUseSite,
       ponUseBuilding,
       feederCapacitySite,
-      feederCapacityBuilding
+      feederCapacityBuilding,
+      distributionSite
     });
   }
 });
