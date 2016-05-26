@@ -229,6 +229,19 @@ export default function() {
       }
     };
   });
+
+  this.get('/feeder-capacity-sites', () => {
+    return {
+      data: {
+        type: 'feeder-capacity-site',
+        id: 1,
+        attributes: {
+          types: ['active', 'standby'],
+          values: { active: 123, standby: 456 }
+        }
+      }
+    };
+  });
 }
 
 function _queryStringToJSON(s) {
