@@ -6,6 +6,9 @@ import {
   data as networkElementCounts,
   headers as networkElementHeaders
 } from './data-network-element-count';
+import {
+  dataWithCustomLabels as ponUseBuildingData
+} from './data-pon-use-building';
 
 export default function() {
   this.get('/network-sites', 'network-sites');
@@ -210,6 +213,18 @@ export default function() {
         attributes: {
           types: ['active', 'standby'],
           values: { active: 614, standby: 986 }
+        }
+      }
+    };
+  });
+
+  this.get('/pon-use-buildings/', () => {
+    return {
+      data: {
+        type: 'pon-use-building',
+        id: 1,
+        attributes: {
+          stats: ponUseBuildingData
         }
       }
     };

@@ -13,10 +13,14 @@ export default Ember.Route.extend({
     let ponUseSite = this.store.queryRecord('ponUseSite', {
       networkId: id
     });
+    let ponUseBuilding = this.store.queryRecord('ponUseBuilding', {
+      networkId: id
+    });
 
     return hash({
       networkElementCount,
-      ponUseSite
+      ponUseSite,
+      ponUseBuilding
     });
   }
 });
