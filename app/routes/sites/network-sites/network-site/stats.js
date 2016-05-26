@@ -19,12 +19,16 @@ export default Ember.Route.extend({
     let feederCapacitySite = this.store.queryRecord('feederCapacitySite', {
       networkId: id
     });
+    let feederCapacityBuilding = this.store.queryRecord('feederCapacityBuilding', {
+      networkId: id
+    });
 
     return hash({
       networkElementCount,
       ponUseSite,
       ponUseBuilding,
-      feederCapacitySite
+      feederCapacitySite,
+      feederCapacityBuilding
     });
   }
 });

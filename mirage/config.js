@@ -7,7 +7,7 @@ import {
   headers as networkElementHeaders
 } from './data-network-element-count';
 import {
-  dataWithCustomLabels as ponUseBuildingData
+  dataWithCustomLabels as barChartBuildingData
 } from './data-pon-use-building';
 
 export default function() {
@@ -224,7 +224,7 @@ export default function() {
         type: 'pon-use-building',
         id: 1,
         attributes: {
-          stats: ponUseBuildingData
+          stats: barChartBuildingData
         }
       }
     };
@@ -238,6 +238,18 @@ export default function() {
         attributes: {
           types: ['active', 'standby'],
           values: { active: 123, standby: 456 }
+        }
+      }
+    };
+  });
+
+  this.get('/feeder-capacity-buildings', () => {
+    return {
+      data: {
+        type: 'feeder-capacity-building',
+        id: 1,
+        attributes: {
+          stats: barChartBuildingData
         }
       }
     };

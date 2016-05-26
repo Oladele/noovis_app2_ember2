@@ -25,7 +25,9 @@
   <div class='col-md-6'>
     {{crl-stats-pie labels=model.feederCapacitySite.types values=model.feederCapacitySite.values}}
   </div>
-  <div class='col-md-6'></div>
+  <div class='col-md-6'>
+    {{crl-stats-bar data=model.feederCapacityBuilding.stats}}
+  </div>
 </div>
 
 <h3 class='row-title'>Distribution Spares by Floor</h3>
