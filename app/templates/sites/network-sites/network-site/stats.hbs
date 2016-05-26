@@ -35,7 +35,9 @@
   <div class='col-md-6'>
     {{crl-stats-pie labels=model.distributionSite.types values=model.distributionSite.values}}
   </div>
-  <div class='col-md-6'></div>
+  <div class='col-md-6'>
+    {{crl-stats-bar data=model.distributionBuilding.stats}}
+  </div>
 </div>
 
 <h3 class='row-title'>Distribution Spares by Floor</h3>

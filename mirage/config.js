@@ -265,7 +265,19 @@ export default function() {
           values: { activeDistributionPorts: 123, spareDistributionPorts: 456 }
         }
       }
-    }
+    };
+  });
+
+  this.get('distribution-buildings', () => {
+    return {
+      data: {
+        type: 'distribution-building',
+        id: 1,
+        attributes: {
+          stats: barChartBuildingData
+        }
+      }
+    };
   });
 }
 

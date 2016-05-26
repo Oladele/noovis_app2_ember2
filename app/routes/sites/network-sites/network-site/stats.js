@@ -25,6 +25,9 @@ export default Ember.Route.extend({
     let distributionSite = this.store.queryRecord('distributionSite', {
       networkId: id
     });
+    let distributionBuilding = this.store.queryRecord('distributionBuilding', {
+      networkId: id
+    });
 
     return hash({
       networkElementCount,
@@ -32,7 +35,8 @@ export default Ember.Route.extend({
       ponUseBuilding,
       feederCapacitySite,
       feederCapacityBuilding,
-      distributionSite
+      distributionSite,
+      distributionBuilding
     });
   }
 });
