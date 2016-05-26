@@ -8,17 +8,15 @@
   </div>
 </div>
 
-{{#each chartStatTypes as |type|}}
-  <h3 class='row-title'>{{type.title}}</h3>
-  <div class="row">
-    <div class="col-md-6">
-      {{crl-stats-pie labels=model.ponUseSite.types values=model.ponUseSite.values}}
-    </div>
-    <div class="col-md-6">	
-      {{crl-stats-bar data=model.ponUseBuilding.stats}}
-    </div>
+<h3 class='row-title'>PON Channel Utilization</h3>
+<div class="row">
+  <div class="col-md-6">
+    {{crl-stats-pie labels=model.ponUseSite.types values=model.ponUseSite.values}}
   </div>
-{{/each}}
+  <div class="col-md-6">	
+    {{crl-stats-bar data=model.ponUseBuilding.stats}}
+  </div>
+</div>
 
 <h3 class='row-title'>Feeder Capacity</h3>
 <div class='row'>
