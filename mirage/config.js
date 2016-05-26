@@ -7,7 +7,8 @@ import {
   headers as networkElementHeaders
 } from './data-network-element-count';
 import {
-  dataWithCustomLabels as barChartBuildingData
+  dataWithCustomLabels as barChartBuildingData,
+  dataByFloor as barChartFloorData
 } from './data-pon-use-building';
 
 export default function() {
@@ -275,6 +276,18 @@ export default function() {
         id: 1,
         attributes: {
           stats: barChartBuildingData
+        }
+      }
+    };
+  });
+
+  this.get('distribution-floors', () => {
+    return {
+      data: {
+        type: 'distribution-floor',
+        id: 1,
+        attributes: {
+          stats: barChartFloorData
         }
       }
     };
