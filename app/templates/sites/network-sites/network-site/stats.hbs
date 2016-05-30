@@ -8,35 +8,40 @@
   </div>
 </div>
 
-<h3 class='row-title'>PON Channel Utilization</h3>
-<div class="row">
-  <div class="col-md-6">
-    {{crl-stats-pie labels=model.ponUseSite.types values=model.ponUseSite.values}}
-  </div>
-  <div class="col-md-6">	
-    {{crl-stats-bar data=model.ponUseBuilding.stats}}
-  </div>
+<div class="btn-group btn-group-justified networkStats__btn-group" role="group" aria-label="...">
+  {{#link-to (query-params chart='pon-channel') class='btn btn-default' }}
+    PON Channel Utilization
+  {{/link-to}}
+  {{#link-to (query-params chart='feeder-capacity') class='btn btn-default'}}
+    Feeder Capacity
+  {{/link-to}}
+  {{#link-to (query-params chart='distribution-network') class='btn btn-default'}}
+    Noovis Distribution
+  {{/link-to}}
 </div>
 
-<h3 class='row-title'>Feeder Capacity</h3>
-<div class='row'>
-  <div class='col-md-6'>
-    {{crl-stats-pie labels=model.feederCapacitySite.types values=model.feederCapacitySite.values}}
-  </div>
-  <div class='col-md-6'>
-    {{crl-stats-bar data=model.feederCapacityBuilding.stats}}
-  </div>
-</div>
+{{#liquid-bind chart}}
+  {{#if showFeederCapacity}}
+    {{charts-feeder-capacity
+        labels=model.feederCapacitySite.types
+        values=model.feederCapacitySite.values
+        data=model.feederCapacityBuilding.stats
+    }}
+  {{else if showDistributionNetwork}}
+    {{charts-distribution-network
+        labels=model.distributionSite.types
+        values=model.distributionSite.values
+        data=model.distributionBuilding.stats
+    }}
+  {{else}}
+    {{charts-pon-channel
+        labels=model.ponUseSite.types
+        values=model.ponUseSite.values
+        data=model.ponUseBuilding.stats
+    }}
+  {{/if}}
+{{/liquid-bind}}
 
-<h3 class='row-title'>Noovis Distribution Network</h3>
-<div class='row'>
-  <div class='col-md-6'>
-    {{crl-stats-pie labels=model.distributionSite.types values=model.distributionSite.values}}
-  </div>
-  <div class='col-md-6'>
-    {{crl-stats-bar data=model.distributionBuilding.stats}}
-  </div>
-</div>
 
 <h3 class='row-title'>Distribution Spares by Floor</h3>
 
