@@ -1,7 +1,10 @@
+<!-- null / processing / error / completed -->
 <div class="pull-right" style="margin: 1.2em 0;">
-  {{#unless building.importJobStatus}}
-    <span class="badge">No Jobs.</span>
-  {{else}}
-    <span class="badge">Job {{building.importJobStatus}}</span>
-  {{/unless}}
+  {{#if building.importJobStatus}}
+    <span class="badge">
+      {{if (eq building.importJobStatus 'processing') (concat 'Importing Sheet for ' building.name)}}
+      {{if (eq building.importJobStatus 'completed') (concat 'Sheet Import Complete for ' building.name)}}
+      {{if (eq building.importJobStatus 'error') (concat 'Error Importing Sheet for' building.name)}}
+    </span>
+  {{/if}}
 </div>
