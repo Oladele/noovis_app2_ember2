@@ -80,7 +80,6 @@ export default function() {
     }
   });
 
-
   this.get('/sheets', 'sheets');
   this.get('/sheets/:id', 'sheet');
 
@@ -206,23 +205,22 @@ export default function() {
     };
   });
 
-  this.get('/pon-use-sites/', (schema, request) => {
+  this.get('/pon-usage-sites/', (schema, request) => {
     return {
       data: {
-        type: 'pon-use-site',
+        type: 'pon-usage-site',
         id: 1,
         attributes: {
-          types: ['active', 'standby'],
-          values: { active: 614, standby: 986 }
+          stats: { 'active PON channels': 614, 'standby PON channels': 986 }
         }
       }
     };
   });
 
-  this.get('/pon-use-buildings/', () => {
+  this.get('/pon-usage-buildings/', () => {
     return {
       data: {
-        type: 'pon-use-building',
+        type: 'pon-usage-building',
         id: 1,
         attributes: {
           stats: barChartBuildingData
@@ -237,8 +235,7 @@ export default function() {
         type: 'feeder-capacity-site',
         id: 1,
         attributes: {
-          types: ['active', 'standby'],
-          values: { active: 123, standby: 456 }
+          stats: { active: 123, standby: 456 }
         }
       }
     };
@@ -262,8 +259,7 @@ export default function() {
         type: 'distribution-site',
         id: 1,
         attributes: {
-          types: ['activeDistributionPorts', 'spareDistributionPorts'],
-          values: { activeDistributionPorts: 123, spareDistributionPorts: 456 }
+          stats: { 'active distribution ports': 123, 'spare distribution ports': 456 }
         }
       }
     };

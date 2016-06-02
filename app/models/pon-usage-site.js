@@ -11,5 +11,5 @@ export default Model.extend({
   labels: computed('stats', function() {
     let stats = this.get('stats');
     return Object.keys(stats);
-  })
+  }),
 });

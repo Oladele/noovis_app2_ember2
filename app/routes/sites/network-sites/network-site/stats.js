@@ -5,15 +5,15 @@ const {
 } = Ember;
 
 export default Ember.Route.extend({
-  model(params) {
+  model() {
     let { id } = this.modelFor('sites.network-sites.network-site');
     let networkElementCount = this.store.queryRecord('networkElementCount', {
       networkId: id }
     );
-    let ponUseSite = this.store.queryRecord('ponUseSite', {
+    let ponUsageSite = this.store.queryRecord('ponUsageSite', {
       networkId: id
     });
-    let ponUseBuilding = this.store.queryRecord('ponUseBuilding', {
+    let ponUsageBuilding = this.store.queryRecord('ponUsageBuilding', {
       networkId: id
     });
     let feederCapacitySite = this.store.queryRecord('feederCapacitySite', {
@@ -34,8 +34,8 @@ export default Ember.Route.extend({
 
     return hash({
       networkElementCount,
-      ponUseSite,
-      ponUseBuilding,
+      ponUsageSite,
+      ponUsageBuilding,
       feederCapacitySite,
       feederCapacityBuilding,
       distributionSite,

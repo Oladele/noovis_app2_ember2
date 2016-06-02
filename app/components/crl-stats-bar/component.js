@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   withinGroupPadding: 0,
   maxLabelHeight: 40,
   stackBars: true,
+  selectedSeedColor: 'rgb(118,189,29)',
   hasXAxisTitle: false,
   hasYAxisTitle: false,
   xValueDisplayName: 'X Axis',

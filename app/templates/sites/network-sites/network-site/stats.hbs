@@ -23,25 +23,24 @@
 {{#liquid-bind chart}}
   {{#if showFeederCapacity}}
     {{charts-feeder-capacity
-        labels=model.feederCapacitySite.types
-        values=model.feederCapacitySite.values
-        data=model.feederCapacityBuilding.stats
+        labels=model.feederCapacitySite.labels
+        siteStats=model.feederCapacitySite.stats
+        buildingStats=model.feederCapacityBuilding.stats
     }}
   {{else if showDistributionNetwork}}
     {{charts-distribution-network
-        labels=model.distributionSite.types
-        values=model.distributionSite.values
-        data=model.distributionBuilding.stats
+        labels=model.distributionSite.labels
+        siteStats=model.distributionSite.stats
+        buildingStats=model.distributionBuilding.stats
     }}
   {{else}}
     {{charts-pon-channel
-        labels=model.ponUseSite.types
-        values=model.ponUseSite.values
-        data=model.ponUseBuilding.stats
+        labels=model.ponUsageSite.labels
+        siteStats=model.ponUsageSite.stats
+        buildingStats=model.ponUsageBuilding.stats
     }}
   {{/if}}
 {{/liquid-bind}}
-
 
 <h3 class='row-title'>Distribution Spares by Floor</h3>
 
