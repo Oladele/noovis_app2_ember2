@@ -5,6 +5,9 @@ export default Ember.Component.extend({
     submit() {
       let cableRun = this.get('cableRun');
       this.get('onSubmit')(cableRun);
+    },
+    cancel() {
+      this.get('onCancel')();
     }
   }
 });
