@@ -1,4 +1,9 @@
 import DS from 'ember-data';
+import Ember from 'ember';
+
+const {
+  computed
+} = Ember;
 
 export default DS.Model.extend({
   site: DS.attr(),
@@ -35,5 +40,8 @@ export default DS.Model.extend({
   ontGe3Mac: DS.attr(),
   ontGe4Device: DS.attr(),
   ontGe4Mac: DS.attr(),
-  sheet: DS.belongsTo('sheet')
+  sheet: DS.belongsTo('sheet'),
+  companyLink: computed.alias('sheet.building.networkSite.company'),
+  networkSiteLink: computed.alias('sheet.building.networkSite'),
+  buildingLink: computed.alias('sheet.building')
 });
