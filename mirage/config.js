@@ -89,6 +89,7 @@ export default function() {
 
   this.get('/cable-runs', 'cable-runs');
   this.get('/cable-runs/:id', 'cable-run');
+  this.patch('/cable-runs/:id', 'cable-run');
 
   this.get('/workbooks/:id', 'workbook');
 
