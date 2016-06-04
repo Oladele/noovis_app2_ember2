@@ -65,7 +65,7 @@
   <div class='form-group'>
     <label></label>
     <label>
-      FDH Port 
+      FDH Port
       {{x-input
         value=cableRun.fdhPort
         size=50
@@ -356,8 +356,14 @@
     </label>
   </div>
 
-  <button 
-    {{action 'submit'}} 
+  <button
+    {{action 'cancel'}}
+    class='btn btn-default'
+  >
+    Cancel
+  </button>
+  <button
+    {{action 'submit'}}
     class='btn btn-primary'
   >
     Update
