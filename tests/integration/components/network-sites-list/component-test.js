@@ -32,20 +32,19 @@ test('it renders', function(assert) {
 
 test("it shows a company's network sites", function(assert) {
   const company = server.create('company', { name: 'ACME' });
-  const networkSites = server.createList(
+  server.createList(
     'network-site',
      3,
-     { company_id: company.id }
+     { company }
   );
 
-  company.networkSites = networkSites;
   this.set('company', company);
 
-  this.render(hbs`{{network-sites-list sites=company.networkSites}}`);
+  this.render(hbs`{{network-sites-list sites=company.networkSites.models}}`);
 
   assert.equal(
     this.$('[data-test-selector="network-site-item"]').length,
-    company.networkSites.length,
+    company.networkSites.models.length,
     'rendered correct number of sites'
   );
 });
