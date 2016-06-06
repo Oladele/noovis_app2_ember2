@@ -202,3 +202,12 @@ form{
   background-color: #11253F;
   color: #fff;
 }
+
+.networkSummaryTable {
+  height: 420px;
+  overflow-y: auto;
+}
+
+.networkSummaryTable td {
+  white-space: nowrap;
+}
