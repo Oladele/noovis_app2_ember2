@@ -80,12 +80,13 @@ export default Ember.Controller.extend({
 });
 
 function findShallowestNode(tree) {
-  return tree.sortBy('node_level')[0];
+  let sorted = tree.sort((n1, n2) => parseInt(n1.level, 10) - parseInt(n2.level, 10));
+  return sorted[0];
 }
 
 function findAllAncestors(node, tree) {
   let nodes = [];
-  while (node && node.node_level > 1) {
+  while (node && node.level > 1) {
     let parent = tree.findBy('id', node.parent_id);
     if (parent) {
       nodes.push(parent);
