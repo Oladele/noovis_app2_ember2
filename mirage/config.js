@@ -1,5 +1,6 @@
 import networkTreeData from './network-tree-data';
 import Mirage from 'ember-cli-mirage';
+import { Mirage, faker } from 'ember-cli-mirage';
 import cableRunData from './cable-run-data';
 import networkGraphData from './_latest-network-graph-data';
 import {
@@ -45,6 +46,39 @@ export default function() {
     ];
   });
 
+  this.get('/network-sites/:id/chart-pon-usage-site', () => {
+    return {
+      'Active Channels': faker.random.number({ min: 100, max: 999 }),
+      'Standby Channels': faker.random.number({ min: 100, max: 999 })
+    };
+  });
+
+  this.get('/network-sites/:id/chart-pon-usage-buildings', () => {
+    return barChartBuildingData;
+  });
+
+  this.get('/network-sites/:id/chart-distribution-ports-site', () => {
+    return {
+      'Active Distribution Ports': faker.random.number({ min: 100, max: 999 }),
+      'Spare Distribution Ports': faker.random.number({ min: 100, max: 999 })
+    };
+  });
+
+  this.get('/network-sites/:id/chart-distribution-ports-buildings', () => {
+    return barChartBuildingData;
+  });
+
+  this.get('/network-sites/:id/chart-feeder-capacity-site', () => {
+    return {
+      'Active PON Ports': faker.random.number({ min: 100, max: 999 }),
+      'Spare Feeder Fibers': faker.random.number({ min: 100, max: 999 })
+    };
+  });
+
+  this.get('/network-sites/:id/chart-feeder-capacity-buildings', () => {
+    return barChartBuildingData;
+  });
+
   this.get('/companies', 'companies');
   this.get('/companies/:id', 'company');
   this.post('/companies', 'company');
@@ -83,9 +117,7 @@ export default function() {
   this.get('/sheets', 'sheets');
   this.get('/sheets/:id', 'sheet');
 
-  this.get('/sheets/:id/cable_runs', function() {
-    return cableRunData;
-  });
+  this.get('/sheets/:id/cable_runs', () => cableRunData);
 
   this.get('/cable-runs', 'cable-runs');
   this.get('/cable-runs/:id', 'cable-run');
@@ -201,90 +233,6 @@ export default function() {
         attributes: {
           'attribute-names': networkElementHeaders,
           counts: networkElementCounts
-        }
-      }
-    };
-  });
-
-  this.get('/pon-usage-sites/', (schema, request) => {
-    return {
-      data: {
-        type: 'pon-usage-site',
-        id: 1,
-        attributes: {
-          stats: { 'active PON channels': 614, 'standby PON channels': 986 }
-        }
-      }
-    };
-  });
-
-  this.get('/pon-usage-buildings/', () => {
-    return {
-      data: {
-        type: 'pon-usage-building',
-        id: 1,
-        attributes: {
-          stats: barChartBuildingData
-        }
-      }
-    };
-  });
-
-  this.get('/feeder-capacity-sites', () => {
-    return {
-      data: {
-        type: 'feeder-capacity-site',
-        id: 1,
-        attributes: {
-          stats: { active: 123, standby: 456 }
-        }
-      }
-    };
-  });
-
-  this.get('/feeder-capacity-buildings', () => {
-    return {
-      data: {
-        type: 'feeder-capacity-building',
-        id: 1,
-        attributes: {
-          stats: barChartBuildingData
-        }
-      }
-    };
-  });
-
-  this.get('distribution-sites', () => {
-    return {
-      data: {
-        type: 'distribution-site',
-        id: 1,
-        attributes: {
-          stats: { 'active distribution ports': 123, 'spare distribution ports': 456 }
-        }
-      }
-    };
-  });
-
-  this.get('distribution-buildings', () => {
-    return {
-      data: {
-        type: 'distribution-building',
-        id: 1,
-        attributes: {
-          stats: barChartBuildingData
-        }
-      }
-    };
-  });
-
-  this.get('distribution-floors', () => {
-    return {
-      data: {
-        type: 'distribution-floor',
-        id: 1,
-        attributes: {
-          stats: barChartFloorData
         }
       }
     };

@@ -1,46 +1,34 @@
 import Ember from 'ember';
 
 const {
+  inject,
   RSVP: { hash }
 } = Ember;
 
 export default Ember.Route.extend({
+  ajax: inject.service(),
   model() {
     let { id } = this.modelFor('sites.network-sites.network-site');
     let networkElementCount = this.store.queryRecord('networkElementCount', {
       networkId: id }
     );
-    let ponUsageSite = this.store.queryRecord('ponUsageSite', {
-      networkId: id
-    });
-    let ponUsageBuilding = this.store.queryRecord('ponUsageBuilding', {
-      networkId: id
-    });
-    let feederCapacitySite = this.store.queryRecord('feederCapacitySite', {
-      networkId: id
-    });
-    let feederCapacityBuilding = this.store.queryRecord('feederCapacityBuilding', {
-      networkId: id
-    });
-    let distributionSite = this.store.queryRecord('distributionSite', {
-      networkId: id
-    });
-    let distributionBuilding = this.store.queryRecord('distributionBuilding', {
-      networkId: id
-    });
-    let distributionFloor = this.store.queryRecord('distributionFloor', {
-      networkId: id
-    });
+
+    let ajax = this.get('ajax');
+    let chartPonUsageSite = ajax.request(`network-sites/${id}/chart-pon-usage-site`);
+    let chartPonUsageBuildings = ajax.request(`network-sites/${id}/chart-pon-usage-buildings`);
+    let chartDistributionPortsSite = ajax.request(`network-sites/${id}/chart-distribution-ports-site`);
+    let chartDistributionPortsBuildings = ajax.request(`network-sites/${id}/chart-distribution-ports-buildings`);
+    let chartFeederCapacitySite = ajax.request(`network-sites/${id}/chart-feeder-capacity-site`);
+    let chartFeederCapacityBuildings = ajax.request(`network-sites/${id}/chart-feeder-capacity-buildings`);
 
     return hash({
       networkElementCount,
-      ponUsageSite,
-      ponUsageBuilding,
-      feederCapacitySite,
-      feederCapacityBuilding,
-      distributionSite,
-      distributionBuilding,
-      distributionFloor
+      chartPonUsageSite,
+      chartPonUsageBuildings,
+      chartDistributionPortsSite,
+      chartDistributionPortsBuildings,
+      chartFeederCapacitySite,
+      chartFeederCapacityBuildings
     });
   }
 });

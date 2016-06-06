@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 const {
-  computed
+  computed,
+  isBlank
 } = Ember;
 
 export default Ember.Component.extend({
@@ -15,6 +16,10 @@ export default Ember.Component.extend({
   // data
   chartData: computed('labels', 'values', function() {
     let { labels, values } = this.getProperties('labels', 'values');
+    if (isBlank(labels) || isBlank(values)) {
+      return [];
+    }
+
     return labels.map(label => ({
       label: label.capitalize(),
       value: values[label],
