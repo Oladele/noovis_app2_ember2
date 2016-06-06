@@ -189,3 +189,25 @@ form{
 .history-description {
   font-weight: bold;
 }
+
+.networkStats__btn-group {
+  margin-top: 30px;
+}
+
+.networkStats__btn-group > .btn-default {
+  border: white;
+}
+
+.btn-default.active, .btn-default.active:focus {
+  background-color: #11253F;
+  color: #fff;
+}
+
+.networkSummaryTable {
+  height: 420px;
+  overflow-y: auto;
+}
+
+.networkSummaryTable td {
+  white-space: nowrap;
+}
