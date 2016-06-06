@@ -213,9 +213,9 @@ export default function() {
 
   this.get('/users', 'users');
   this.get('/users/:id', 'user');
-  this.post('/users', ({user, company}, request) => {
+  this.post('/users', ({companies}, request) => {
     let { data } = JSON.parse(request.requestBody);
-    let _company = company.find(data.relationships.company.data.id);
+    let _company = companies.find(data.relationships.company.data.id);
     let _user = _company.createUser(data.attributes);
     _company.save();
 
