@@ -29,7 +29,7 @@ export default DS.Model.extend({
   backbonePort: DS.attr(),
   fdhLocation: DS.attr(),
   rdtLocation: DS.attr(),
-  ontMmodel: DS.attr(),
+  ontModel: DS.attr(),
   ontSn: DS.attr(),
   rdtPortCount: DS.attr(),
   ontGe1Device: DS.attr(),
