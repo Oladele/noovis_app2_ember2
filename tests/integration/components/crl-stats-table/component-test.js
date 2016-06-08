@@ -6,13 +6,9 @@ moduleForComponent('crl-stats-table', 'Integration | Component | crl stats table
 });
 
 test('it renders', function(assert) {
-  
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+  this.set('headers', []);
+  this.set('content', []);
+  this.render(hbs`{{crl-stats-table headers=headers tableContent=content}}`);
 
-  this.render(hbs`{{crl-stats-table}}`);
-
-  // assert.equal(this.$().text().trim(), '');
   assert.equal(this.$('.table-title').text().trim(), 'Network Elements Counts');
-
 });

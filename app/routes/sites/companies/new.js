@@ -22,7 +22,8 @@ export default Ember.Route.extend(CanMixin, {
           flashMessages.success('Company was created.');
         })
         .catch(({ errors }) => {
-          flashMessages.danger(errors.join('. '));
+          let messages = errors.map(error => error.detail);
+          flashMessages.danger(messages.join(' '));
         });
     }
   }

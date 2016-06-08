@@ -31,7 +31,10 @@ export default Ember.Route.extend({
           this.transitionTo('sites.buildings.edit.network', buildingId);
           flashMessages.success('Cable run was updated.');
         })
-        .catch(({ errors }) => flashMessages.danger(errors.join('. ')));
+        .catch(({ errors }) => {
+          let messages = errors.map(error => error.detail);
+          flashMessages.danger(messages.join(' '));
+        });
     },
     didCancel() {
       let model = this.modelFor('sites.cableRuns.edit');
