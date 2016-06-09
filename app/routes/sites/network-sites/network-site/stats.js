@@ -9,9 +9,9 @@ export default Ember.Route.extend({
   ajax: inject.service(),
   model() {
     let { id } = this.modelFor('sites.network-sites.network-site');
-    let networkElementCount = this.store.queryRecord('networkElementCount', {
-      networkId: id }
-    );
+    // let networkElementCount = this.store.queryRecord('networkElementCount', {
+      // networkId: id }
+    // );
 
     let ajax = this.get('ajax');
     let chartPonUsageSite = ajax.request(`network-sites/${id}/chart-pon-usage-site`);
@@ -22,7 +22,7 @@ export default Ember.Route.extend({
     let chartFeederCapacityBuildings = ajax.request(`network-sites/${id}/chart-feeder-capacity-buildings`);
 
     return hash({
-      networkElementCount,
+      // networkElementCount,
       chartPonUsageSite,
       chartPonUsageBuildings,
       chartDistributionPortsSite,
