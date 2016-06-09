@@ -1,0 +1,10 @@
+{{yield}}
+<h3 class='row-title'>PON Channel Utilization</h3>
+<div class="row">
+  <div class="col-md-6">
+    {{crl-stats-pie labels=labels values=siteStats}}
+  </div>
+  <div class="col-md-6">	
+    {{crl-stats-bar data=buildingStats}}
+  </div>
+</div>

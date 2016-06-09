@@ -1,31 +1,4 @@
-
-let data = [];
-let dataHeadings = [];
-// Expected format below is auto-populated
-// based on data[0] further below
-// [
-//   {
-//     source: "BLDG",
-//     target: "Building"
-//   },
-//   ...
-//  ]
-
-export function getData() {
-	console.log("getting data...", data);
-	return data;
-}
-
-export function getDataHeadings() {
-	console.log("getting column names...", dataHeadings);
-	return dataHeadings;
-}
-
-
-
-  
-data = [
-  {
+const data = [{
     "BLDG":"Charlestown",
     "Bldgs":18,
     "OLTs":1,
@@ -290,13 +263,8 @@ data = [
     "Active Distribution Ports":73,
     "Spare Distribution Ports":23,
     "Actual RDT Count":8
-  }
-];
+ }];
 
-// populate data headings map
-Object.keys(data[0]).forEach(function(value){
-	dataHeadings.pushObject({
-		source: value,
-		target: value
-	});
-});
+const headers = Object.keys(data[0]);
+
+export { data, headers };
