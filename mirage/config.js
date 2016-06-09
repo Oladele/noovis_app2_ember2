@@ -1,6 +1,6 @@
 import networkTreeData from './network-tree-data';
 import Mirage from 'ember-cli-mirage';
-import { Mirage, faker } from 'ember-cli-mirage';
+import { faker } from 'ember-cli-mirage';
 import cableRunData from './cable-run-data';
 import networkGraphData from './_latest-network-graph-data';
 import {
