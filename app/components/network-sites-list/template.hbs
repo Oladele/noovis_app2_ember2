@@ -12,11 +12,11 @@
 {{/if}}
 
 <ul class='list-unstyled'>
-{{#each sites as |site|}}
-	<li class="associated-model-list-item">
-	  {{#link-to 'sites.network-sites.network-site.edit' site data-test-selector='network-site-item'}}
-	    {{site.name}}
-	  {{/link-to}}
-  </li>
-{{/each}}
+  {{#each sites as |site|}}
+    <li class="associated-model-list-item">
+      {{#link-to 'sites.network-sites.network-site.edit' site data-test-selector='network-site-item'}}
+        {{site.name}}
+      {{/link-to}}
+    </li>
+  {{/each}}
 </ul>

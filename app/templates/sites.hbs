@@ -1,74 +1,74 @@
 <div class="row">
 
-<div class="col-xs-3">
-  
-  <br>
-  <p>
-  {{#if (can 'write company')}}
-    {{#link-to
-        "sites.companies.new"
-        data-test-selector="new-company-button"
-        class="btn btn-default btn-info"
-    }}
-        Add Company
-    {{/link-to}}
-  {{/if}}
-  </p>
+  <div class="col-xs-3">
 
-  {{#each model.companies as |company|}}
-    <h4>
-      {{link-to
-          company.name
-          "sites.companies.company.edit"
-          company.id
-          data-test-selector="company-link"
-      }}
-    </h4>
-    {{#each company.networkSites as |networkSite|}}
-      
-      <div>
-        <a class='glyphicon glyphicon-chevron-right' data-toggle='collapse' href={{x-id '#building-list' networkSite.id}}>
-        </a>
-        {{#link-to 
-          "sites.network-sites.network-site.edit" 
-          networkSite.id data-test-selector="network-site-link"
+    <br>
+    <p>
+      {{#if (can 'write company')}}
+        {{#link-to
+            "sites.companies.new"
+            data-test-selector="new-company-button"
+            class="btn btn-default btn-info"
         }}
-          {{networkSite.name}} ({{networkSite.buildings.length}})
+          Add Company
         {{/link-to}}
-      </div>
-      
-      <ul 
-        class='list-unstyled list-group collapse' 
-        id={{x-id 'building-list' networkSite.id}} 
-      >
-      {{#each networkSite.buildings as |building|}}
-        <li class="left-nav-sub-list-item">
-          {{link-to 
-            building.name 
-            'sites.buildings.edit.map'
-            building.id 
-            data-test-selector='building-edit-link'
-          }}
-        </li>
-      {{/each}}
-      </ul>
-    {{/each}}
-  {{/each}}
-</div>
+      {{/if}}
+    </p>
 
-<div class="col-xs-9">
-  {{#if showMap}}
-    <ol class='breadcrumb'><li>Sites</li></ol>
-    <h2>All Noovis @FiberSpeed™ Sites</h2>
-    {{#if (can 'read globalNodeCounts')}}
-    {{node-counts-table data=model.nodeCounts}}
+    {{#each model.companies as |company|}}
+      <h4>
+        {{link-to
+            company.name
+            "sites.companies.company.edit"
+            company.id
+            data-test-selector="company-link"
+        }}
+      </h4>
+      {{#each company.networkSites as |networkSite|}}
+
+        <div>
+          <a class='glyphicon glyphicon-chevron-right' data-toggle='collapse' href={{x-id '#building-list' networkSite.id}}>
+          </a>
+          {{#link-to
+            "sites.network-sites.network-site.edit"
+            networkSite.id data-test-selector="network-site-link"
+          }}
+            {{networkSite.name}} ({{networkSite.buildings.length}})
+          {{/link-to}}
+        </div>
+
+        <ul
+          class='list-unstyled list-group collapse'
+          id={{x-id 'building-list' networkSite.id}}
+        >
+          {{#each networkSite.buildings as |building|}}
+            <li class="left-nav-sub-list-item">
+              {{link-to
+                building.name
+                'sites.buildings.edit.map'
+                building.id
+                data-test-selector='building-edit-link'
+              }}
+            </li>
+          {{/each}}
+        </ul>
+      {{/each}}
+    {{/each}}
+  </div>
+
+  <div class="col-xs-9">
+    {{#if showMap}}
+      <ol class='breadcrumb'><li>Sites</li></ol>
+      <h2>All Noovis @FiberSpeed™ Sites</h2>
+      {{#if (can 'read globalNodeCounts')}}
+        {{node-counts-table data=model.nodeCounts}}
+      {{/if}}
+      {{#g-maps-container model=model.sites as |map|}}
+        {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
+      {{/g-maps-container}}
+    {{else}}
+      {{outlet}}
     {{/if}}
-    {{#g-maps-container model=model.sites as |map|}}
-      {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
-    {{/g-maps-container}}
-  {{else}}
-    {{outlet}}
-  {{/if}}
-</div>
+  </div>
 
 </div>
