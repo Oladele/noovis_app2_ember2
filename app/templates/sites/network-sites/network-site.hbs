@@ -10,29 +10,29 @@
 <h2 data-test-selector="network-site-title">{{model.name}}</h2>
 
 <p>
-<nav role="navigation">
-	<ul class="nav nav-pills nav-justified">
-		{{#link-to 
-			"sites.network-sites.network-site.edit"
-			tagName="li"
-		}}
-	  	<a href="#">
-	  		<span class="glyphicon glyphicon-globe"></span> 
-	  		Map
-	  	</a>
-		{{/link-to}}
+  <nav role="navigation">
+    <ul class="nav nav-pills nav-justified">
+      {{#link-to 
+        "sites.network-sites.network-site.edit"
+        tagName="li"
+        }}
+        <a href="#">
+          <span class="glyphicon glyphicon-globe"></span> 
+          Map
+        </a>
+      {{/link-to}}
 
-	  {{#link-to 
-			"sites.network-sites.network-site.stats"
-			tagName="li"
-		}}
-	  	<a href="#">
-	  		<span class="glyphicon glyphicon-stats"></span> 
-	  		Stats
-	  	</a>
-		{{/link-to}}
-	</ul>
-</nav>
+      {{#link-to 
+        "sites.network-sites.network-site.stats"
+        tagName="li"
+        }}
+        <a href="#">
+          <span class="glyphicon glyphicon-stats"></span> 
+          Stats
+        </a>
+      {{/link-to}}
+    </ul>
+  </nav>
 </p>
 
 {{outlet}}

@@ -15,18 +15,18 @@
     <label>
       Site Address
     </label>
-      {{g-autocomplete
+    {{g-autocomplete
         id='basic-autocomplete'
         on-select=(route-action 'didUpdatePlace')
         value=address
-      }}
+    }}
   </div>
 
   <div>
     <button type='submit' data-test-selector='submit-button' {{action 'submit'}} class='btn btn-primary'>Update</button>
 
     {{#if isEditing}}
-    <button data-test-selector='delete-button' {{action 'deleteSite'}} class='btn btn-danger'>Delete {{site.name}}</button>
+      <button data-test-selector='delete-button' {{action 'deleteSite'}} class='btn btn-danger'>Delete {{site.name}}</button>
     {{/if}}
   </div>
 </form>

@@ -14,11 +14,11 @@
           {{action (action 'selectRow' cableRun.id)}} 
           class="{{if (eq cableRun.id selectedId) 'is-selected'}}"
         >
-        <td>
-          {{#link-to 'sites.cable-runs.edit' cableRun.id}}
-            {{fa-icon 'edit'}}
-          {{/link-to}}
-        </td>
+          <td>
+            {{#link-to 'sites.cable-runs.edit' cableRun.id}}
+              {{fa-icon 'edit'}}
+            {{/link-to}}
+          </td>
           {{#each headers as |header|}}
             <td>{{get cableRun header}}</td>
           {{/each}}

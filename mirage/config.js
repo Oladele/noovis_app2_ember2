@@ -1,7 +1,16 @@
 import networkTreeData from './network-tree-data';
 import Mirage from 'ember-cli-mirage';
+import { faker } from 'ember-cli-mirage';
 import cableRunData from './cable-run-data';
 import networkGraphData from './_latest-network-graph-data';
+import {
+  data as networkElementCounts,
+  headers as networkElementHeaders
+} from './data-network-element-count';
+import {
+  dataWithCustomLabels as barChartBuildingData,
+  dataByFloor as barChartFloorData
+} from './data-pon-use-building';
 
 export default function() {
   this.get('/network-sites', 'network-sites');
@@ -35,6 +44,39 @@ export default function() {
         "Actual RDT Count":null
       }
     ];
+  });
+
+  this.get('/network-sites/:id/chart-pon-usage-site', () => {
+    return {
+      'Active Channels': faker.random.number({ min: 100, max: 999 }),
+      'Standby Channels': faker.random.number({ min: 100, max: 999 })
+    };
+  });
+
+  this.get('/network-sites/:id/chart-pon-usage-buildings', () => {
+    return barChartBuildingData;
+  });
+
+  this.get('/network-sites/:id/chart-distribution-ports-site', () => {
+    return {
+      'Active Distribution Ports': faker.random.number({ min: 100, max: 999 }),
+      'Spare Distribution Ports': faker.random.number({ min: 100, max: 999 })
+    };
+  });
+
+  this.get('/network-sites/:id/chart-distribution-ports-buildings', () => {
+    return barChartBuildingData;
+  });
+
+  this.get('/network-sites/:id/chart-feeder-capacity-site', () => {
+    return {
+      'Active PON Ports': faker.random.number({ min: 100, max: 999 }),
+      'Spare Feeder Fibers': faker.random.number({ min: 100, max: 999 })
+    };
+  });
+
+  this.get('/network-sites/:id/chart-feeder-capacity-buildings', () => {
+    return barChartBuildingData;
   });
 
   this.get('/companies', 'companies');
@@ -72,13 +114,10 @@ export default function() {
     }
   });
 
-
   this.get('/sheets', 'sheets');
   this.get('/sheets/:id', 'sheet');
 
-  this.get('/sheets/:id/cable_runs', function() {
-    return cableRunData;
-  });
+  this.get('/sheets/:id/cable_runs', () => cableRunData);
 
   this.get('/cable-runs', 'cable-runs');
   this.get('/cable-runs/:id', 'cable-run');
@@ -184,6 +223,20 @@ export default function() {
   });
   this.patch('/users/:id', 'user');
   this.del('/users/:id', 'user');
+
+  this.get('/network-element-counts/', (schema, request) => {
+    let headers = networkElementHeaders;
+    return {
+      data: {
+        type: 'network-element-count',
+        id: 1,
+        attributes: {
+          'attribute-names': networkElementHeaders,
+          counts: networkElementCounts
+        }
+      }
+    };
+  });
 }
 
 function _queryStringToJSON(s) {
