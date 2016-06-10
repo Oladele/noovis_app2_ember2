@@ -13,7 +13,7 @@ export default Ember.Route.extend({
     }
     this.transitionTo(target);
   },
-  
+
   model(params) {
     return hash({
       building: this.store.findRecord('building', params.building_id),
@@ -33,7 +33,10 @@ export default Ember.Route.extend({
     },
 
     destroyBuilding(building) {
-      return building.destroyRecord();
+      let siteId = building.get('networkSite.id');
+      return building.destroyRecord()
+        .then(() => this.transitionTo('sites.network-sites.network-site', siteId))
+        .catch(response => console.log(response));
     },
 
     sendFlash(status, message) {
