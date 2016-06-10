@@ -14,9 +14,8 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
     };
     yield session.authenticate(authenticator, credentials)
       .catch(({ errors }) => {
-        let messages = errors.map(error => error.details);
         let flashMessages = this.get('flashMessages');
-        flashMessages.warning(messages.join(' '));
+        flashMessages.warning(errors.join(' '));
       });
   }).drop(),
 
