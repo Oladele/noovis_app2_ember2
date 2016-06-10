@@ -26,6 +26,6 @@ export default Ember.Route.extend({
       chartDistributionPortsBuildings,
       chartFeederCapacitySite,
       chartFeederCapacityBuildings
-    })
+    });
   },
 });
