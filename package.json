@@ -63,7 +63,7 @@
     "ember-truth-helpers": "1.2.0",
     "emberx-file-input": "1.0.0",
     "emberx-select": "2.1.2",
-    "emberx-xml-http-request": "0.2.3",
+    "emberx-xml-http-request": "0.1.0",
     "liquid-fire": "0.23.1",
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1"
