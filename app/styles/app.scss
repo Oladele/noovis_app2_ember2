@@ -1,3 +1,4 @@
+@import 'table';
 /* TODO: Replace color references in body of app.css with Less/Sass variables below */
 /*
 	@brand-primary: #11253F
@@ -16,7 +17,7 @@ body {
   padding-top: 50px;
   padding-bottom: 30px;
   color: #11253F !important;
-  background: url(app-bg.png) no-repeat center center fixed; 
+  background: image-url('app-bg.png') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -203,11 +204,19 @@ form{
   color: #fff;
 }
 
-.networkSummaryTable {
-  height: 420px;
-  overflow-y: auto;
-}
+// .networkSummaryTable {
+  // height: 420px;
+  // overflow-y: auto;
+// }
 
-.networkSummaryTable td {
-  white-space: nowrap;
+// .networkSummaryTable td {
+  // white-space: nowrap;
+// }
+
+.networkSummaryTable {
+  overflow-x: auto;
+
+  .ember-light-table {
+    width: 3000px;
+  }
 }
