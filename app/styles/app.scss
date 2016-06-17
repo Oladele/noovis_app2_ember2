@@ -1,4 +1,3 @@
-@import 'table';
 /* TODO: Replace color references in body of app.css with Less/Sass variables below */
 /*
 	@brand-primary: #11253F
@@ -204,19 +203,20 @@ form{
   color: #fff;
 }
 
-// .networkSummaryTable {
-  // height: 420px;
-  // overflow-y: auto;
-// }
-
-// .networkSummaryTable td {
-  // white-space: nowrap;
-// }
-
-.networkSummaryTable {
+.models-table-wrapper {
   overflow-x: auto;
 
-  .ember-light-table {
-    width: 3000px;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, .5);
   }
 }
