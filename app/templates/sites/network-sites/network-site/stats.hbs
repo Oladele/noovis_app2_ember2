@@ -2,11 +2,11 @@
 
 <h3 class='row-title'>Summary</h3>
 
-{{!--  <div class="row">  --}}
-  {{!--  <div class="col-lg-12">  --}}
-    {{!--  {{crl-stats-table headers=tableHeaders tableContent=model.networkElementCounts}}  --}}
-  {{!--  </div>  --}}
-{{!--  </div>  --}}
+<div class="row">
+  <div class="col-lg-12">
+    {{crl-stats-table headers=tableHeaders tableContent=model.networkElementCounts}}
+  </div>
+</div>
 
 <div class="btn-group btn-group-justified networkStats__btn-group" role="group" aria-label="...">
   {{#link-to (query-params chart='pon-channel') class='btn btn-default' }}
