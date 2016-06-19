@@ -220,3 +220,13 @@ form{
     background-color: rgba(0, 0, 0, .5);
   }
 }
+
+.chart-frame .hovered {
+  fill: #11253f !important;
+  stroke: #11253f !important;
+
+  path, rect, circle, text {
+    fill: #11253f !important;
+    stroke: #11253f !important;
+  }
+}

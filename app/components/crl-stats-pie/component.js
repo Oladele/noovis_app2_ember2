@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   minSlicePercent: 2,
   maxRadius: 250,
   labelWidthMultiplier: 0.25,
-  selectedSeedColor: 'rgb(118,189,29)',
+  selectedSeedColor: 'rgb(143,199,62)',
 
   // data
   chartData: computed('labels', 'values', function() {
