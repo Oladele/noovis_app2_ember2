@@ -203,6 +203,29 @@ form{
   color: #fff;
 }
 
+.networkSummaryTable-container {
+  height: 400px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-scrollbar:vertical {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, .5);
+  }
+}
+
 .models-table-wrapper {
   overflow-x: auto;
 

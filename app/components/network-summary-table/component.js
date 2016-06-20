@@ -5,6 +5,7 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
+  classNames: ['networkSummaryTable-container'],
   columns: computed('headers', function() {
     let headers = this.get('headers');
     let editColumn = {
