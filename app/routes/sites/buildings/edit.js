@@ -27,9 +27,12 @@ export default Ember.Route.extend({
 
   actions: {
     submit(params) {
+      let flash = this.get('flashMessages');
       let { building, name, description, lat, lng } = params;
       building.setProperties({ name, description, lat, lng });
-      return building.save();
+      return building.save()
+        .then(() => flash.success('Building was updated.'))
+        .catch(errors => flash.warning(errors));
     },
 
     destroyBuilding(building) {
