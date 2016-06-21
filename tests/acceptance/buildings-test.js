@@ -107,7 +107,7 @@ test('can update building info', function(assert) {
 });
 
 test('can delete a building', function(assert) {
-  assert.expect(1);
+  assert.expect(2);
 
   let building = site.createBuilding();
 
@@ -118,5 +118,6 @@ test('can delete a building', function(assert) {
 
   andThen(() => {
     assert.equal(server.db.buildings.length, 0, 'no buildings were found');
+    assert.equal(currentURL(), `/sites/network-sites/${site.id}/edit`, 'redirects to site');
   });
 });

@@ -9,8 +9,11 @@ export default Ember.Route.extend({
 
   actions: {
     updateCompany(company, name) {
+      let flash = this.get('flashMessages');
       company.set('name', name);
-      return company.save();
+      return company.save()
+        .then(() => flash.success('Company was updated.'))
+        .catch(errors => flash.warning(errors));
     },
 
     deleteCompany(company) {

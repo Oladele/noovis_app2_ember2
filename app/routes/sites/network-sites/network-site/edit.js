@@ -16,10 +16,13 @@ export default Ember.Route.extend({
 
   actions: {
     submit(data) {
+      let flash = this.get('flashMessages');
       const site = this.modelFor(this.routeName).site;
       site.setProperties(data);
 
-      return site.save();
+      return site.save()
+        .then(() => flash.success('Network site was updated.'))
+        .catch(errors => flash.warning(errors));
     },
 
     didUpdatePlace(place) {
