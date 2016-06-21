@@ -1,11 +1,11 @@
 /* TODO: Replace color references in body of app.css with Less/Sass variables below */
 /*
-	@brand-primary: #11253F
+@brand-primary: #11253F
 
-	@gray-lighter: #eee
+@gray-lighter: #eee
 
-	@brand-warning:         #f0ad4e;
-	@brand-danger:          #d9534f;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
 */
 
 
@@ -16,15 +16,16 @@ body {
   padding-top: 50px;
   padding-bottom: 30px;
   color: #11253F !important;
-  background: image-url('app-bg.png') no-repeat center center fixed; 
+  background: image-url('app-bg.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  min-height: 100%;
 }
 
 a {
-	color: #11253F ;
+  color: #11253F ;
 }
 
 a:hover {
@@ -36,12 +37,12 @@ a:hover {
 /* APP-WIDE: Style changes to Bootstrap classes */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .navbar-header a img{
-	margin-top: 5px;
+  margin-top: 5px;
 }
 
 .navbar-inverse {
-    background-color: #11253F;
-    border-color: #11253F;
+  background-color: #11253F;
+  border-color: #11253F;
 }
 
 .nav-pills li{
@@ -50,32 +51,32 @@ a:hover {
 
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-    color: #fff;
-    background-color: #11253F;
+  color: #fff;
+  background-color: #11253F;
 }
 
 .btn-info:active, .btn-info.active, .open > .dropdown-toggle.btn-info {
-    color: #fff;
-    background-color: #11253F;
-    border-color: #11253F;
+  color: #fff;
+  background-color: #11253F;
+  border-color: #11253F;
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #11253F;
-    border-color: #11253F;
+  color: #fff;
+  background-color: #11253F;
+  border-color: #11253F;
 }
 
 .btn-info {
-    color: #fff;
-    background-color: #8EC640;
-    border-color: #8EC640;
+  color: #fff;
+  background-color: #8EC640;
+  border-color: #8EC640;
 }
 
 .btn-default {
-    color: #11253F;
-    background-color: #eee;
-    border-color: #eee;
+  color: #11253F;
+  background-color: #eee;
+  border-color: #eee;
 }
 
 .tab-content{
@@ -120,18 +121,18 @@ form{
 /* COMPONENT: crl-stats-table */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .stats-cell-warning{
-	background-color: #f0ad4e;
+  background-color: #f0ad4e;
 }
 
 .stats-cell-danger{
-	background-color: #d9534f;
+  background-color: #d9534f;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* COMPONENT: crl-stats-pie */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*.chart-frame .hovered path{
-	fill: #8EC640 !important;
+fill: #8EC640 !important;
 }*/
 
 
@@ -203,44 +204,15 @@ form{
   color: #fff;
 }
 
-.networkSummaryTable-container {
-  height: 400px;
-  overflow: auto;
-
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
-  }
-
-  &::-webkit-scrollbar:vertical {
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar:horizontal {
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    border: 2px solid white;
-    background-color: rgba(0, 0, 0, .5);
-  }
-}
-
 .models-table-wrapper {
   overflow-x: auto;
 
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
+  td {
+    white-space: nowrap;
   }
 
-  &::-webkit-scrollbar:horizontal {
-    height: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    border: 2px solid white;
-    background-color: rgba(0, 0, 0, .5);
+  input {
+    min-width: 70px;
   }
 }
 
