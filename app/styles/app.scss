@@ -153,9 +153,17 @@ fill: #8EC640 !important;
   margin-top: 200px;
 }
 
-.is-selected {
-  color: #fff;
-  background-color: #11253F;
+.models-table-wrapper {
+  .inner-table-wrapper {
+    .is-selected {
+      color: #fff;
+      background-color: #11253F;
+
+      a {
+        color: #fff
+      }
+    }
+  }
 }
 
 .loading-spinner {

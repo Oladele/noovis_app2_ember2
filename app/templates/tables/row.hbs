@@ -1,4 +1,4 @@
-<tr {{action 'sendAction' 'onRowClick' record.id}}>
+<tr {{action 'sendAction' 'onRowClick' record.id}} class="{{if (eq record.id selectedId) 'is-selected'}}">
   {{#each processedColumns as |column|}}
     {{#if column.isVisible}}
       <td class={{column.className}}>
