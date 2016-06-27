@@ -240,4 +240,14 @@ fill: #8EC640 !important;
   height: 100vh;
   background: url(welcome_770_900.png);
   background-size: cover;
+
+  .login-header {
+    h1 {
+      font-size: 60px;
+    }
+    background-color: rgba(white, 0.5);
+    color: #11253F;
+    padding: 5px 10px;
+    font-family: 'Audiowide';
+  }
 }
