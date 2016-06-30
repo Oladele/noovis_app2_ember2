@@ -4,6 +4,7 @@ export default JSONAPISerializer.extend({
   serialize(snapshot, options) {
     let json = this._super(...arguments);
     delete json.data.attributes['node-counts'];
+    delete json.data.attributes['import-job-status'];
 
     return json;
   }
