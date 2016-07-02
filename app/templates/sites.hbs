@@ -1,14 +1,18 @@
 {{#if showWelcomeModal}}
   {{#modal-dialog close="toggleModal"
-                  targetAttachment="center"
-                  translucentOverlay=true}}
-                  <h3 class='row-controls'>Welcome back to N2OA<i {{action 'toggleModal'}} class='fa fa-times pull-right'></i></h3>
-      <h4>We've made some improvements lately...</h4>
-      <ul>
-        <li>Improved Look & Feel</li>
-        <li>More Fiberspeed Network Stats (see below)</li>
-      </ul>
-      <img src='assets/welcome-back-modal.png'>
+      targetAttachment="center"
+      translucentOverlay=true
+  }}
+    <h3 class='row-controls'>
+      Welcome back to N2OA
+      <i {{action 'toggleModal'}} class='fa fa-times pull-right'></i>
+    </h3>
+    <h4>We've made some improvements lately...</h4>
+    <ul>
+      <li>Improved Look & Feel</li>
+      <li>More Fiberspeed Network Stats (see below)</li>
+    </ul>
+    <img src='assets/welcome-back-modal.png'>
   {{/modal-dialog}}
 {{/if}}
 
