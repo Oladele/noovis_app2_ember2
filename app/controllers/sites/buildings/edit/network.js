@@ -62,11 +62,13 @@ export default Ember.Controller.extend({
   }),
 
   tableHeaders: computed('model.cableRuns.[]', function() {
-    let cableRun = this.get('model.cableRuns.firstObject');
-    if (cableRun) {
-      let keys = Object.keys(cableRun.toJSON());
-      let sheetIndex = keys.indexOf('sheet');
-      return keys.slice(0, sheetIndex);
+    let cableRuns = this.get('model.cableRuns');
+    if (!isEmpty(cableRuns)) {
+      // let cableRun = cableRuns.get('firstObject');
+      // let keys = Object.keys(cableRun.toJSON());
+      // let sheetIndex = keys.indexOf('sheet');
+      // return keys.slice(0, sheetIndex);
+      return ['site', 'building', 'oltRack', 'oltChassis', 'ponCard', 'ponPort', 'vamShelf', 'vamModule', 'vamPort', 'backboneCable', 'backboneShelf', 'backbonePort', 'fdh', 'fdhLocation', 'splitter', 'splitterFiber', 'fdhPort', 'rdt', 'rdtPortCount', 'rdtLocation', 'rdtPort', 'drop', 'room', 'ontModel', 'ontSn', 'ontGe1Device', 'ontGe1Mac', 'ontGe2Device', 'ontGe2Mac', 'ontGe3Device', 'ontGe3Mac', 'ontGe4Device', 'ontGe4Mac', 'notes'];
     }
     return ['No sheets uploaded'];
   }),
