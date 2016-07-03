@@ -58,7 +58,9 @@ export default Ember.Controller.extend({
       return _node;
     });
 
-    return { edges, nodes: nodesWithImages };
+    let nodesWithFilteredValues = nodesWithImages.reject(node => node.node_value === 'N/A');
+
+    return { edges, nodes: nodesWithFilteredValues };
   }),
 
   tableHeaders: computed('model.cableRuns.[]', function() {
