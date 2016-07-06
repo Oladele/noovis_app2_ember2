@@ -1,6 +1,17 @@
 import JSONAPISerializer from 'ember-data/serializers/json-api';
 
 export default JSONAPISerializer.extend({
+  attrs: {
+    ontGe1Mac: 'ont-ge-1-mac',
+    ontGe1Device: 'ont-ge-1-device',
+    ontGe2Mac: 'ont-ge-2-mac',
+    ontGe2Device: 'ont-ge-2-device',
+    ontGe3Mac: 'ont-ge-3-mac',
+    ontGe3Device: 'ont-ge-3-device',
+    ontGe4Mac: 'ont-ge-4-mac',
+    ontGe4Device: 'ont-ge-4-device'
+  },
+
   serialize(snapshot, options) {
     let json = this._super(...arguments);
     json.data.attributes['ont-ge-1-device'] = json.data.attributes['ont-ge1-device'];
