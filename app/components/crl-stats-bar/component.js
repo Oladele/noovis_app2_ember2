@@ -7,8 +7,8 @@ export default Ember.Component.extend({
   maxLabelHeight: 40,
   stackBars: true,
   selectedSeedColor: 'rgb(118,189,29)',
-  hasXAxisTitle: false,
-  hasYAxisTitle: false,
+  hasXAxisTitle: true,
+  hasYAxisTitle: true,
   xValueDisplayName: 'X Axis',
   yValueDisplayName: 'Y Axis',
 });
