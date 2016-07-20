@@ -2,7 +2,7 @@
 
 var contentSecurityPolicy = {
   'script-src': "'self' 'unsafe-eval' 'unsafe-inline' *.googleapis.com maps.gstatic.com",
-  'connect-src': "'self' http://localhost:* http://noovis2-staging.herokuapp.com http://noovis2-development.herokuapp.com maps.gstatic.com",
+  'connect-src': "'self' http://localhost:* http://noovis2-staging.herokuapp.com http://noovis2-development.herokuapp.com http://noovis2-production.herokuapp.com maps.gstatic.com",
   'img-src': "'self' data: *.googleapis.com maps.gstatic.com csi.gstatic.com",
   'style-src': "'self' 'unsafe-inline' fonts.googleapis.com maps.gstatic.com",
   'font-src': "'self' fonts.gstatic.com"
@@ -69,7 +69,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiHost = 'https://noovis2-staging.herokuapp.com';
+    ENV.apiHost = 'https://noovis2-production.herokuapp.com';
   }
 
   return ENV;

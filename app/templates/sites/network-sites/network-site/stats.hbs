@@ -18,6 +18,9 @@
   {{#link-to (query-params chart='distribution-network') class='btn btn-default'}}
     Noovis Distribution
   {{/link-to}}
+  {{#link-to (query-params chart='distribution-by-floors') class='btn btn-default'}}
+    Noovis Distribution by Floor
+  {{/link-to}}
 </div>
 
 {{#liquid-bind chart}}
@@ -30,6 +33,10 @@
     {{charts-distribution-network
         siteStats=model.chartDistributionPortsSite
         buildingStats=model.chartDistributionPortsBuildings
+    }}
+  {{else if showDistributionByFloors}}
+    {{charts-distribution-network-floor
+        data=model.chartDistributionByFloor
     }}
   {{else}}
     {{charts-pon-channel

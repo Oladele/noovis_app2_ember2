@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
   showPonChannel: computed.equal('chart', 'pon-channel'),
   showFeederCapacity: computed.equal('chart', 'feeder-capacity'),
   showDistributionNetwork: computed.equal('chart', 'distribution-network'),
+  showDistributionByFloors: computed.equal('chart', 'distribution-by-floors'),
 
   tableHeaders: computed('model.networkElementCounts', function() {
     let counts = this.get('model.networkElementCounts');
