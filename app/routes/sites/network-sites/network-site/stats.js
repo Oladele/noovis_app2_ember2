@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import floorData from 'noovis-app2-ember2/mirage/data-stacked-bar';
 
 const {
   inject,
@@ -18,7 +17,6 @@ export default Ember.Route.extend({
     let chartDistributionPortsBuildings = ajax.request(`network-sites/${id}/chart-distribution-ports-buildings`);
     let chartFeederCapacitySite = ajax.request(`network-sites/${id}/chart-feeder-capacity-site`);
     let chartFeederCapacityBuildings = ajax.request(`network-sites/${id}/chart-feeder-capacity-buildings`);
-    // let chartDistributionByFloor = floorData;
     let chartDistributionByFloor = ajax.request(`network-sites/${id}/chart-distribution-spares-buildings`);
 
     return hash({
