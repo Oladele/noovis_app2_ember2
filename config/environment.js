@@ -69,6 +69,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    // ENV.apiHost = 'https://noovis2-development.herokuapp.com';
     ENV.apiHost = 'https://noovis2-staging.herokuapp.com';
     // ENV.apiHost = 'https://noovis2-production.herokuapp.com';
   }
