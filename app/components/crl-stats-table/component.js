@@ -1,25 +1,23 @@
 import Ember from 'ember';
-import ColumnDefinition from 'ember-table/models/column-definition';
+import Table from 'ember-light-table';
 
 const {
   computed
 } = Ember;
 
 export default Ember.Component.extend({
-  tableColumn(columnName) {
-    let column = ColumnDefinition.create({
-      savedWidth: 100,
-      headerCellName: columnName,
-      getCellContent(row) {
-        return row.get(columnName);
-      }
-    });
-    return column;
+  init() {
+    this._super(...arguments);
+    this.set('table', new Table(this.get('columns'), this.get('tableContent')));
   },
 
-  tableColumns: computed('headers', function() {
+  columns: computed('headers', function() {
     let headers = this.get('headers');
-    let columns = headers.map(header => this.tableColumn(header));
-    return columns;
+    return headers.map(header => {
+      return {
+        label: header,
+        valuePath: header
+      };
+    });
   })
 });
