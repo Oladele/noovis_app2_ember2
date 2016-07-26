@@ -131,18 +131,6 @@ form{
   border-radius: 10px;
 }
 
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/* COMPONENT: crl-stats-table */
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.stats-cell-warning{
-  background-color: #f0ad4e;
-}
-
-.stats-cell-danger{
-  background-color: #d9534f;
-}
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* COMPONENT: crl-stats-pie */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -280,4 +268,79 @@ fill: #8EC640 !important;
 
 .row-controls {
   padding-right: 15px;
+}
+
+.light-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ember-light-table {
+  width: 1440px;
+  margin: 0 auto;
+  border-collapse: collapse;
+
+  tfoot .lt-column {
+    border-top: 1px solid #DADADA;
+  }
+
+  thead .lt-column {
+    border-bottom: 1px solid #DADADA;
+  }
+
+  .lt-column {
+    font-weight: bold;
+    font-size: 13px;
+    padding: 10px;
+
+    .lt-sort-icon {
+      width: 15px;
+    }
+
+    &.lt-group-column {
+      border: none !important;
+      padding-bottom: 10px;
+    }
+  }
+
+  .lt-row {
+    height: 44px;
+
+    &.is-selected {
+      background-color: #DEDEDE !important;
+    }
+
+    &:not(.is-selected):hover {
+      background-color: #F5F4F4 !important;
+    }
+
+    &:last-of-type {
+      td {
+        border-bottom-width: 0;
+      }
+    }
+
+    td {
+      border-color: #DADADA;
+      border-width: 0;
+      border-bottom-width: 1px;
+      border-style: solid;
+      font-size: 13px;
+      padding: 0 10px;
+    }
+  }
+}
+
+.table,
+.table-responsive,
+.table-bordered {
+  font-size: 13px;
+
+  table {
+    border-collapse: collapse;
+  }
+
+  thead > tr > th {
+    border-bottom-width: 1px;
+  }
 }
