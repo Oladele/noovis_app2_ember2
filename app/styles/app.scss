@@ -131,18 +131,6 @@ form{
   border-radius: 10px;
 }
 
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/* COMPONENT: crl-stats-table */
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.stats-cell-warning{
-  background-color: #f0ad4e;
-}
-
-.stats-cell-danger{
-  background-color: #d9534f;
-}
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* COMPONENT: crl-stats-pie */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -340,5 +328,19 @@ fill: #8EC640 !important;
       font-size: 13px;
       padding: 0 10px;
     }
+  }
+}
+
+.table,
+.table-responsive,
+.table-bordered {
+  font-size: 13px;
+
+  table {
+    border-collapse: collapse;
+  }
+
+  thead > tr > th {
+    border-bottom-width: 1px;
   }
 }
