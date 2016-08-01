@@ -55,6 +55,10 @@ export default Ember.Controller.extend({
       _node.brokenImage = 'assets/building.png';
       _node.shape = 'image';
       _node.image = IMAGE_PATHS[node.node_type];
+      if (node.node_type === 'pon_port') {
+        _node.size = 10;
+      }
+
       return _node;
     });
 
