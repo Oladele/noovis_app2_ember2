@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 const {
-  RSVP: { hash }
+  RSVP: { hash },
+  isPresent
 } = Ember;
 
 export default Ember.Route.extend({
@@ -19,6 +20,16 @@ export default Ember.Route.extend({
       building: this.store.findRecord('building', params.building_id),
     })
     .catch(({ errors }) => this.set('errors', errors));
+  },
+
+  afterModel(model, transition) {
+    let message = model.building.get('importJobMessage');
+    if (isPresent(message)) {
+      let flashMessages = this.get('flashMessages');
+      flashMessages.info(message, {
+        sticky: true
+      });
+    }
   },
 
   breadCrumb: {
