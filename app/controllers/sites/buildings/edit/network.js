@@ -56,7 +56,7 @@ export default Ember.Controller.extend({
       _node.shape = 'image';
       _node.image = IMAGE_PATHS[node.node_type];
       if (node.node_type === 'pon_port') {
-        _node.size = 10;
+        _node.size = 16;
       }
 
       return _node;
