@@ -344,3 +344,25 @@ fill: #8EC640 !important;
     border-bottom-width: 1px;
   }
 }
+
+.active-link,
+.active-site,
+h4 .company-link.active,
+.network-site-link.active {
+  color: white;
+  padding: 2px 4px;
+  background-color: #405065;
+  border-radius: 2px;
+}
+
+.active-link,
+.active-site {
+  a {
+    color: white;
+  }
+}
+
+.active-site {
+  display: inline-block;
+  width: 91%;
+}

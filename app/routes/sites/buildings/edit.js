@@ -2,10 +2,12 @@ import Ember from 'ember';
 
 const {
   RSVP: { hash },
-  isPresent
+  isPresent,
+  inject: { service }
 } = Ember;
 
 export default Ember.Route.extend({
+  activeRoute: service(),
   beforeModel(transition) {
     let target = transition.targetName;
     if (target === 'sites.buildings.edit.index') {
@@ -30,6 +32,13 @@ export default Ember.Route.extend({
         sticky: true
       });
     }
+
+    let activeRoute = this.get('activeRoute');
+    activeRoute.setProperties({
+      building: model.building,
+      networkSite: model.building.get('networkSite'),
+      company: model.building.get('company.id')
+    });
   },
 
   breadCrumb: {
@@ -71,6 +80,13 @@ export default Ember.Route.extend({
         flashMessages.warning('Server Error: Please try again later');
         return;
       }
+    },
+
+    willTransition(transition) {
+      this.get('activeRoute').setProperties({
+        building: null,
+        networkSite: null
+      });
     }
   }
 });

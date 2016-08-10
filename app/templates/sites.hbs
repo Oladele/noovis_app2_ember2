@@ -34,25 +34,31 @@
     </p>
 
     {{#each model.companies as |company|}}
-      <h4>
+      <h4 class="{{if (contains activeRoute.networkSite.id (map-by 'id' company.networkSites)) 'active-link'}}">
         {{link-to
             company.name
             "sites.companies.company.edit"
             company.id
             data-test-selector="company-link"
+            class="company-link"
         }}
       </h4>
       {{#each company.networkSites as |networkSite|}}
 
-        <div>
+        <div class='nav-networkSite'>
           <a class='glyphicon glyphicon-chevron-right' data-toggle='collapse' href={{x-id '#building-list' networkSite.id}}>
           </a>
+          <span class="{{if (eq activeRoute.networkSite.id networkSite.id) 'active-site'}}">
           {{#link-to
-            "sites.network-sites.network-site.edit"
-            networkSite.id data-test-selector="network-site-link"
+              "sites.network-sites.network-site.edit"
+              networkSite.id
+              data-test-selector="network-site-link"
+              class='network-site-link'
+              current-when='sites.network-sites.network-site'
           }}
             {{networkSite.name}} ({{networkSite.buildings.length}})
           {{/link-to}}
+          </span>
         </div>
 
         <ul
@@ -62,11 +68,11 @@
           {{#each networkSite.buildings as |building|}}
             <li class="left-nav-sub-list-item">
               {{link-to
-                building.name
-                'sites.buildings.edit.map'
-                building.id
-                data-test-selector='building-edit-link'
-                current-when='sites.buildings.edit'
+                  building.name
+                  'sites.buildings.edit.map'
+                  building.id
+                  data-test-selector='building-edit-link'
+                  current-when='sites.buildings.edit'
               }}
             </li>
           {{/each}}
