@@ -7,10 +7,19 @@ const {
 
 export default Ember.Route.extend({
   ajax: inject.service(),
+  activeRoute: inject.service(),
   model() {
     return RSVP.hash({
       site: this.modelFor('sites.network-sites.network-site'),
       buildings: this.modelFor('sites.network-sites.network-site').get('buildings')
+    });
+  },
+
+  afterModel(model, transition) {
+    let activeRoute = this.get('activeRoute');
+    activeRoute.setProperties({
+      networkSite: model.site,
+      company: model.site.get('company')
     });
   },
 
@@ -40,6 +49,13 @@ export default Ember.Route.extend({
 
     deleteBuilding(building) {
       return building.destroyRecord();
+    },
+
+    willTransition(transition) {
+      this.get('activeRoute').setProperties({
+        networkSite: null,
+        company: null
+      });
     }
   }
 });

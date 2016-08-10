@@ -12,7 +12,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'noovis-app2-ember2',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
+    baseURL: '/', // deprecated in ember cli 2.7. keeping for compatibility
     locationType: 'auto',
     apiHost: '',
     googleMap: {
@@ -57,7 +58,6 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter

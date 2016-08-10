@@ -4,7 +4,15 @@
 
 <div class="row">
   <div class="col-lg-12">
-    {{crl-stats-table headers=tableHeaders tableContent=model.networkElementCounts}}
+    {{#if model.networkElementCounts}}
+      {{crl-stats-table headers=tableHeaders tableContent=model.networkElementCounts}}
+    {{else}}
+      <div class='panel panel-default'>
+        <div class='panel-body'>
+          No data to display. Please upload a sheet to see counts.
+        </div>
+      </div>
+    {{/if}}
   </div>
 </div>
 

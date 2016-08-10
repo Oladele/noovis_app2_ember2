@@ -29,5 +29,5 @@ export default Ember.Route.extend({
       chartFeederCapacityBuildings,
       chartDistributionByFloor
     });
-  },
+  }
 });

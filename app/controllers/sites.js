@@ -13,6 +13,7 @@ export default Ember.Controller.extend({
   showMap: computed('applicationController.currentPath', function() {
     return this.get('applicationController.currentPath') === 'sites.index';
   }),
+  activeRoute: inject.service(),
 
   actions: {
     toggleModal() {
