@@ -10,9 +10,11 @@ const {
 export default AjaxService.extend({
   host: ENV.apiHost,
   session: service(),
+  contentType: 'application/vnd.api+json',
   headers: computed('session.data.authenticated', {
     get() {
       let headers = {};
+      headers.accept = 'application/vnd.api+json';
       let { accessToken, client, expiry, uid, tokenType} = this.get('session.data.authenticated');
       if (accessToken) {
         headers['access-token'] = accessToken;
