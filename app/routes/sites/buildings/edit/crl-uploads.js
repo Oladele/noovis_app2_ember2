@@ -2,6 +2,7 @@ import Ember from 'ember';
 import { CanMixin } from 'ember-can';
 
 const {
+  isPresent,
   RSVP
 } = Ember;
 
@@ -26,6 +27,16 @@ export default Ember.Route.extend(CanMixin, {
       building,
       sheets
     });
+  },
+
+  afterModel(model, transition) {
+    let message = model.building.get('importJobMessage');
+    if (isPresent(message)) {
+      let flashMessages = this.get('flashMessages');
+      flashMessages.info(message, {
+        sticky: true
+      });
+    }
   },
 
   actions: {
