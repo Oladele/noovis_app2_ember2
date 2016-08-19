@@ -5,8 +5,13 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
+  exactMatch(cellValue, searchText) {
+    return searchText ? cellValue === searchText : true;
+  },
+
   columns: computed('headers', function() {
     let headers = this.get('headers');
+    let filterFunction = this.exactMatch;
     let editColumn = {
       propertyName: '',
       title: 'Edit',
@@ -14,6 +19,8 @@ export default Ember.Component.extend({
     };
     let results = [editColumn];
     let rest = headers.map(header => ({
+      filterFunction,
+      filterWithSelect: false,
       propertyName: header,
       title: header
     }));
