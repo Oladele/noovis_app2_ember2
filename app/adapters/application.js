@@ -6,6 +6,7 @@ import Ember from 'ember';
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   host: ENV.apiHost,
   authorizer: 'authorizer:application',
+  coalesceFindRequests: true,
 
   ajaxOptions() {
     let authorizer = this.get('authorizer');
