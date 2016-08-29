@@ -81,7 +81,6 @@ module.exports = function(environment) {
   }
 
   if (deployTarget === 'staging') {
-    ENV.build.environment = 'production';
     ENV.apiHost = 'https://noovis2-staging.herokuapp.com';
   }
 
