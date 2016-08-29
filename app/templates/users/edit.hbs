@@ -1,0 +1,12 @@
+<ol class='breadcrumb'>
+  <li>{{link-to 'Home' 'sites'}}</li>
+  <li>Account Settings</li>
+</ol>
+<h2>Edit Profile</h2>
+
+{{user-profile-form
+    email=model.user.email
+    onSubmit=(route-action 'updateUser')
+}}
+
+{{outlet}}

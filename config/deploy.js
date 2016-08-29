@@ -1,8 +1,9 @@
 module.exports = function(deployTarget) {  
-  return {
-    pagefront: {
-      app: 'noovis-frontend',
-      key: process.env.PAGEFRONT_KEY
-    }
+  var ENV = {};
+  ENV.pagefront = {
+    app: 'noovis2',
+    key: process.env.PAGEFRONT_KEY
   };
+
+  return ENV;
 };

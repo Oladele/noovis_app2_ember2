@@ -1,0 +1,28 @@
+<ol class='breadcrumb'>
+  <li>
+    {{#link-to 'sites.companies.company' model.cableRun.companyLink.id}}
+      {{model.cableRun.companyLink.name}}
+    {{/link-to}}
+  </li>
+  <li>
+    {{#link-to 'sites.network-sites.network-site' model.cableRun.networkSiteLink.id}}
+      {{model.cableRun.networkSiteLink.name}}
+    {{/link-to}}
+  </li>
+  <li>
+    {{#link-to 'sites.buildings.edit.network' model.cableRun.buildingLink.id}}
+      {{model.cableRun.buildingLink.name}} Map
+    {{/link-to}}
+  </li>
+  <li>Cable Run</li>
+</ol>
+
+<h2>Edit Cable Run</h2>
+
+{{cable-run-form
+    cableRun=model.cableRun
+    onSubmit=(route-action 'updateCableRun')
+    onCancel=(route-action 'didCancel')
+}}
+
+{{outlet}}

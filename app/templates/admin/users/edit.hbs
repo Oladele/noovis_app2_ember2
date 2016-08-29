@@ -1,0 +1,12 @@
+<h2>Edit User</h2>
+
+{{user-form 
+    user=model.user
+    email=model.user.email
+    companies=model.companies
+    role=model.user.role
+    company=model.user.company
+    onSubmit=(route-action 'updateUser')
+}}
+
+{{outlet}}

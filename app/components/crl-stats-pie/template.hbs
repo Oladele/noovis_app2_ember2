@@ -1,0 +1,21 @@
+<h4 class='chart-title'>Network Site</h4>
+
+{{#if chartData}}
+  <div class="chart-container">
+    {{pie-chart
+        maxRadius=maxRadius
+        maxSlicePercent=maxSlicePercent
+        minSlicePercent=minSlicePercent
+        maxNumberOfSlices=maxNumberOfSlices
+        selectedSeedColor=selectedSeedColor
+        data=chartData
+        labelWidthMultiplier=labelWidthMultiplier
+    }}
+  </div>
+{{else}}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      No data to display
+    </div>
+  </div>
+{{/if}}

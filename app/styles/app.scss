@@ -1,0 +1,368 @@
+@import 'ember-modal-dialog/ember-modal-structure';
+@import 'ember-modal-dialog/ember-modal-appearance';
+
+/* TODO: Replace color references in body of app.css with Less/Sass variables below */
+/*
+@brand-primary: #11253F
+
+@gray-lighter: #eee
+
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
+*/
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* APP-WIDE: Style changes to standard elements */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+body {
+  padding-top: 50px;
+  padding-bottom: 30px;
+  color: #11253F !important;
+  background: url('/assets/app-bg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+}
+
+a {
+  color: #11253F ;
+}
+
+a:hover {
+  text-decoration: none ;
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* APP-WIDE: Style changes to Bootstrap classes */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.navbar-header a img{
+  margin-top: 5px;
+}
+
+.navbar-inverse {
+  background-color: #11253F;
+  border-color: #11253F;
+}
+
+.nav-pills li{
+  background-color: #eee;
+}
+
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: #fff;
+  background-color: #11253F;
+}
+
+.btn-info:active, .btn-info.active, .open > .dropdown-toggle.btn-info {
+  color: #fff;
+  background-color: #11253F;
+  border-color: #11253F;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #11253F;
+  border-color: #11253F;
+}
+
+.btn-info {
+  color: #fff;
+  background-color: #8EC640;
+  border-color: #8EC640;
+}
+
+.btn-default {
+  color: #11253F;
+  background-color: #eee;
+  border-color: #eee;
+}
+
+.tab-content{
+  margin-top: 15px;
+}
+
+form{
+  margin-top: 15px;
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* APP-WIDE: Style changes to custom classes */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.spacer{
+  margin-top: 15px;
+}
+
+.associated-model-list-item {
+  padding-bottom: 10px;
+  overflow: auto;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.left-nav-sub-list-item{
+  padding-left: 5px;
+  font-size: .9em;
+
+  a {
+    text-decoration: none;
+    display: block;
+    padding-left: 4px;
+  }
+
+  .active {
+    color: white;
+    background-color: #405065;
+    border-radius: 2px;
+  }
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* COMPONENT: ember-cli-g-map */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ember-cli-g-map {
+  height: 400px;
+  width: auto;
+  border-radius: 10px;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* COMPONENT: crl-stats-pie */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*.chart-frame .hovered path{
+fill: #8EC640 !important;
+}*/
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* TEMPLATE: Network Site Stats */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.network-tree-container {
+  width: auto;
+  height: 400px;
+  border: 1px solid lightgray;
+}
+
+.center-block {
+  float: none;
+}
+
+.login-form {
+  margin-top: 200px;
+}
+
+.models-table-wrapper {
+  .inner-table-wrapper {
+    .is-selected {
+      color: #fff;
+      background-color: #11253F;
+
+      a {
+        color: #fff
+      }
+    }
+  }
+}
+
+.loading-spinner {
+  width: 96px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alert {
+  margin-top: 15px;
+}
+
+.breadcrumb {
+  margin-top: 15px;
+}
+.breadcrumb > li + li:before {
+  content: '\232A';
+}
+
+.history-update {
+  background-color: #d9edf7;
+  padding: 0 4px;
+  border-radius: 3px;
+  margin-bottom: 2px;
+}
+
+.history-unsynced {
+  color: #a94442;
+}
+
+.history-description {
+  font-weight: bold;
+}
+
+.networkStats__btn-group {
+  margin-top: 30px;
+}
+
+.networkStats__btn-group > .btn-default {
+  border: white;
+}
+
+.btn-default.active, .btn-default.active:focus {
+  background-color: #11253F;
+  color: #fff;
+}
+
+.models-table-wrapper {
+  overflow-x: auto;
+
+  td {
+    white-space: nowrap;
+  }
+
+  input {
+    min-width: 70px;
+  }
+}
+
+.chart-frame .hovered {
+  fill: #11253f !important;
+  stroke: #11253f !important;
+
+  path, rect, circle, text {
+    fill: #11253f !important;
+    stroke: #11253f !important;
+  }
+}
+
+.login-page {
+  margin: 0 -20px;
+  margin-bottom: -20px;
+  height: 100vh;
+  background: url(welcome_770_900.png);
+  background-size: cover;
+
+  .login-header {
+    h1 {
+      font-size: 60px;
+    }
+    background-color: rgba(white, 0.5);
+    color: #11253F;
+    padding: 5px 10px;
+    font-family: 'Audiowide';
+  }
+}
+
+.ember-modal-dialog {
+  left: 25% !important;
+  top: 25% !important;
+  max-width: 75%;
+  max-height: 90%;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.row-controls {
+  padding-right: 15px;
+}
+
+.light-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ember-light-table {
+  width: 1440px;
+  margin: 0 auto;
+  border-collapse: collapse;
+
+  tfoot .lt-column {
+    border-top: 1px solid #DADADA;
+  }
+
+  thead .lt-column {
+    border-bottom: 1px solid #DADADA;
+  }
+
+  .lt-column {
+    font-weight: bold;
+    font-size: 13px;
+    padding: 10px;
+
+    .lt-sort-icon {
+      width: 15px;
+    }
+
+    &.lt-group-column {
+      border: none !important;
+      padding-bottom: 10px;
+    }
+  }
+
+  .lt-row {
+    height: 44px;
+
+    &.is-selected {
+      background-color: #DEDEDE !important;
+    }
+
+    &:not(.is-selected):hover {
+      background-color: #F5F4F4 !important;
+    }
+
+    &:last-of-type {
+      td {
+        border-bottom-width: 0;
+      }
+    }
+
+    td {
+      border-color: #DADADA;
+      border-width: 0;
+      border-bottom-width: 1px;
+      border-style: solid;
+      font-size: 13px;
+      padding: 0 10px;
+    }
+  }
+}
+
+.table,
+.table-responsive,
+.table-bordered {
+  font-size: 13px;
+
+  table {
+    border-collapse: collapse;
+  }
+
+  thead > tr > th {
+    border-bottom-width: 1px;
+  }
+}
+
+.active-link,
+.active-site,
+h4 .company-link.active,
+.network-site-link.active {
+  color: white;
+  padding: 2px 4px;
+  background-color: #405065;
+  border-radius: 2px;
+}
+
+.active-link,
+.active-site {
+  a {
+    color: white;
+  }
+}
+
+.active-site {
+  display: inline-block;
+  width: 91%;
+}

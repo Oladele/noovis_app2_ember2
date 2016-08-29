@@ -1,9 +1,13 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo, hasMany } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  company: DS.belongsTo('company'),
-  name: DS.attr('string'),
-  address: DS.attr('string'),
-  lat: DS.attr('number'),
-  lng: DS.attr('number')
+export default Model.extend({
+  company: belongsTo('company'),
+  name: attr('string'),
+  lat: attr('number'),
+  lng: attr('number'),
+  buildings: hasMany('building'),
+  address: attr('string'),
+  nodeCounts: attr()
 });

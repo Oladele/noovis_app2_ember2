@@ -1,0 +1,32 @@
+<form {{action 'submit' on='submit'}}>
+  <div class='form-group'>
+    <label>
+      Site Name
+    </label>
+    {{x-input
+        value=name
+        data-test-selector='site-name-input'
+        placeholder="Let's give this site a name"
+        class='form-control'
+    }}
+  </div>
+
+  <div class='form-group'>
+    <label>
+      Site Address
+    </label>
+    {{g-autocomplete
+        id='basic-autocomplete'
+        on-select=(route-action 'didUpdatePlace')
+        value=address
+    }}
+  </div>
+
+  <div>
+    <button type='submit' data-test-selector='submit-button' {{action 'submit'}} class='btn btn-primary'>Update</button>
+
+    {{#if isEditing}}
+      <button data-test-selector='delete-button' {{action 'deleteSite'}} class='btn btn-danger'>Delete {{site.name}}</button>
+    {{/if}}
+  </div>
+</form>

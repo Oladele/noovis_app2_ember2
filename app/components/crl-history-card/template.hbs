@@ -1,0 +1,16 @@
+<div class='panel {{panelType}}'>
+  <div class='panel-heading'>
+    <div class='history-description'>{{description}}</div>
+  </div>
+  <div class='panel-body'>
+    {{#each diffs as |diff|}}
+      <div data-test-selector='diff-text'>
+        <span class='history-update'>{{diff.attribute}}</span>
+        changed from
+        <span class='history-update'>{{diff.previous}}</span>
+        to
+        <span class='history-update'>{{diff.current}}</span>
+      </div>
+    {{/each}}
+  </div>
+</div>

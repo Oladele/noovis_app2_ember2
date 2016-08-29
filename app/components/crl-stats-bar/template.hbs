@@ -1,0 +1,28 @@
+{{yield}}
+<h4 class="chart-header" >Buildings</h4>
+
+{{#if data}}
+  <div class="chart-container">
+    {{vertical-bar-chart
+        maxBarThickness=maxBarThickness
+        selectedSeedColor=selectedSeedColor
+        data=data
+        maxLabelHeight=maxLabelHeight
+        withinGroupPadding=withinGroupPadding
+        betweenGroupPadding=betweenGroupPadding
+        stackBars=stackBars
+        hasXAxisTitle=hasXAxisTitle
+        hasYAxisTitle=hasYAxisTitle
+        xValueDisplayName=xValueDisplayName
+        yValueDisplayName=yValueDisplayName
+        xTitleHorizontalOffset=xTitleHorizontalOffset
+        yTitleVerticalOffset=yTitleVerticalOffset
+    }}
+  </div>
+{{else}}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      No data to display
+    </div>
+  </div>
+{{/if}}

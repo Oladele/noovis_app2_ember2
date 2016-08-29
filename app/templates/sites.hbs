@@ -1,33 +1,99 @@
+{{#if showWelcomeModal}}
+  {{#modal-dialog close="toggleModal"
+      targetAttachment="center"
+      translucentOverlay=true
+  }}
+    <h3 class='row-controls'>
+      Welcome back to N2OA
+      <i {{action 'toggleModal'}} class='fa fa-times pull-right'></i>
+    </h3>
+    <h4>We've made some improvements lately...</h4>
+    <ul>
+      <li>Improved Look & Feel</li>
+      <li>More Fiberspeed Network Stats (see below)</li>
+    </ul>
+    <img src='assets/welcome-back-modal.png'>
+  {{/modal-dialog}}
+{{/if}}
+
 <div class="row">
 
-<div class="col-xs-4">
+  <div class="col-xs-2">
 
-  {{#link-to
-      "sites.companies.new"
-      data-test-selector="new-company-button"
-      class="btn btn-default btn-primary"
-  }}
-      Add Company
-  {{/link-to}}
+    <br>
+    <p>
+      {{#if (can 'write company')}}
+        {{#link-to
+            "sites.companies.new"
+            data-test-selector="new-company-button"
+            class="btn btn-default btn-info"
+        }}
+          Add Company
+        {{/link-to}}
+      {{/if}}
+    </p>
 
-  {{#each model as |company|}}
-    <h4>
-      {{link-to
-          company.name
-          "sites.companies.company.edit"
-          company
-          data-test-selector="company-link"
-      }}
-    </h4>
-    {{#each company.networkSites as |networkSite|}}
-      {{network-site-listing networkSite=networkSite}}
+    {{#each model.companies as |company|}}
+      <h4 class="{{if (contains activeRoute.networkSite.id (map-by 'id' company.networkSites)) 'active-link'}}">
+        {{link-to
+            company.name
+            "sites.companies.company.edit"
+            company.id
+            data-test-selector="company-link"
+            class="company-link"
+        }}
+      </h4>
+      {{#each company.networkSites as |networkSite|}}
+
+        <div class='nav-networkSite'>
+          <a class='glyphicon glyphicon-chevron-right' data-toggle='collapse' href={{x-id '#building-list' networkSite.id}}>
+          </a>
+          <span class="{{if (eq activeRoute.networkSite.id networkSite.id) 'active-site'}}">
+          {{#link-to
+              "sites.network-sites.network-site.edit"
+              networkSite.id
+              data-test-selector="network-site-link"
+              class='network-site-link'
+              current-when='sites.network-sites.network-site'
+          }}
+            {{networkSite.name}} ({{networkSite.buildings.length}})
+          {{/link-to}}
+          </span>
+        </div>
+
+        <ul
+          class='list-unstyled list-group collapse'
+          id={{x-id 'building-list' networkSite.id}}
+        >
+          {{#each networkSite.buildings as |building|}}
+            <li class="left-nav-sub-list-item">
+              {{link-to
+                  building.name
+                  'sites.buildings.edit.map'
+                  building.id
+                  data-test-selector='building-edit-link'
+                  current-when='sites.buildings.edit'
+              }}
+            </li>
+          {{/each}}
+        </ul>
+      {{/each}}
     {{/each}}
-  {{/each}}
+  </div>
 
-</div>
-
-<div class="col-xs-8">
-{{outlet}}
-</div>
+  <div class="col-xs-10">
+    {{#if showMap}}
+      <ol class='breadcrumb'><li>Sites</li></ol>
+      <h2>All Noovis @FiberSpeed™ Sites</h2>
+      {{#if (can 'read globalNodeCounts')}}
+        {{node-counts-table data=model.nodeCounts}}
+      {{/if}}
+      {{#g-maps-container model=model.sites as |map|}}
+        {{g-maps lat=map.lat lng=map.lng zoom=map.zoom markers=map.markers}}
+      {{/g-maps-container}}
+    {{else}}
+      {{outlet}}
+    {{/if}}
+  </div>
 
 </div>

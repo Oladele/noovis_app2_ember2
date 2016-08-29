@@ -1,2 +1,38 @@
+<ol class='breadcrumb'>
+  <li>
+    {{#link-to 'sites.companies.company' model.company.id}}
+      {{model.company.name}}
+    {{/link-to}}
+  </li>
+  <li>{{model.name}} Map</li>
+</ol>
+
 <h2 data-test-selector="network-site-title">{{model.name}}</h2>
+
+<p>
+  <nav role="navigation">
+    <ul class="nav nav-pills nav-justified">
+      {{#link-to 
+        "sites.network-sites.network-site.edit"
+        tagName="li"
+        }}
+        <a href="#">
+          <span class="glyphicon glyphicon-globe"></span> 
+          Map
+        </a>
+      {{/link-to}}
+
+      {{#link-to 
+        "sites.network-sites.network-site.stats"
+        tagName="li"
+        }}
+        <a href="#">
+          <span class="glyphicon glyphicon-stats"></span> 
+          Stats
+        </a>
+      {{/link-to}}
+    </ul>
+  </nav>
+</p>
+
 {{outlet}}

@@ -1,0 +1,41 @@
+<ol class='breadcrumb'>
+  <li>
+    {{#link-to 'sites.companies.company' model.building.networkSite.company.id}}
+      {{model.building.networkSite.company.name}}
+    {{/link-to}}
+  </li>
+  <li>
+    {{#link-to 'sites.network-sites.network-site' model.building.networkSite.id}}
+      {{model.building.networkSite.name}}
+    {{/link-to}}
+  </li>
+  <li>{{model.building.name}} Map</li>
+</ol>
+
+{{building-job-status building=model.building}}
+
+<h2>{{model.building.name}}</h2>
+
+{{node-counts-table data=model.building.nodeCounts}}
+
+<ul class='nav nav-tabs' role='tablist'>
+  {{#link-to 'sites.buildings.edit.map' tagName='li' class='presentation'}}
+    <a href='#'>Map</a>
+  {{/link-to}}
+
+  {{#link-to 'sites.buildings.edit.network' tagName='li' class='presentation'}}
+    <a href='#'>Network</a>
+  {{/link-to}}
+
+  {{#if (can 'read cableRun')}}
+    {{#link-to 'sites.buildings.edit.crl-uploads' tagName='li' class='presentation'}}
+      <a href='#'>CRL Uploads</a>
+    {{/link-to}}
+  {{/if}}
+</ul>
+
+<div class='tab-content'>
+  <div role='tabpanel' class='tab-pane active'>
+    {{outlet}}
+  </div>
+</div>
