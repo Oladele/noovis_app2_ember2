@@ -9,11 +9,14 @@ var contentSecurityPolicy = {
 };
 
 module.exports = function(environment) {
+  var deployTarget = process.env.DEPLOY_TARGET;
   var ENV = {
     modulePrefix: 'noovis-app2-ember2',
     environment: environment,
+    buildEnv: 'production',
     rootURL: '/',
-    baseURL: '/', // deprecated in ember cli 2.7. keeping for compatibility
+    // deprecated in ember cli 2.7. keeping for compatibility
+    baseURL: '/',
     locationType: 'auto',
     apiHost: '',
     googleMap: {
@@ -53,7 +56,9 @@ module.exports = function(environment) {
     // ENV['ember-cli-mirage'] = {
       // enabled: false
     // }
-    // ENV.apiHost = 'https://noovis2-staging.herokuapp.com';
+  }
+
+  if (environment === 'staging') {
   }
 
   if (environment === 'test') {
@@ -69,9 +74,18 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // ENV.apiHost = 'https://noovis2-development.herokuapp.com';
+  }
+
+  if (deployTarget === 'development') {
+    ENV.apiHost = 'https://noovis2-development.herokuapp.com';
+  }
+
+  if (deployTarget === 'staging') {
     ENV.apiHost = 'https://noovis2-staging.herokuapp.com';
-    // ENV.apiHost = 'https://noovis2-production.herokuapp.com';
+  }
+
+  if (deployTarget === 'production') {
+    ENV.apiHost = 'https://noovis2-production.herokuapp.com';
   }
 
   return ENV;
