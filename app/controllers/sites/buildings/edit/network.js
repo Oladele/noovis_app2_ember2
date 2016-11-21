@@ -38,13 +38,25 @@ export default Ember.Controller.extend({
       return { edges, nodes };
     }
 
-    let branch = this.get('runNodes');
+    let _edges = edges.slice();
+
+    let branch = JSON.parse(JSON.stringify(this.get('runNodes')));
     if (isEmpty(branch)) {
       return { edges, nodes };
     }
 
     let shallowestNode = findShallowestNode(branch);
-    let ancestors = findAllAncestors(shallowestNode, nodes);
+    let ancestors = JSON.parse(JSON.stringify(findAllAncestors(shallowestNode, nodes)));
+    let ponCardNode = ancestors.findBy('node_type', 'pon_card');
+    let ponPortNode = ancestors.findBy('node_type', 'pon_port');
+    let buildingNode = ancestors.findBy('node_type', 'building');
+    if (ponPortNode) {
+      ponCardNode.label = `${ponCardNode.label} \n ${ponPortNode.label}`;
+      buildingNode.parent_id = ponCardNode.id;
+    }
+
+    _edges.push({ id: 'unique', from: ponCardNode.id, to: buildingNode.id });
+
     branch.push(...ancestors);
     let nodesWithImages = branch.map(node => {
       if (node === undefined) {
@@ -63,8 +75,19 @@ export default Ember.Controller.extend({
     });
 
     let nodesWithFilteredValues = nodesWithImages.reject(node => node.node_value === 'N/A');
+    let r = nodesWithFilteredValues
+      .filter(node => node.node_type !== 'pon_port');
+    
+    if (ponPortNode) {
+      r = r.map(node => {
+        if (parseInt(node.level, 10) > 3) {
+          node.level -= 1;
+        }
+        return node;
+      });
+    }
 
-    return { edges, nodes: nodesWithFilteredValues };
+    return { edges: _edges, nodes: r };
   }),
 
   tableHeaders: computed('model.cableRuns.[]', function() {
