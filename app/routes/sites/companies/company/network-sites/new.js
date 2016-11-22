@@ -29,7 +29,7 @@ export default Ember.Route.extend(CanMixin, {
         .catch(({ errors }) => this.controller.set('errors', errors));
     },
 
-    didUpdatePlace(place) {
+    didUpdatePlace({place}) {
       this.controller.setProperties({
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng(),
