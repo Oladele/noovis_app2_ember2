@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 const {
   computed,
+  copy,
   isEmpty
 } = Ember;
 
@@ -34,19 +35,16 @@ export default Ember.Controller.extend({
   filteredGraph: computed('filterIds', 'model.nodes.[]', 'model.edges.[]', function() {
     let { nodes, edges } = this.get('model');
     let ids = this.get('filterIds');
-    if (isEmpty(ids)) {
-      return { edges, nodes };
-    }
+    // must check before creating branch
+    if (isEmpty(ids)) return { edges, nodes };
 
+    let branch = copy(this.get('runNodes'), true);
+    if (isEmpty(branch)) return { edges, nodes };
+
+    // make a copy so added edges don't persist
     let _edges = edges.slice();
-
-    let branch = JSON.parse(JSON.stringify(this.get('runNodes')));
-    if (isEmpty(branch)) {
-      return { edges, nodes };
-    }
-
     let shallowestNode = findShallowestNode(branch);
-    let ancestors = JSON.parse(JSON.stringify(findAllAncestors(shallowestNode, nodes)));
+    let ancestors = copy(findAllAncestors(shallowestNode, nodes), true);
     let ponCardNode = ancestors.findBy('node_type', 'pon_card');
     let ponPortNode = ancestors.findBy('node_type', 'pon_port');
     let buildingNode = ancestors.findBy('node_type', 'building');
@@ -55,40 +53,19 @@ export default Ember.Controller.extend({
       buildingNode.parent_id = ponCardNode.id;
     }
 
-    _edges.push({ id: 'unique', from: ponCardNode.id, to: buildingNode.id });
-
+    _edges.push({ id: 'pon-building-edge', from: ponCardNode.id, to: buildingNode.id });
     branch.push(...ancestors);
-    let nodesWithImages = branch.map(node => {
-      if (node === undefined) {
-        return;
-      }
+    let _nodes = this._assignNodeImages(branch)
+                     .reject(node => node.node_value === 'N/A')
+                     .filter(node => node.node_type !== 'pon_port');
 
-      let _node = node;
-      _node.brokenImage = 'assets/building.png';
-      _node.shape = 'image';
-      _node.image = IMAGE_PATHS[node.node_type];
-      if (node.node_type === 'pon_port') {
-        _node.size = 16;
-      }
+    // we need to move all nodes below pon port up one level after
+    // we merge pon port into pon card
+    if (ponPortNode) _nodes = this._decreaseNodeLevel(_nodes);
 
-      return _node;
-    });
-
-    let nodesWithFilteredValues = nodesWithImages.reject(node => node.node_value === 'N/A');
-    let r = nodesWithFilteredValues
-      .filter(node => node.node_type !== 'pon_port');
-    
-    if (ponPortNode) {
-      r = r.map(node => {
-        if (parseInt(node.level, 10) > 3) {
-          node.level -= 1;
-        }
-        return node;
-      });
-    }
-
-    return { edges: _edges, nodes: r };
+    return { edges: _edges, nodes: _nodes };
   }),
+
 
   tableHeaders: computed('model.cableRuns.[]', function() {
     let cableRuns = this.get('model.cableRuns');
@@ -101,6 +78,31 @@ export default Ember.Controller.extend({
     }
     return ['No sheets uploaded'];
   }),
+
+  _assignNodeImages(nodes) {
+    return nodes.map(node => {
+      if (node === undefined) return;
+
+      let _node = node;
+      _node.brokenImage = 'assets/building.png';
+      _node.shape = 'image';
+      _node.image = IMAGE_PATHS[node.node_type];
+      if (node.node_type === 'pon_port') {
+        _node.size = 16;
+      }
+
+      return _node;
+    });
+  },
+
+  _decreaseNodeLevel(nodes) {
+    return nodes.map(node => {
+      if (parseInt(node.level, 10) > 3) {
+        node.level -= 1;
+      }
+      return node;
+    });
+  },
 
   actions: {
     filterGraph(id) {
