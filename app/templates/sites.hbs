@@ -49,15 +49,15 @@
           <a class='glyphicon glyphicon-chevron-right' data-toggle='collapse' href={{x-id '#building-list' networkSite.id}}>
           </a>
           <span class="{{if (eq activeRoute.networkSite.id networkSite.id) 'active-site'}}">
-          {{#link-to
-              "sites.network-sites.network-site.edit"
-              networkSite.id
-              data-test-selector="network-site-link"
-              class='network-site-link'
-              current-when='sites.network-sites.network-site'
-          }}
-            {{networkSite.name}} ({{networkSite.buildings.length}})
-          {{/link-to}}
+            {{#link-to
+                "sites.network-sites.network-site.edit"
+                networkSite.id
+                data-test-selector="network-site-link"
+                class='network-site-link'
+                current-when='sites.network-sites.network-site'
+            }}
+              {{networkSite.name}} ({{networkSite.buildings.length}})
+            {{/link-to}}
           </span>
         </div>
 
