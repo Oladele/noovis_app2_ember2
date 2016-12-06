@@ -1,9 +1,8 @@
 {
   "name": "noovis-app2-ember2",
   "dependencies": {
-    "ember": "~2.7.0",
-    "ember-cli-shims": "0.1.1",
-    "ember-cli-test-loader": "0.2.2",
+    "ember": "~2.9.0",
+    "ember-cli-shims": "0.1.3",
     "ember-qunit-notifications": "0.1.0",
     "bootstrap": "~3.3.6",
     "pretender": "~0.12.0",

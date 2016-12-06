@@ -7,7 +7,7 @@ export default Component.extend({
 
   // TODO: Consider removing checks for `responseText`.
   // Only applies for Mirage responses.
-  sendResponse: Ember.observer('model.reponse', function() {
+  sendResponse: Ember.observer('model.response', function() {
     let hasResponseText = Object.keys(this.get('model.xhr')).includes('responseText');
     let responseText = hasResponseText ? JSON.parse(this.get('model.xhr.responseText')) : '';
     let message = responseText ? responseText.message : this.get('model.response.message');

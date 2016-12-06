@@ -34,7 +34,7 @@ export default Ember.Route.extend({
         .catch(errors => flash.warning(errors));
     },
 
-    didUpdatePlace(place) {
+    didUpdatePlace({place}) {
       this.controller.setProperties({
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng(),
